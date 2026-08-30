@@ -765,6 +765,229 @@
       }
     }
 
+  
+    /* =========================================================
+       CHARACTER IMAGE DETAIL MODAL
+       - 캐릭터 이미지를 클릭하면 확대 이미지 + 상세 설정 표시
+       ========================================================= */
+    .portrait{
+      cursor:zoom-in;
+    }
+
+    .portrait::after{
+      content:"상세 보기";
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      z-index:2;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(7,10,18,.72);
+      color:#eaf0ff;
+      font-size:.7rem;
+      letter-spacing:.04em;
+      opacity:0;
+      transform:translateY(4px);
+      transition:.18s ease;
+      pointer-events:none;
+      backdrop-filter:blur(10px);
+    }
+
+    .character-card:hover .portrait::after,
+    .portrait:focus-visible::after{
+      opacity:1;
+      transform:none;
+    }
+
+    .portrait:focus-visible{
+      outline:2px solid rgba(122,167,255,.8);
+      outline-offset:-2px;
+    }
+
+    .character-modal{
+      width:min(1040px, calc(100vw - 28px));
+      max-height:min(88vh, 900px);
+      padding:0;
+      border:none;
+      border-radius:26px;
+      overflow:hidden;
+      color:var(--text);
+      background:rgba(10,14,24,.97);
+      box-shadow:0 30px 100px rgba(0,0,0,.6);
+    }
+
+    .character-modal::backdrop{
+      background:rgba(2,4,9,.76);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .modal-shell{
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+      max-height:88vh;
+    }
+
+    .modal-image-wrap{
+      position:relative;
+      min-height:520px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(215,184,106,.13), transparent 35%),
+        linear-gradient(145deg,#141b2a,#080b13);
+      overflow:hidden;
+    }
+
+    .modal-image-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 20%;
+    }
+
+    .modal-image-fallback{
+      position:absolute;
+      inset:0;
+      display:none;
+      place-items:center;
+      padding:28px;
+      text-align:center;
+      color:#8f9bb1;
+      line-height:1.7;
+    }
+
+    .modal-info{
+      overflow:auto;
+      padding:34px 30px 36px;
+      border-left:1px solid var(--line);
+    }
+
+    .modal-kicker{
+      color:#d8bd74;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .modal-title{
+      margin:0;
+      font-size:clamp(1.7rem,4vw,2.5rem);
+      line-height:1.15;
+    }
+
+    .modal-roman{
+      display:block;
+      margin-top:7px;
+      color:#9eacc3;
+      font-size:.84rem;
+    }
+
+    .modal-epithet{
+      margin:15px 0 0;
+      color:#f0dfaa;
+      font-size:.95rem;
+    }
+
+    .modal-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin:18px 0 0;
+    }
+
+    .modal-tags span{
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.035);
+      color:#dbe4f4;
+      font-size:.74rem;
+    }
+
+    .modal-section{
+      margin-top:24px;
+      padding-top:20px;
+      border-top:1px solid var(--line);
+    }
+
+    .modal-section h4{
+      margin:0 0 9px;
+      font-size:.86rem;
+      color:#f4f7ff;
+      letter-spacing:.03em;
+    }
+
+    .modal-section p{
+      margin:0;
+      color:#bec9dc;
+      line-height:1.78;
+      font-size:.9rem;
+    }
+
+    .modal-meta{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:8px 12px;
+      margin:0;
+      font-size:.88rem;
+    }
+
+    .modal-meta dt{
+      color:#7f8da6;
+    }
+
+    .modal-meta dd{
+      margin:0;
+      color:#d6deed;
+    }
+
+    .modal-close{
+      position:absolute;
+      top:14px;
+      right:14px;
+      z-index:5;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(7,10,18,.76);
+      color:white;
+      cursor:pointer;
+      font-size:1.15rem;
+      backdrop-filter:blur(10px);
+    }
+
+    .modal-close:hover{
+      background:rgba(255,255,255,.11);
+    }
+
+    @media(max-width:800px){
+      .character-modal{
+        width:min(96vw, 680px);
+        max-height:92vh;
+      }
+
+      .modal-shell{
+        display:block;
+        overflow:auto;
+        max-height:92vh;
+      }
+
+      .modal-image-wrap{
+        min-height:0;
+        aspect-ratio:4/3;
+      }
+
+      .modal-info{
+        border-left:none;
+        border-top:1px solid var(--line);
+        overflow:visible;
+        padding:24px 20px 30px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -798,6 +1021,50 @@
   AVARTHARA ARCHIVE · GitHub Pages ready · Single-file HTML
 </footer>
 
+
+
+<!-- =========================================================
+     CHARACTER IMAGE DETAIL MODAL
+     캐릭터 프로필 이미지를 클릭하면 열립니다.
+     ========================================================= -->
+<dialog class="character-modal" id="characterModal" aria-labelledby="modalTitle">
+  <div class="modal-shell">
+    <div class="modal-image-wrap" id="modalImageWrap">
+      <button class="modal-close" id="modalClose" type="button" aria-label="상세 창 닫기">×</button>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-image-fallback" id="modalImageFallback">
+        등록된 캐릭터 이미지가 없습니다.
+      </div>
+    </div>
+
+    <div class="modal-info">
+      <div class="modal-kicker" id="modalKicker">DRAGON DEITY PROFILE</div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <span class="modal-roman" id="modalRoman"></span>
+      <p class="modal-epithet" id="modalEpithet"></p>
+
+      <div class="modal-tags" id="modalTags"></div>
+
+      <section class="modal-section">
+        <dl class="modal-meta">
+          <dt>담당 국가</dt><dd id="modalCountry"></dd>
+          <dt>색상</dt><dd id="modalColors"></dd>
+          <dt>성격</dt><dd id="modalPersonality"></dd>
+        </dl>
+      </section>
+
+      <section class="modal-section">
+        <h4>외형</h4>
+        <p id="modalAppearance"></p>
+      </section>
+
+      <section class="modal-section">
+        <h4>설정</h4>
+        <p id="modalLore"></p>
+      </section>
+    </div>
+  </div>
+</dialog>
 
 <!-- =========================================================
      BGM PLAYER
@@ -1287,7 +1554,9 @@ function esc(str=""){
 
 function portraitHTML(character){
   return `
-    <div class="portrait" data-portrait>
+    <div class="portrait" data-portrait data-character-id="${esc(character.id)}"
+         role="button" tabindex="0"
+         aria-label="${esc(character.name)} 상세 이미지 및 설정 보기">
       <img src="${esc(character.image)}" alt="${esc(character.name)} 프로필 일러스트"
            loading="lazy" decoding="async">
       <div class="portrait-fallback">
@@ -1564,8 +1833,81 @@ attachRegionMap();
 attachRouting();
 showRoute(currentRoute(), false);
 
+
 /* =========================================================
-   6) BGM 플레이어
+   6) 캐릭터 이미지 상세 모달
+   - 프로필 이미지를 클릭하면 확대 이미지 + 상세 설정을 표시
+   ========================================================= */
+
+const characterModal = document.querySelector("#characterModal");
+const modalClose = document.querySelector("#modalClose");
+const modalImage = document.querySelector("#modalImage");
+const modalImageWrap = document.querySelector("#modalImageWrap");
+const modalImageFallback = document.querySelector("#modalImageFallback");
+
+function openCharacterModal(characterId){
+  const c = CHARACTERS.find(x => x.id === characterId);
+  if(!c || !characterModal) return;
+
+  document.querySelector("#modalKicker").textContent =
+    c.group === "trimurti" ? "PRIMORDIAL DRAGON DEITY" : `${c.direction || ""} DIRECTIONAL DRAGON`;
+
+  document.querySelector("#modalTitle").textContent = `${c.title} ${c.name}`;
+  document.querySelector("#modalRoman").textContent = c.roman;
+  document.querySelector("#modalEpithet").textContent = `「${c.epithet}」`;
+  document.querySelector("#modalCountry").textContent = c.country;
+  document.querySelector("#modalColors").textContent = c.colors;
+  document.querySelector("#modalPersonality").textContent = c.personality;
+  document.querySelector("#modalAppearance").textContent = c.appearance;
+  document.querySelector("#modalLore").textContent = c.lore;
+
+  const tags = document.querySelector("#modalTags");
+  tags.innerHTML = c.domain.map(x => `<span>${esc(x)}</span>`).join("");
+
+  modalImage.style.display = "block";
+  modalImageFallback.style.display = "none";
+  modalImage.src = c.image;
+  modalImage.alt = `${c.name} 프로필 일러스트 확대`;
+
+  modalImage.onload = () => {
+    modalImage.style.display = "block";
+    modalImageFallback.style.display = "none";
+  };
+
+  modalImage.onerror = () => {
+    modalImage.style.display = "none";
+    modalImageFallback.style.display = "grid";
+  };
+
+  characterModal.showModal();
+}
+
+function attachPortraitModals(){
+  document.querySelectorAll("[data-portrait][data-character-id]").forEach(box => {
+    box.addEventListener("click", () => openCharacterModal(box.dataset.characterId));
+    box.addEventListener("keydown", e => {
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        openCharacterModal(box.dataset.characterId);
+      }
+    });
+  });
+}
+
+if(characterModal){
+  modalClose?.addEventListener("click", () => characterModal.close());
+
+  characterModal.addEventListener("click", e => {
+    if(e.target === characterModal){
+      characterModal.close();
+    }
+  });
+}
+
+attachPortraitModals();
+
+/* =========================================================
+   7) BGM 플레이어
    - 페이지는 해시 라우팅이라 대륙/삼주룡/10방위룡 이동 중 음악이 끊기지 않습니다.
    - 자동재생은 브라우저 정책상 사용하지 않습니다.
    ========================================================= */
