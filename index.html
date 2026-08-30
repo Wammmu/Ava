@@ -647,6 +647,84 @@
       *,*::before,*::after{animation:none!important; transition:none!important}
     }
   </style>
+  .bgm-player{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:300px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  background:rgba(9,14,25,.82);
+  backdrop-filter:blur(18px);
+  box-shadow:0 14px 40px rgba(0,0,0,.38);
+}
+
+.bgm-toggle{
+  width:42px;
+  height:42px;
+  flex:none;
+  border-radius:50%;
+  border:1px solid rgba(215,184,106,.45);
+  background:rgba(215,184,106,.10);
+  color:#f5d98d;
+  cursor:pointer;
+}
+
+.bgm-toggle:hover{
+  background:rgba(215,184,106,.18);
+}
+
+.bgm-info{
+  min-width:0;
+  flex:1;
+}
+
+.bgm-label{
+  display:block;
+  color:#8f9bb1;
+  font-size:.62rem;
+  letter-spacing:.16em;
+  margin-bottom:3px;
+}
+
+.bgm-info strong{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:.8rem;
+  color:#edf2ff;
+}
+
+#bgmVolume{
+  width:70px;
+  accent-color:#d7b86a;
+}
+
+@media(max-width:720px){
+  .bgm-player{
+    right:12px;
+    bottom:12px;
+    min-width:0;
+    width:auto;
+    padding:8px;
+  }
+
+  .bgm-info,
+  #bgmVolume{
+    display:none;
+  }
+
+  .bgm-toggle{
+    width:44px;
+    height:44px;
+  }
+}
 </head>
 <body>
 
@@ -1412,5 +1490,29 @@ attachRegionMap();
 attachRouting();
 showRoute(currentRoute(), false);
 </script>
+  <div class="bgm-player" id="bgmPlayer">
+  <button class="bgm-toggle" id="bgmToggle" aria-label="BGM 재생">
+    ▶
+  </button>
+
+  <div class="bgm-info">
+    <span class="bgm-label">NOW PLAYING</span>
+    <strong>Mandala of Avarthara</strong>
+  </div>
+
+  <input
+    type="range"
+    id="bgmVolume"
+    min="0"
+    max="1"
+    step="0.05"
+    value="0.35"
+    aria-label="BGM 볼륨"
+  >
+
+  <audio id="bgmAudio" loop preload="metadata">
+    <source src="./assets/audio/main-theme.mp3" type="audio/mpeg">
+  </audio>
+</div>
 </body>
 </html>
