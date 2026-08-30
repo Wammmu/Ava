@@ -646,85 +646,126 @@
       html{scroll-behavior:auto}
       *,*::before,*::after{animation:none!important; transition:none!important}
     }
+  
+    /* =========================================================
+       BGM PLAYER
+       - 우측 하단 고정형
+       - 모바일에서는 재생/정지 버튼만 표시
+       ========================================================= */
+    .bgm-player{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:100;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:300px;
+      max-width:min(390px, calc(100vw - 28px));
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(9,14,25,.84);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 14px 40px rgba(0,0,0,.38);
+      transition:opacity .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .bgm-player:hover{
+      border-color:rgba(215,184,106,.26);
+    }
+
+    .bgm-player.is-playing{
+      box-shadow:
+        0 14px 40px rgba(0,0,0,.38),
+        0 0 28px rgba(215,184,106,.08);
+    }
+
+    .bgm-toggle{
+      width:42px;
+      height:42px;
+      flex:none;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      border:1px solid rgba(215,184,106,.45);
+      background:rgba(215,184,106,.10);
+      color:#f5d98d;
+      cursor:pointer;
+      font-weight:800;
+      transition:.18s ease;
+    }
+
+    .bgm-toggle:hover{
+      background:rgba(215,184,106,.18);
+      transform:translateY(-1px);
+    }
+
+    .bgm-toggle:focus-visible,
+    .bgm-volume:focus-visible{
+      outline:2px solid rgba(122,167,255,.7);
+      outline-offset:3px;
+    }
+
+    .bgm-info{
+      min-width:0;
+      flex:1;
+    }
+
+    .bgm-label{
+      display:block;
+      color:#8f9bb1;
+      font-size:.62rem;
+      letter-spacing:.16em;
+      margin-bottom:3px;
+    }
+
+    .bgm-title{
+      display:block;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      font-size:.8rem;
+      color:#edf2ff;
+    }
+
+    .bgm-volume-wrap{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      color:#8f9bb1;
+      font-size:.72rem;
+    }
+
+    .bgm-volume{
+      width:76px;
+      cursor:pointer;
+      accent-color:#d7b86a;
+    }
+
+    @media(max-width:720px){
+      .bgm-player{
+        right:12px;
+        bottom:12px;
+        min-width:0;
+        width:auto;
+        padding:8px;
+        border-radius:999px;
+      }
+
+      .bgm-info,
+      .bgm-volume-wrap{
+        display:none;
+      }
+
+      .bgm-toggle{
+        width:44px;
+        height:44px;
+      }
+    }
+
   </style>
-  .bgm-player{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:300px;
-  padding:12px 14px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  background:rgba(9,14,25,.82);
-  backdrop-filter:blur(18px);
-  box-shadow:0 14px 40px rgba(0,0,0,.38);
-}
-
-.bgm-toggle{
-  width:42px;
-  height:42px;
-  flex:none;
-  border-radius:50%;
-  border:1px solid rgba(215,184,106,.45);
-  background:rgba(215,184,106,.10);
-  color:#f5d98d;
-  cursor:pointer;
-}
-
-.bgm-toggle:hover{
-  background:rgba(215,184,106,.18);
-}
-
-.bgm-info{
-  min-width:0;
-  flex:1;
-}
-
-.bgm-label{
-  display:block;
-  color:#8f9bb1;
-  font-size:.62rem;
-  letter-spacing:.16em;
-  margin-bottom:3px;
-}
-
-.bgm-info strong{
-  display:block;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  font-size:.8rem;
-  color:#edf2ff;
-}
-
-#bgmVolume{
-  width:70px;
-  accent-color:#d7b86a;
-}
-
-@media(max-width:720px){
-  .bgm-player{
-    right:12px;
-    bottom:12px;
-    min-width:0;
-    width:auto;
-    padding:8px;
-  }
-
-  .bgm-info,
-  #bgmVolume{
-    display:none;
-  }
-
-  .bgm-toggle{
-    width:44px;
-    height:44px;
-  }
-}
 </head>
 <body>
 
@@ -756,6 +797,39 @@
   <span class="accent-dot"></span>
   AVARTHARA ARCHIVE · GitHub Pages ready · Single-file HTML
 </footer>
+
+
+<!-- =========================================================
+     BGM PLAYER
+     assets/audio/main-theme.mp3 파일을 저장소에 넣으면 재생됩니다.
+     브라우저 자동재생 제한 때문에 최초 재생은 사용자가 ▶ 버튼을 눌러야 합니다.
+     ========================================================= -->
+<div class="bgm-player" id="bgmPlayer" aria-label="배경음악 플레이어">
+  <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="BGM 재생" aria-pressed="false">▶</button>
+
+  <div class="bgm-info">
+    <span class="bgm-label">NOW PLAYING</span>
+    <strong class="bgm-title" id="bgmTitle">Mandala of Avarthara</strong>
+  </div>
+
+  <label class="bgm-volume-wrap" for="bgmVolume">
+    <span>VOL</span>
+    <input
+      class="bgm-volume"
+      id="bgmVolume"
+      type="range"
+      min="0"
+      max="1"
+      step="0.05"
+      value="0.35"
+      aria-label="BGM 볼륨"
+    >
+  </label>
+
+  <audio id="bgmAudio" loop preload="metadata">
+    <source src="./assets/audio/main-theme.mp3" type="audio/mpeg">
+  </audio>
+</div>
 
 <script>
 /* =========================================================
@@ -1489,30 +1563,70 @@ attachImageFallbacks();
 attachRegionMap();
 attachRouting();
 showRoute(currentRoute(), false);
+
+/* =========================================================
+   6) BGM 플레이어
+   - 페이지는 해시 라우팅이라 대륙/삼주룡/10방위룡 이동 중 음악이 끊기지 않습니다.
+   - 자동재생은 브라우저 정책상 사용하지 않습니다.
+   ========================================================= */
+
+const bgmPlayer = document.querySelector("#bgmPlayer");
+const bgmAudio = document.querySelector("#bgmAudio");
+const bgmToggle = document.querySelector("#bgmToggle");
+const bgmVolume = document.querySelector("#bgmVolume");
+
+if (bgmAudio && bgmToggle && bgmVolume) {
+  // 초기 볼륨
+  bgmAudio.volume = Number(bgmVolume.value);
+
+  // 사용자가 마지막으로 설정한 볼륨을 같은 브라우저에서 기억
+  const savedVolume = localStorage.getItem("avarthara-bgm-volume");
+  if (savedVolume !== null) {
+    const parsed = Math.min(1, Math.max(0, Number(savedVolume)));
+    if (!Number.isNaN(parsed)) {
+      bgmAudio.volume = parsed;
+      bgmVolume.value = String(parsed);
+    }
+  }
+
+  function syncBgmButton() {
+    const playing = !bgmAudio.paused;
+    bgmToggle.textContent = playing ? "Ⅱ" : "▶";
+    bgmToggle.setAttribute("aria-label", playing ? "BGM 일시정지" : "BGM 재생");
+    bgmToggle.setAttribute("aria-pressed", String(playing));
+    bgmPlayer?.classList.toggle("is-playing", playing);
+  }
+
+  bgmToggle.addEventListener("click", async () => {
+    if (bgmAudio.paused) {
+      try {
+        await bgmAudio.play();
+      } catch (err) {
+        console.warn("BGM 재생 실패:", err);
+      }
+    } else {
+      bgmAudio.pause();
+    }
+    syncBgmButton();
+  });
+
+  bgmVolume.addEventListener("input", () => {
+    const value = Number(bgmVolume.value);
+    bgmAudio.volume = value;
+    localStorage.setItem("avarthara-bgm-volume", String(value));
+  });
+
+  bgmAudio.addEventListener("play", syncBgmButton);
+  bgmAudio.addEventListener("pause", syncBgmButton);
+  bgmAudio.addEventListener("ended", syncBgmButton);
+  bgmAudio.addEventListener("error", () => {
+    console.warn("BGM 파일을 불러오지 못했습니다. assets/audio/main-theme.mp3 경로를 확인하세요.");
+    bgmToggle.title = "BGM 파일을 찾을 수 없습니다.";
+  });
+
+  syncBgmButton();
+}
+
 </script>
-  <div class="bgm-player" id="bgmPlayer">
-  <button class="bgm-toggle" id="bgmToggle" aria-label="BGM 재생">
-    ▶
-  </button>
-
-  <div class="bgm-info">
-    <span class="bgm-label">NOW PLAYING</span>
-    <strong>Mandala of Avarthara</strong>
-  </div>
-
-  <input
-    type="range"
-    id="bgmVolume"
-    min="0"
-    max="1"
-    step="0.05"
-    value="0.35"
-    aria-label="BGM 볼륨"
-  >
-
-  <audio id="bgmAudio" loop preload="metadata">
-    <source src="./assets/audio/main-theme.mp3" type="audio/mpeg">
-  </audio>
-</div>
 </body>
 </html>
