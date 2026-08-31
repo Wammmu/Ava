@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
-  <meta name="description" content="아바르타라 세계관 아카이브 — 만다라바르샤, 삼주룡, 10방위룡" />
+  <meta name="description" content="아바르타라 세계관 아카이브 — 만다라바르샤, 삼주룡, 십방위룡" />
   <title>아바르타라 세계관 아카이브</title>
 
   <style>
@@ -988,6 +988,23 @@
       }
     }
 
+  
+    @media (min-width:721px) and (max-width:1120px){
+      .header-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .top-nav{
+        width:100%;
+        margin-left:0;
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        padding-bottom:2px;
+      }
+      .nav-btn{flex:none}
+    }
+
   </style>
 </head>
 <body>
@@ -1003,9 +1020,11 @@
     </div>
 
     <nav class="top-nav" aria-label="주요 페이지">
-      <button class="nav-btn" data-route="continent">1 · 대륙 소개</button>
-      <button class="nav-btn" data-route="trimurti">2 · 삼주룡</button>
-      <button class="nav-btn" data-route="guardians">3 · 10방위룡</button>
+      <button class="nav-btn" data-route="continent">대륙 소개</button>
+      <button class="nav-btn" data-route="trimurti">삼주룡</button>
+      <button class="nav-btn" data-route="guardians">십방위룡</button>
+      <button class="nav-btn" data-route="retainers">용신의 권속</button>
+      <button class="nav-btn" data-route="companions">여정의 동료</button>
     </nav>
   </div>
 </header>
@@ -1014,6 +1033,8 @@
   <section id="page-continent" class="page"></section>
   <section id="page-trimurti" class="page"></section>
   <section id="page-guardians" class="page"></section>
+  <section id="page-retainers" class="page"></section>
+  <section id="page-companions" class="page"></section>
 </main>
 
 <footer class="footer">
@@ -1047,7 +1068,8 @@
 
       <section class="modal-section">
         <dl class="modal-meta">
-          <dt>담당 국가</dt><dd id="modalCountry"></dd>
+          <dt id="modalGenderLabel" style="display:none">성별</dt><dd id="modalGender" style="display:none"></dd>
+          <dt id="modalAffiliationLabel">담당 국가</dt><dd id="modalCountry"></dd>
           <dt>색상</dt><dd id="modalColors"></dd>
           <dt>성격</dt><dd id="modalPersonality"></dd>
         </dl>
@@ -1123,7 +1145,28 @@
       ├─ ratnia.webp
       ├─ akashara.webp
       ├─ jyotira.webp
-      └─ talania.webp
+      ├─ talania.webp
+      │
+      │  # 용신의 권속 13명
+      ├─ vedanika.webp
+      ├─ niyara.webp
+      ├─ shantira.webp
+      ├─ taran.webp
+      ├─ dipara.webp
+      ├─ kartan.webp
+      ├─ vishani.webp
+      ├─ samer.webp
+      ├─ maruti.webp
+      ├─ manira.webp
+      ├─ divyani.webp
+      ├─ tejani.webp
+      ├─ garvan.webp
+      │
+      │  # 주인공 일행 4명
+      ├─ arvan.webp
+      ├─ hyeonri.webp
+      ├─ ramani.webp
+      └─ ryeonhwa.webp
 
    JPG/PNG를 쓰고 싶으면 아래 DATA.characters의 image 경로만
    해당 확장자로 바꾸면 됩니다.
@@ -1538,6 +1581,302 @@ const CHARACTERS = [
     summary:"대륙의 물리적 기반과 중력을 떠받치는 지저의 수호신룡.",
     lore:"다른 십방룡보다 수세룡 스티라니아와 가까운 관계. 존재하는 것만으로 주변의 중력과 지층을 안정시키며 세계의 토대를 지킨다.",
     image:"./assets/characters/talania.webp"
+  },
+  /* =======================================================
+     용신의 권속 13명
+     ======================================================= */
+  {
+    id:"vedanika",
+    group:"retainer",
+    name:"베다니카",
+    roman:"Vedanika",
+    title:"창세기록관",
+    epithet:"태초의 이름을 적는 자",
+    domain:["기록","명명","창조지식","천문"],
+    colors:"백색 · 황금 · 적색",
+    country:"파드마샤라 · 스리슈티라 직속",
+    gender:"여성",
+    personality:"호기심 많고 상냥한 학자. 사소한 기록 오류만큼은 절대로 넘어가지 않는다.",
+    appearance:"백·적·금색의 학자풍 의복, 연꽃 장식, 황금 필기구, 별과 창조문자가 떠다니는 서기관.",
+    summary:"스리슈티라가 탄생시킨 별과 생명, 새로운 개념에 최초의 이름을 부여하고 기록하는 창세의 서기관.",
+    lore:"새롭게 태어난 것에 이름이 없으면 세계의 기록에 정착하지 못한다는 믿음 아래 창세의 순간을 기록한다. 전투보다는 지식과 관측에 능하지만, 그녀가 적어 내린 창조문자는 짧은 시간 현실의 법칙이 되기도 한다.",
+    image:"./assets/characters/vedanika.webp"
+  },
+  {
+    id:"niyara",
+    group:"retainer",
+    name:"니야라",
+    roman:"Niyara",
+    title:"천륜재상",
+    epithet:"흔들리지 않는 질서의 손",
+    domain:["행정","결계","법","조정"],
+    colors:"청색 · 황금",
+    country:"다르마니르 · 스티라니아 직속",
+    gender:"여성",
+    personality:"냉철하고 현실적인 행정가. 장기적인 균형을 위해서는 용신에게도 직언한다.",
+    appearance:"청금색 정복과 경갑, 대칭적인 원환 장식, 금빛 열쇠지팡이와 부유하는 결계판.",
+    summary:"스티라니아를 대신해 국가와 결계망, 조약의 실무를 통솔하는 다르마니르의 최고 보좌관.",
+    lore:"스티라니아가 세계 전체의 균형을 바라본다면 니야라는 오늘 무너지려는 성벽과 내일 파기될 조약을 살핀다. 각국의 재난 대응 체계를 연결하는 실무의 핵심이다.",
+    image:"./assets/characters/niyara.webp"
+  },
+  {
+    id:"shantira",
+    group:"retainer",
+    name:"샨티라",
+    roman:"Shantira",
+    title:"회진사제",
+    epithet:"마지막 숨을 달래는 자",
+    domain:["장례","위령","재","청염"],
+    colors:"흑색 · 남색 · 은색",
+    country:"칼라슈마 · 바스미라 직속",
+    gender:"여성",
+    personality:"고요하고 자애롭다. 죽음을 두려워하는 사람에게 마지막까지 곁을 지켜주는 성직자.",
+    appearance:"검은 장례복과 은장식, 푸른 혼등, 초승달 장식과 흩날리는 백색 재.",
+    summary:"바스미라의 종언 뒤에 남은 죽음과 슬픔을 정리하고 망자를 배웅하는 장례사제.",
+    lore:"종언이 공포만으로 기억되지 않도록 남겨진 자와 떠나는 자 사이의 마지막 의식을 집전한다. 그녀의 청염은 시신을 태우지 않고 집착과 원한만을 재로 만든다.",
+    image:"./assets/characters/shantira.webp"
+  },
+  {
+    id:"taran",
+    group:"retainer",
+    name:"타란",
+    roman:"Taran",
+    title:"뇌정군 부관",
+    epithet:"폭풍 뒤를 정렬하는 창",
+    domain:["번개","군략","전령","창술"],
+    colors:"코발트 블루 · 황금",
+    country:"바즈라카르 · 바즈리아 직속",
+    gender:"남성",
+    personality:"침착하고 규율을 중시하는 장교. 바즈리아가 돌진하면 뒤에서 전선을 수습한다.",
+    appearance:"청금색 군용 갑주, 번개창, 전기 건틀릿, 짧은 남청색 머리와 황금빛 눈.",
+    summary:"동방의 뇌정군을 실질적으로 지휘하며 바즈리아의 폭발적인 전투력을 전술로 완성시키는 부관.",
+    lore:"번개처럼 빠른 명령 전달과 전장 재편에 특화되어 있다. 바즈리아와 정반대처럼 보이지만 누구보다 그녀의 판단을 신뢰한다.",
+    image:"./assets/characters/taran.webp"
+  },
+  {
+    id:"dipara",
+    group:"retainer",
+    name:"디파라",
+    roman:"Dipara",
+    title:"성화대장장이",
+    epithet:"신들의 쇠를 달구는 자",
+    domain:["제련","화염","무구","용광로"],
+    colors:"진홍 · 주황 · 황금",
+    country:"즈발라그니 · 즈발리카 직속",
+    gender:"여성",
+    personality:"호쾌하고 직설적인 장인. 무기를 함부로 다루는 사람에게는 신분을 가리지 않고 화낸다.",
+    appearance:"적주황색 묶은 머리, 대장장이 앞치마와 동갑, 용암빛 망치와 불꽃 문신.",
+    summary:"겁화룡의 성화를 이용해 방위룡과 신관들의 무구를 제작하는 신성 대장장이.",
+    lore:"즈발리카의 화염을 견딜 수 있는 극소수의 인간 중 하나. 전투도 능숙하지만 자신은 무기를 휘두르는 일보다 제대로 만드는 일이 훨씬 어렵다고 주장한다.",
+    image:"./assets/characters/dipara.webp"
+  },
+  {
+    id:"kartan",
+    group:"retainer",
+    name:"카르탄",
+    roman:"Kartan",
+    title:"망혼기록관",
+    epithet:"마지막 판결을 기록하는 붓",
+    domain:["사후기록","심판","영혼","집행"],
+    colors:"흑색 · 암적색 · 철색",
+    country:"단드라바 · 단다리아 직속",
+    gender:"남성",
+    personality:"냉정한 원칙주의자처럼 보이지만 망자의 사소한 마지막 부탁을 몰래 들어주는 면이 있다.",
+    appearance:"흑철 법복과 붉은 끈, 혼령 장부와 검은 붓, 유령불이 떠다니는 정갈한 외형.",
+    summary:"단다리아의 판결을 기록하고 명계로 향할 영혼의 신원과 기억을 관리하는 집행관.",
+    lore:"그의 장부에 기록된 이름은 사후 질서에서 사라지지 않는다. 오기 하나가 영혼의 행선지를 바꿀 수도 있기 때문에 극단적으로 정확한 업무 태도를 유지한다.",
+    image:"./assets/characters/kartan.webp"
+  },
+  {
+    id:"vishani",
+    group:"retainer",
+    name:"비샤니",
+    roman:"Vishani",
+    title:"왕립 독약사",
+    epithet:"독과 약 사이를 걷는 자",
+    domain:["독","약학","연금술","식물"],
+    colors:"짙은 보라 · 흑색 · 독녹",
+    country:"비샤라트 · 크샤이라 직속",
+    gender:"여성",
+    personality:"늘 친절하고 부드럽게 웃는다. 그 때문에 크샤이라보다 오히려 더 위험하다는 평을 듣는다.",
+    appearance:"보라빛 장발, 녹색 눈, 독화와 가시 장식, 유리 약병과 연금술 서책.",
+    summary:"독과 치료약을 같은 지식의 두 얼굴로 다루는 크샤이라의 수석 연금술사.",
+    lore:"어떤 독이든 해독법을 찾으려 하고 어떤 약이든 독성이 될 수 있음을 경고한다. 오염된 토지의 정화와 전염병 연구에도 큰 역할을 맡는다.",
+    image:"./assets/characters/vishani.webp"
+  },
+  {
+    id:"samer",
+    group:"retainer",
+    name:"사메르",
+    roman:"Samer",
+    title:"해약재판관",
+    epithet:"파도 위에 맹세를 새기는 자",
+    domain:["계약","해군","협상","수계"],
+    colors:"남청 · 청록 · 은색",
+    country:"사무드리아 · 리타니아 직속",
+    gender:"남성",
+    personality:"말수가 적고 협상에 강하다. 거짓말을 감지하면 조용히 계약서를 덮는다.",
+    appearance:"남청색 해군 정복, 은비늘 갑주, 진주장식, 계약 두루마리와 은빛 사슬.",
+    summary:"리타니아를 대신해 국가 간 계약과 해양 분쟁을 다루는 함대참모 겸 재판관.",
+    lore:"전쟁을 벌이는 것보다 한 장의 조약으로 함대를 멈추는 일을 선호한다. 그러나 계약이 파기되면 누구보다 냉정하게 집행 절차를 시작한다.",
+    image:"./assets/characters/samer.webp"
+  },
+  {
+    id:"maruti",
+    group:"retainer",
+    name:"마루티",
+    roman:"Maruti",
+    title:"천공전령",
+    epithet:"어디에도 묶이지 않는 발걸음",
+    domain:["바람","전령","여행","정찰"],
+    colors:"백색 · 민트 · 하늘색",
+    country:"마루바나 · 파바니아 직속",
+    gender:"여성",
+    personality:"밝고 자유분방하다. 파바니아와 함께 사라져 예정된 업무를 통째로 미루는 일이 종종 있다.",
+    appearance:"짧은 은백색 머리, 긴 스카프와 여행복, 깃털 부적, 바람을 머금은 전령가방.",
+    summary:"십방의 영토를 가장 빠르게 오가며 소식과 물자를 전달하는 북서방의 천공전령.",
+    lore:"길이 없는 곳에 바람길을 만들어 이동한다. 국경에 얽매이지 않는 성격 덕분에 각국의 민간 정보에도 매우 밝다.",
+    image:"./assets/characters/maruti.webp"
+  },
+  {
+    id:"manira",
+    group:"retainer",
+    name:"마니라",
+    roman:"Manira",
+    title:"보산재무관",
+    epithet:"천 개의 장부를 세는 손",
+    domain:["재정","보석","상업","감정"],
+    colors:"에메랄드 · 황금 · 옥색",
+    country:"라트나가르 · 라트니아 직속",
+    gender:"여성",
+    personality:"돈을 좋아하고 계산이 빠르지만 부정과 횡령은 극도로 싫어한다.",
+    appearance:"녹금색 상인귀족복, 옥 주판과 황금 장부, 다층 보석장식과 부유하는 수정.",
+    summary:"십방국의 재정과 광물가치를 읽어내는 라트니아의 수석 재무관.",
+    lore:"라트니아가 풍요를 나누는 데 집중한다면 마니라는 그 풍요가 어디에서 와서 어디로 가는지를 추적한다. 작은 숫자 하나로 전쟁의 징후까지 알아차리곤 한다.",
+    image:"./assets/characters/manira.webp"
+  },
+  {
+    id:"divyani",
+    group:"retainer",
+    name:"디비아니",
+    roman:"Divyani",
+    title:"신탁해석관",
+    epithet:"꿈의 언어를 읽는 자",
+    domain:["신탁","영매","예지","해석"],
+    colors:"백색 · 연보라 · 은색",
+    country:"아카샤비아 · 아카샤라 직속",
+    gender:"여성",
+    personality:"평소에는 몽롱하고 느긋하지만 신탁을 해석할 때는 목소리와 분위기가 완전히 달라진다.",
+    appearance:"은백색 장발, 반투명 연보라 의복, 영등과 점괘패, 기하학 문양과 영불.",
+    summary:"아카샤라가 보여주는 파편적인 미래와 영계의 상징을 인간의 언어로 번역하는 영매.",
+    lore:"신탁은 정답이 아니라 가능성의 지도라고 믿는다. 지나친 예언 의존을 경계하며 듣는 사람이 스스로 선택하도록 일부러 여지를 남긴다.",
+    image:"./assets/characters/divyani.webp"
+  },
+  {
+    id:"tejani",
+    group:"retainer",
+    name:"테자니",
+    roman:"Tejani",
+    title:"천광성기사",
+    epithet:"한 점의 흐림도 허락하지 않는 창",
+    domain:["태양","호위","정화","성광"],
+    colors:"백금 · 황금 · 옅은 하늘색",
+    country:"수리야트라 · 조티라 직속",
+    gender:"여성",
+    personality:"엄격하고 성실한 완벽주의자. 겉으로는 흔들리지 않지만 자신의 실수를 누구보다 두려워한다.",
+    appearance:"백금색 성갑, 태양관 장식, 황금창과 일륜방패, 백색광의 후광.",
+    summary:"조티라의 명령을 집행하며 천정국의 성역과 태양환을 지키는 최고위 성기사.",
+    lore:"빛의 힘으로 은폐와 저주를 걷어내는 데 특화되어 있다. 조티라를 존경하지만 완벽함이 사람을 상처 입힐 수도 있다는 사실을 조금씩 배우고 있다.",
+    image:"./assets/characters/tejani.webp"
+  },
+  {
+    id:"garvan",
+    group:"retainer",
+    name:"가르반",
+    roman:"Garvan",
+    title:"지층감찰관",
+    epithet:"세계기둥 앞의 문지기",
+    domain:["지층","중력","감찰","수문"],
+    colors:"흑요석 · 남보라 · 암청",
+    country:"파탈가르 · 탈라니아 직속",
+    gender:"남성",
+    personality:"과묵하고 우직하다. 탈라니아보다 말이 조금 더 많다는 이유로 파탈가르에서는 사교적인 인물 취급을 받는다.",
+    appearance:"흑요석 중갑, 거대한 석갑 장갑, 남보라 중력문자, 고대 열쇠와 사슬장식.",
+    summary:"세계기둥과 지층 안정시설을 순찰하며 대륙 기반의 이상을 가장 먼저 감지하는 수문장.",
+    lore:"지상 정치에는 거의 관심이 없지만 지층 균열 하나에는 즉시 움직인다. 그의 걸음이 멈추는 곳에는 중력마저 무거워진다고 전해진다.",
+    image:"./assets/characters/garvan.webp"
+  },
+
+  /* =======================================================
+     주인공의 여정에 합류하는 동료 4명
+     ======================================================= */
+  {
+    id:"arvan",
+    group:"companion",
+    name:"아르반",
+    roman:"Arvan",
+    title:"천궁의 신궁",
+    epithet:"하늘 끝을 꿰뚫는 자",
+    domain:["궁술","신궁","전술","천공"],
+    colors:"청색 · 백색 · 황금",
+    country:"주인공 일행 · 원거리 전투",
+    gender:"남성",
+    personality:"침착하고 책임감 강한 상식인. 평소에는 겸손하지만 궁술 승부가 걸리면 은근히 자존심이 강하다.",
+    appearance:"갈색 피부와 장발 포니테일, 청백금 궁병 갑주, 빛의 시위를 지닌 신성 장궁과 천광화살.",
+    summary:"신에게 선택받았다는 전승을 가진 천재 궁사. 먼 거리에서 전장을 통제하는 파티의 전술가.",
+    lore:"아르주나를 연상시키는 영웅궁수 계열의 인물. 놀라운 재능을 타고났지만 '신이 내려준 힘으로 얻은 승리가 정말 자신의 것인가'를 고민하며 여행에 합류한다.",
+    image:"./assets/characters/arvan.webp"
+  },
+  {
+    id:"hyeonri",
+    group:"companion",
+    name:"현리",
+    roman:"Hyeonri",
+    title:"유행승",
+    epithet:"천 리의 경전을 짊어진 자",
+    domain:["치유","봉인","정화","경전"],
+    colors:"백색 · 황토색 · 적색",
+    country:"주인공 일행 · 치유와 봉인",
+    gender:"여성",
+    personality:"자비롭고 인내심이 많다. 평소에는 부드럽지만 선을 넘는 악행 앞에서는 파티에서 가장 단호하다.",
+    appearance:"백·황토색 승복과 여행망토, 붉은 염주, 석장, 경전함과 금빛 진언환.",
+    summary:"먼 동방에서 경전을 찾아 여행해 온 여성 승려. 치유와 악령 정화, 봉인을 맡는다.",
+    lore:"삼장법사를 떠올리게 하는 순례자형 인물. 싸움을 피하는 것을 우선하지만 동료를 지키기 위한 봉인술은 매우 강력하며, 여행의 목적을 위해 수많은 문화권을 지나왔다.",
+    image:"./assets/characters/hyeonri.webp"
+  },
+  {
+    id:"ramani",
+    group:"companion",
+    name:"라마니",
+    roman:"Ramani",
+    title:"성검의 유랑공녀",
+    epithet:"다르마를 베는 어린 칼날",
+    domain:["검술","성검","태양","정의"],
+    colors:"백색 · 적색 · 황금",
+    country:"주인공 일행 · 근접 전투",
+    gender:"여성",
+    personality:"올곧고 정의감이 강하다. 세상 물정에는 약하고 융통성이 부족해 종종 동료들에게 놀림받는다.",
+    appearance:"작고 단련된 체격, 백적금 경갑, 붉은 머리끈, 연꽃 코등이를 지닌 황금빛 성검.",
+    summary:"왕족의 의무에서 벗어나 자신의 정의가 무엇인지 찾기 위해 길을 떠난 소녀 검사.",
+    lore:"라마의 왕도적 영웅성과 다르마의 이미지를 소녀 검사로 재구성한 인물. 검 하나로 문제를 해결하려는 경향이 있지만 여행 속에서 정의와 현실 사이의 차이를 배워간다.",
+    image:"./assets/characters/ramani.webp"
+  },
+  {
+    id:"ryeonhwa",
+    group:"companion",
+    name:"련화",
+    roman:"Ryeonhwa",
+    title:"홍사의 도사",
+    epithet:"끊을 수 없는 붉은 인연",
+    domain:["부적","결계","주술","홍사"],
+    colors:"백색 · 흑색 · 적색",
+    country:"주인공 일행 · 주술과 결계",
+    gender:"여성",
+    personality:"평소에는 상냥하고 다정한 소꿉친구. 주인공의 안전과 인간관계가 얽히면 소유욕과 집착이 눈에 띄게 강해진다.",
+    appearance:"흑발에 암적색 광택, 백흑적 도포, 목검과 부적, 영령과 붉은 실이 떠다니는 동방 도사.",
+    summary:"주인공과 어린 시절부터 함께 자란 도사. 부적술과 결계, 영체 속박으로 파티를 지원한다.",
+    lore:"오랜 시간 주인공을 지켜왔다는 자부심 때문에 보호와 소유의 경계가 흐릿하다. 동료 앞에서는 친절하지만 주인공을 해치려 한 상대에게는 유난히 집요하며, 붉은 인연의 실로 적의 움직임과 영력을 속박한다.",
+    image:"./assets/characters/ryeonhwa.webp"
   }
 ];
 
@@ -1571,8 +1910,19 @@ function portraitHTML(character){
   `;
 }
 
+const GROUP_LABELS = {
+  trimurti: "삼주룡",
+  guardian: "십방위룡",
+  retainer: "용신의 권속",
+  companion: "여정의 동료"
+};
+
 function characterCard(c){
   const dir = c.direction ? `${c.direction} · ` : "";
+  const groupLabel = GROUP_LABELS[c.group] || "인물";
+  const affiliationLabel =
+    (c.group === "trimurti" || c.group === "guardian") ? "담당 국가" : "소속";
+
   return `
     <article class="character-card" id="char-${esc(c.id)}">
       ${portraitHTML(c)}
@@ -1582,12 +1932,13 @@ function characterCard(c){
             <h3>${esc(c.title)} ${esc(c.name)}</h3>
             <span class="roman">${esc(c.roman)} · ${esc(c.epithet)}</span>
           </div>
-          <span class="role-badge">${esc(dir + (c.group==="trimurti" ? "삼주룡" : "10방위룡"))}</span>
+          <span class="role-badge">${esc(dir + groupLabel)}</span>
         </div>
 
         <p class="summary">${esc(c.summary)}</p>
 
         <div class="meta-line">
+          ${c.gender ? `<span>${esc(c.gender)}</span>` : ""}
           ${c.domain.map(x => `<span>${esc(x)}</span>`).join("")}
         </div>
 
@@ -1599,7 +1950,8 @@ function characterCard(c){
           <div class="detail-content">
             <dl>
               <dt>이명</dt><dd>${esc(c.epithet)}</dd>
-              <dt>담당 국가</dt><dd>${esc(c.country)}</dd>
+              ${c.gender ? `<dt>성별</dt><dd>${esc(c.gender)}</dd>` : ""}
+              <dt>${esc(affiliationLabel)}</dt><dd>${esc(c.country)}</dd>
               <dt>색상</dt><dd>${esc(c.colors)}</dd>
               <dt>성격</dt><dd>${esc(c.personality)}</dd>
               <dt>외형</dt><dd>${esc(c.appearance)}</dd>
@@ -1706,7 +2058,14 @@ function renderContinent(){
 function renderCharacterPage(targetId, group, title, subtitle, eyebrow){
   const list = CHARACTERS.filter(c => c.group === group);
   const el = document.querySelector(targetId);
-  el.innerHTML = `
+  const helperText =
+    group === "retainer"
+      ? "각 용신의 직속 권속을 한눈에 확인할 수 있다. 이미지를 누르면 확대 프로필이 열리고, 카드의 상세 설정에서는 역할·성격·외형·소속을 확인할 수 있다."
+      : group === "companion"
+      ? "주인공과 함께 여정을 이어가는 동료들. 이미지를 누르면 확대 프로필이 열리고, 카드의 상세 설정에서는 전투 역할·성격·외형·배경을 확인할 수 있다."
+      : "카드에서는 핵심만 빠르게 확인하고, 이미지를 누르면 확대 프로필이 열린다. ‘상세 설정 펼치기’에서는 성격·외형·국가·설정을 확인할 수 있다.";
+
+  return el.innerHTML = `
     <section class="hero">
       <div class="eyebrow">${esc(eyebrow)}</div>
       <h1>${esc(title)}</h1>
@@ -1717,9 +2076,9 @@ function renderCharacterPage(targetId, group, title, subtitle, eyebrow){
       <div class="section-head">
         <div>
           <h2>${esc(title)} 기록</h2>
-          <p>카드에서는 핵심만 빠르게 확인하고, ‘상세 설정 펼치기’를 눌러 성격·외형·국가·설정을 확인할 수 있다.</p>
+          <p>${esc(helperText)}</p>
         </div>
-        <span class="pill">${list.length} deities</span>
+        <span class="pill">${list.length} entries</span>
       </div>
       <div class="character-grid">
         ${list.map(characterCard).join("")}
@@ -1763,10 +2122,11 @@ function attachRegionMap(){
 /* =========================================================
    4) 페이지 라우팅
    - 실제 파일은 index.html 하나지만
-     #continent / #trimurti / #guardians 3페이지처럼 동작합니다.
+     #continent / #trimurti / #guardians / #retainers / #companions
+     5페이지처럼 동작합니다.
    ========================================================= */
 
-const ROUTES = ["continent","trimurti","guardians"];
+const ROUTES = ["continent","trimurti","guardians","retainers","companions"];
 
 function currentRoute(){
   const raw = location.hash.replace("#","").split("/")[0];
@@ -1823,9 +2183,25 @@ renderCharacterPage(
 renderCharacterPage(
   "#page-guardians",
   "guardian",
-  "10방위의 용",
+  "십방위의 용",
   "삼주룡 아래에서 십방의 자연현상과 경계를 관리하는 하위 신격. 각 용은 자신의 방위와 원소, 국가, 문화권을 함께 관장한다.",
   "THE TEN DIRECTIONAL DRAGONS"
+);
+
+renderCharacterPage(
+  "#page-retainers",
+  "retainer",
+  "용신의 권속들",
+  "삼주룡과 십방위룡 곁에서 기록·행정·군사·장례·연금·계약·신탁 등 신성 질서의 실무를 맡는 13명의 직속 보좌관들.",
+  "THE DIVINE RETAINERS"
+);
+
+renderCharacterPage(
+  "#page-companions",
+  "companion",
+  "여정을 함께할 동료들",
+  "신들의 질서가 펼쳐진 만다라바르샤를 주인공과 함께 횡단하는 네 명의 여행자. 서로 다른 문화와 신념, 전투 방식을 지닌 파티의 핵심 인물들.",
+  "THE JOURNEY COMPANIONS"
 );
 
 attachImageFallbacks();
@@ -1849,12 +2225,34 @@ function openCharacterModal(characterId){
   const c = CHARACTERS.find(x => x.id === characterId);
   if(!c || !characterModal) return;
 
-  document.querySelector("#modalKicker").textContent =
-    c.group === "trimurti" ? "PRIMORDIAL DRAGON DEITY" : `${c.direction || ""} DIRECTIONAL DRAGON`;
+  const kickerMap = {
+    trimurti: "PRIMORDIAL DRAGON DEITY",
+    guardian: `${c.direction || ""} DIRECTIONAL DRAGON`,
+    retainer: "DIVINE RETAINER",
+    companion: "JOURNEY COMPANION"
+  };
 
+  document.querySelector("#modalKicker").textContent = kickerMap[c.group] || "CHARACTER PROFILE";
   document.querySelector("#modalTitle").textContent = `${c.title} ${c.name}`;
   document.querySelector("#modalRoman").textContent = c.roman;
   document.querySelector("#modalEpithet").textContent = `「${c.epithet}」`;
+
+  const modalAffiliationLabel = document.querySelector("#modalAffiliationLabel");
+  modalAffiliationLabel.textContent =
+    (c.group === "trimurti" || c.group === "guardian") ? "담당 국가" : "소속";
+
+  const modalGenderLabel = document.querySelector("#modalGenderLabel");
+  const modalGender = document.querySelector("#modalGender");
+  if(c.gender){
+    modalGenderLabel.style.display = "";
+    modalGender.style.display = "";
+    modalGender.textContent = c.gender;
+  }else{
+    modalGenderLabel.style.display = "none";
+    modalGender.style.display = "none";
+    modalGender.textContent = "";
+  }
+
   document.querySelector("#modalCountry").textContent = c.country;
   document.querySelector("#modalColors").textContent = c.colors;
   document.querySelector("#modalPersonality").textContent = c.personality;
@@ -1908,7 +2306,7 @@ attachPortraitModals();
 
 /* =========================================================
    7) BGM 플레이어
-   - 페이지는 해시 라우팅이라 대륙/삼주룡/10방위룡 이동 중 음악이 끊기지 않습니다.
+   - 페이지는 해시 라우팅이라 5개 아카이브 페이지 이동 중 음악이 끊기지 않습니다.
    - 자동재생은 브라우저 정책상 사용하지 않습니다.
    ========================================================= */
 
