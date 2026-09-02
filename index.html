@@ -464,7 +464,7 @@ function characterCard(c){
 
 function renderCharacterPage(targetId,group,title,subtitle,eyebrow){
   const list=CHARACTERS.filter(c=>c.group===group),el=document.querySelector(targetId);
-  el.innerHTML=`<section class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></section><section class="section"><div class="section-head"><div><h2>${title} 기록</h2><p>카드에서는 핵심만 빠르게 보고, 이미지를 누르면 확대 프로필이 열린다. 상세 설정은 카드 하단에서 펼칠 수 있다.</p></div><span class="pill">${list.length} entries</span></div><div class="character-grid">${list.map(characterCard).join("")}</div></section>`;
+  el.innerHTML=`<section class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></section><section class="section"><div class="section-head"><div><h2>${title} 기록</h2><p></p></div><span class="pill">${list.length} entries</span></div><div class="character-grid">${list.map(characterCard).join("")}</div></section>`;
 }
 
 function renderContinent(){
