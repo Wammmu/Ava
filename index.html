@@ -464,7 +464,7 @@ function characterCard(c){
 
 function renderCharacterPage(targetId,group,title,subtitle,eyebrow){
   const list=CHARACTERS.filter(c=>c.group===group),el=document.querySelector(targetId);
-  el.innerHTML=`<section class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></section><section class="section"><div class="section-head"><div><h2>${title} 기록</h2><p></p></div><span class="pill">${list.length} entries</span></div><div class="character-grid">${list.map(characterCard).join("")}</div></section>`;
+  el.innerHTML=`<section class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></section><section class="section"><div class="section-head"><div><h2>${title}</h2><p></p></div><span class="pill">${list.length} entries</span></div><div class="character-grid">${list.map(characterCard).join("")}</div></section>`;
 }
 
 function renderContinent(){
