@@ -482,7 +482,7 @@ renderContinent();
 renderCharacterPage("#page-trimurti","trimurti","세계를 유지하는 삼주룡","창세·유지·종언이라는 세계의 가장 근본적인 세 법칙을 담당하는 최고위 용신들.","THE THREE PRIMORDIAL DRAGONS");
 renderCharacterPage("#page-guardians","guardian","십방위의 용","삼주룡 아래에서 십방의 자연현상과 경계를 관리하는 신격.","THE TEN DIRECTIONAL DRAGONS");
 renderCharacterPage("#page-retainers","retainer","용신의 권속들","각 용신 곁에서 기록·행정·군사·장례·연금·계약·신탁 등 실무를 맡는 13명의 보좌관들.","THE DIVINE RETAINERS");
-renderCharacterPage("#page-companions","companion","여정을 함께할 동료들","주인공과 함께 만다라바르샤를 횡단하는 네 명의 여행 동료.","THE JOURNEY COMPANIONS");
+renderCharacterPage("#page-companions","companion","동료 고행자들","주인공과 함께 만다라바르샤를 횡단하는 네 명의 여행 동료.","THE JOURNEY COMPANIONS");
 renderSettings();
 
 function attachImageFallbacks(){document.querySelectorAll("[data-portrait]").forEach(box=>{const img=box.querySelector("img");const ok=()=>box.classList.add("has-image"),fail=()=>{box.classList.remove("has-image");img.style.display="none"};if(img.complete){img.naturalWidth?ok():fail()}img.addEventListener("load",ok,{once:true});img.addEventListener("error",fail,{once:true})})}
