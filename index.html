@@ -475,7 +475,7 @@ function renderContinent(){
 }
 
 function renderSettings(){
-  document.querySelector("#page-settings").innerHTML=`<section class="hero"><div class="eyebrow">CORE LORE / WORLD RULES</div><h1>주요 설정</h1><p>아바르타라 세계의 핵심 개념을 빠르게 찾아볼 수 있는 설정집. 용신·아스트라·고행·고행자를 네 개의 큰 항목으로 나누어 정리한다.</p></section><section class="section"><div class="section-head"><div><h2>세계관 핵심 개념</h2><p>아래 텍스트는 초안용이다. HTML의 <code>MAJOR_SETTINGS</code> 데이터만 수정하면 카드 내용이 자동으로 갱신된다.</p></div><span class="pill">4 concepts</span></div><div class="setting-grid">${MAJOR_SETTINGS.map(s=>`<article class="setting-card" id="setting-${s.id}"><div class="setting-index">${s.index}</div><h3>${s.title}<span class="setting-en">${s.en}</span></h3><p>${s.summary}</p><div class="setting-points">${s.points.map(x=>`<span>${x}</span>`).join("")}</div><div class="setting-note">${s.note}</div></article>`).join("")}</div></section>`;
+  document.querySelector("#page-settings").innerHTML=`<section class="hero"><div class="eyebrow">CORE LORE / WORLD RULES</div><h1>주요 설정</h1><p>아바르타라 세계의 핵심 개념을 빠르게 찾아볼 수 있는 설정집. 용신·아스트라·고행·고행자를 네 개의 큰 항목으로 나누어 정리한다.</p></section><section class="section"><div class="section-head"><div><h2>세계관 핵심 개념</h2><p></p></div><span class="pill">4 concepts</span></div><div class="setting-grid">${MAJOR_SETTINGS.map(s=>`<article class="setting-card" id="setting-${s.id}"><div class="setting-index">${s.index}</div><h3>${s.title}<span class="setting-en">${s.en}</span></h3><p>${s.summary}</p><div class="setting-points">${s.points.map(x=>`<span>${x}</span>`).join("")}</div><div class="setting-note">${s.note}</div></article>`).join("")}</div></section>`;
 }
 
 renderContinent();
