@@ -4,24 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
-  <meta name="description" content="아바르타라 세계관 아카이브 — 만다라바르샤, 삼주룡, 십방위룡" />
+  <meta name="description" content="아바르타라 세계관 아카이브" />
   <title>아바르타라 세계관 아카이브</title>
 
   <style>
     :root{
       --bg:#070a12;
-      --bg2:#0d1220;
-      --panel:rgba(16,22,38,.72);
-      --panel-strong:rgba(18,25,43,.92);
+      --panel:rgba(16,22,38,.74);
       --line:rgba(255,255,255,.11);
       --text:#edf2ff;
       --muted:#aab5cc;
       --accent:#d7b86a;
-      --accent2:#7aa7ff;
       --shadow:0 18px 60px rgba(0,0,0,.35);
       --radius:24px;
-      --radius-sm:16px;
-      --max:1220px;
+      --max:1240px;
     }
 
     *{box-sizing:border-box}
@@ -29,16 +25,14 @@
     body{
       margin:0;
       color:var(--text);
-      background:
-        radial-gradient(circle at 15% 15%, rgba(95,120,220,.16), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(220,174,90,.12), transparent 28%),
-        radial-gradient(circle at 50% 85%, rgba(72,150,135,.10), transparent 32%),
-        linear-gradient(180deg, #070a12 0%, #0b1020 55%, #070a12 100%);
-      font-family:
-        Pretendard, "Noto Sans KR", "Apple SD Gothic Neo",
-        "Malgun Gothic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       min-height:100vh;
       overflow-x:hidden;
+      font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%,rgba(95,120,220,.16),transparent 30%),
+        radial-gradient(circle at 85% 20%,rgba(220,174,90,.12),transparent 28%),
+        radial-gradient(circle at 50% 85%,rgba(72,150,135,.10),transparent 32%),
+        linear-gradient(180deg,#070a12 0%,#0b1020 55%,#070a12 100%);
     }
 
     body::before{
@@ -47,12 +41,12 @@
       inset:0;
       z-index:-2;
       opacity:.14;
-      background-image:
-        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-      background-size:42px 42px;
-      mask-image:linear-gradient(to bottom, rgba(0,0,0,.8), transparent 86%);
       pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 86%);
     }
 
     body::after{
@@ -60,22 +54,22 @@
       position:fixed;
       inset:-20%;
       z-index:-3;
-      background:url("./assets/ui/background.webp") center/cover no-repeat;
+      pointer-events:none;
       opacity:.08;
       filter:saturate(.7) contrast(1.1);
-      pointer-events:none;
+      background:url("./assets/ui/background.webp") center/cover no-repeat;
     }
 
-    a{color:inherit}
-    button{font:inherit}
-    img{max-width:100%; display:block}
+    button,input{font:inherit}
+    img{display:block;max-width:100%}
 
     .site-header{
       position:sticky;
       top:0;
       z-index:50;
       backdrop-filter:blur(18px);
-      background:rgba(7,10,18,.74);
+      -webkit-backdrop-filter:blur(18px);
+      background:rgba(7,10,18,.76);
       border-bottom:1px solid var(--line);
     }
 
@@ -99,35 +93,16 @@
     }
 
     .brand-mark{
-      width:38px;
-      height:38px;
+      width:38px;height:38px;
       border:1px solid rgba(215,184,106,.6);
       border-radius:50%;
-      display:grid;
-      place-items:center;
+      display:grid;place-items:center;
       color:var(--accent);
-      background:
-        radial-gradient(circle, rgba(215,184,106,.17), transparent 62%);
-      box-shadow:inset 0 0 30px rgba(215,184,106,.08);
+      background:radial-gradient(circle,rgba(215,184,106,.17),transparent 62%);
     }
-
-    .brand-mark::before{
-      content:"✦";
-      font-size:18px;
-    }
-
-    .brand-text strong{
-      display:block;
-      letter-spacing:.08em;
-      font-size:.96rem;
-    }
-
-    .brand-text small{
-      display:block;
-      color:var(--muted);
-      font-size:.72rem;
-      margin-top:2px;
-    }
+    .brand-mark::before{content:"✦";font-size:18px}
+    .brand-text strong{display:block;letter-spacing:.08em;font-size:.96rem}
+    .brand-text small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}
 
     .top-nav{
       margin-left:auto;
@@ -145,32 +120,19 @@
       border-radius:999px;
       cursor:pointer;
       transition:.18s ease;
+      white-space:nowrap;
     }
-
-    .nav-btn:hover{
-      color:var(--text);
-      background:rgba(255,255,255,.055);
-    }
-
+    .nav-btn:hover{color:var(--text);background:rgba(255,255,255,.055)}
     .nav-btn[aria-selected="true"]{
       color:#fff6d9;
       border-color:rgba(215,184,106,.38);
       background:rgba(215,184,106,.12);
     }
 
-    main{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:34px 22px 70px;
-    }
-
-    .page{display:none; animation:fade .22s ease}
+    main{max-width:var(--max);margin:0 auto;padding:34px 22px 70px}
+    .page{display:none;animation:fade .22s ease}
     .page.is-active{display:block}
-
-    @keyframes fade{
-      from{opacity:0; transform:translateY(5px)}
-      to{opacity:1; transform:none}
-    }
+    @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
     .hero{
       position:relative;
@@ -183,96 +145,28 @@
       flex-direction:column;
       justify-content:flex-end;
       background:
-        linear-gradient(120deg, rgba(7,10,18,.94), rgba(8,14,29,.67)),
-        var(--hero-image, none);
+        linear-gradient(120deg,rgba(7,10,18,.94),rgba(8,14,29,.67)),
+        var(--hero-image,none);
       background-position:center;
       background-size:cover;
       box-shadow:var(--shadow);
     }
-
     .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 78% 26%, rgba(215,184,106,.12), transparent 25%),
-        linear-gradient(to top, rgba(7,10,18,.55), transparent 50%);
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(circle at 78% 26%,rgba(215,184,106,.12),transparent 25%),linear-gradient(to top,rgba(7,10,18,.55),transparent 50%);
     }
+    .hero>*{position:relative;z-index:1}
+    .eyebrow{color:#e4c981;text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;font-weight:700;margin-bottom:10px}
+    .hero h1{margin:0;font-size:clamp(2rem,6vw,4.9rem);line-height:1;letter-spacing:-.045em;max-width:900px}
+    .hero p{color:#c6d0e5;max-width:800px;font-size:1.02rem;line-height:1.75;margin:18px 0 0}
 
-    .hero > *{position:relative; z-index:1}
+    .section{margin-top:34px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
+    .section-head h2{margin:0;font-size:clamp(1.35rem,3vw,2rem)}
+    .section-head p{margin:7px 0 0;color:var(--muted);line-height:1.65;max-width:760px}
+    .pill{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:rgba(255,255,255,.035);font-size:.78rem;white-space:nowrap}
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      color:#e4c981;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.74rem;
-      font-weight:700;
-      margin-bottom:10px;
-    }
-
-    .hero h1{
-      margin:0;
-      font-size:clamp(2rem, 6vw, 4.9rem);
-      line-height:1;
-      letter-spacing:-.045em;
-      max-width:850px;
-    }
-
-    .hero p{
-      color:#c6d0e5;
-      max-width:760px;
-      font-size:1.02rem;
-      line-height:1.75;
-      margin:18px 0 0;
-    }
-
-    .section{
-      margin-top:34px;
-    }
-
-    .section-head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom:16px;
-    }
-
-    .section-head h2{
-      margin:0;
-      font-size:clamp(1.35rem, 3vw, 2rem);
-    }
-
-    .section-head p{
-      margin:7px 0 0;
-      color:var(--muted);
-      line-height:1.65;
-      max-width:760px;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      background:rgba(255,255,255,.035);
-      font-size:.78rem;
-      white-space:nowrap;
-    }
-
-    .world-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:18px;
-    }
-
-    .glass{
+    .glass,.character-card,.setting-card{
       background:var(--panel);
       border:1px solid var(--line);
       border-radius:var(--radius);
@@ -280,731 +174,117 @@
       backdrop-filter:blur(12px);
     }
 
+    .world-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
     .lore-panel{padding:24px}
-
-    .lore-panel h3{
-      margin:0 0 10px;
-      font-size:1.2rem;
-    }
-
-    .lore-panel p{
-      margin:0;
-      color:#c7d0e3;
-      line-height:1.8;
-    }
+    .lore-panel h3{margin:0 0 10px;font-size:1.2rem}
+    .lore-panel p{margin:0;color:#c7d0e3;line-height:1.8}
+    .notice{margin-top:14px;padding:13px 15px;color:#aab6cb;font-size:.82rem;line-height:1.6;border:1px dashed rgba(255,255,255,.12);border-radius:14px;background:rgba(0,0,0,.12)}
 
     .mandala-map{
-      min-height:430px;
-      position:relative;
-      overflow:hidden;
-      border-radius:var(--radius);
+      min-height:430px;position:relative;overflow:hidden;border-radius:var(--radius);
       background:
-        radial-gradient(circle at center, rgba(215,184,106,.11), transparent 18%),
-        radial-gradient(circle at center, transparent 0 31%, rgba(255,255,255,.07) 31.5% 32%, transparent 32.5%),
-        radial-gradient(circle at center, transparent 0 45%, rgba(255,255,255,.045) 45.5% 46%, transparent 46.5%),
-        linear-gradient(145deg, rgba(20,29,49,.86), rgba(8,12,22,.88));
+        radial-gradient(circle at center,rgba(215,184,106,.11),transparent 18%),
+        radial-gradient(circle at center,transparent 0 31%,rgba(255,255,255,.07) 31.5% 32%,transparent 32.5%),
+        radial-gradient(circle at center,transparent 0 45%,rgba(255,255,255,.045) 45.5% 46%,transparent 46.5%),
+        linear-gradient(145deg,rgba(20,29,49,.86),rgba(8,12,22,.88));
       border:1px solid var(--line);
     }
+    .map-node{position:absolute;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.14);background:rgba(9,14,25,.86);color:#dfe6f6;border-radius:999px;padding:8px 10px;font-size:.76rem;cursor:pointer;white-space:nowrap;transition:.18s ease;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+    .map-node:hover{border-color:rgba(215,184,106,.55);color:#fff6d9;transform:translate(-50%,-50%) scale(1.04)}
+    .map-node.core{padding:14px 16px;font-weight:800;color:#fff1c6;border-color:rgba(215,184,106,.5);background:rgba(43,35,18,.8)}
 
-    .map-node{
-      position:absolute;
-      transform:translate(-50%,-50%);
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(9,14,25,.86);
-      color:#dfe6f6;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:.76rem;
-      cursor:pointer;
-      white-space:nowrap;
-      transition:.18s ease;
-      box-shadow:0 8px 24px rgba(0,0,0,.28);
-    }
-
-    .map-node:hover{
-      border-color:rgba(215,184,106,.55);
-      color:#fff6d9;
-      transform:translate(-50%,-50%) scale(1.04);
-    }
-
-    .map-node.core{
-      padding:14px 16px;
-      font-weight:800;
-      color:#fff1c6;
-      border-color:rgba(215,184,106,.5);
-      background:rgba(43,35,18,.8);
-    }
-
-    .map-zenith,.map-nadir{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:.72rem;
-      color:var(--muted);
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
-    .map-zenith{top:12px}
-    .map-nadir{bottom:12px}
-
-    .region-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    details.region,
-    details.character-details{
-      overflow:hidden;
-    }
-
-    details.region{
-      background:rgba(255,255,255,.035);
-      border:1px solid var(--line);
-      border-radius:18px;
-    }
-
-    details.region[open]{
-      background:rgba(255,255,255,.052);
-    }
-
-    details.region summary,
-    details.character-details summary{
-      list-style:none;
-      cursor:pointer;
-    }
-
-    details.region summary::-webkit-details-marker,
-    details.character-details summary::-webkit-details-marker{display:none}
-
-    .region-summary{
-      padding:17px 18px;
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      align-items:center;
-    }
-
-    .region-summary strong{
-      display:block;
-      font-size:1rem;
-    }
-
-    .region-summary small{
-      display:block;
-      color:var(--muted);
-      margin-top:4px;
-    }
-
-    .chev{
-      width:28px;
-      height:28px;
-      flex:none;
-      border-radius:50%;
-      border:1px solid var(--line);
-      display:grid;
-      place-items:center;
-      color:var(--muted);
-      transition:transform .2s ease;
-    }
-
+    .region-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    details.region{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    details.region[open]{background:rgba(255,255,255,.052)}
+    details summary{list-style:none;cursor:pointer}
+    details summary::-webkit-details-marker{display:none}
+    .region-summary{padding:17px 18px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .region-summary strong{display:block}
+    .region-summary small{display:block;color:var(--muted);margin-top:4px}
+    .chev{width:28px;height:28px;flex:none;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:transform .2s ease}
     details[open] .chev{transform:rotate(45deg)}
-
-    .region-body{
-      border-top:1px solid var(--line);
-      padding:16px 18px 19px;
-      color:#c7d0e3;
-      line-height:1.75;
-    }
-
+    .region-body{border-top:1px solid var(--line);padding:16px 18px 19px;color:#c7d0e3;line-height:1.75}
     .region-body p{margin:0 0 12px}
+    .place-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .place{padding:10px;border-radius:12px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.07)}
+    .place strong{display:block;color:#eef3ff;font-size:.88rem;margin-bottom:3px}
+    .place span{color:var(--muted);font-size:.78rem;line-height:1.45}
 
-    .place-list{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:8px;
-    }
-
-    .place{
-      padding:10px;
-      border-radius:12px;
-      background:rgba(0,0,0,.16);
-      border:1px solid rgba(255,255,255,.07);
-    }
-
-    .place strong{
-      display:block;
-      color:#eef3ff;
-      font-size:.88rem;
-      margin-bottom:3px;
-    }
-
-    .place span{
-      color:var(--muted);
-      font-size:.78rem;
-      line-height:1.45;
-    }
-
-    .character-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-
-    .character-card{
-      min-width:0;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-    .portrait{
-      position:relative;
-      aspect-ratio:16/10;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(215,184,106,.14), transparent 34%),
-        linear-gradient(145deg, #151c2c, #080b13);
-      border-bottom:1px solid var(--line);
-    }
-
-    .portrait img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 22%;
-      transition:transform .35s ease;
-    }
-
+    .character-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .character-card{min-width:0;overflow:hidden;border-radius:22px}
+    .portrait{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:zoom-in;background:radial-gradient(circle at 30% 20%,rgba(215,184,106,.14),transparent 34%),linear-gradient(145deg,#151c2c,#080b13);border-bottom:1px solid var(--line)}
+    .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .35s ease}
     .character-card:hover .portrait img{transform:scale(1.025)}
-
-    .portrait-fallback{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      padding:20px;
-      color:#8e9ab1;
-      text-align:center;
-      line-height:1.6;
-      font-size:.82rem;
-    }
-
+    .portrait::after{content:"상세 보기";position:absolute;right:12px;bottom:12px;z-index:2;padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(7,10,18,.72);color:#eaf0ff;font-size:.7rem;opacity:0;transform:translateY(4px);transition:.18s ease;pointer-events:none}
+    .character-card:hover .portrait::after,.portrait:focus-visible::after{opacity:1;transform:none}
+    .portrait-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:20px;color:#8e9ab1;text-align:center;line-height:1.6;font-size:.82rem}
     .portrait.has-image .portrait-fallback{display:none}
-
     .card-body{padding:17px}
+    .title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .character-card h3{margin:0;font-size:1.12rem}
+    .roman{display:block;color:#d5bd77;font-size:.73rem;margin-top:4px;letter-spacing:.06em}
+    .role-badge{padding:6px 9px;border-radius:999px;border:1px solid var(--line);color:#bdc8dc;font-size:.72rem;white-space:nowrap}
+    .summary{color:#bac6da;line-height:1.65;font-size:.9rem;margin:13px 0 0}
+    .meta-line{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+    .meta-line span{font-size:.72rem;color:#d8e0ef;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:999px;padding:5px 8px}
+    details.character-details{margin-top:14px;border-top:1px solid var(--line);overflow:hidden}
+    .detail-toggle{padding:13px 0 0;display:flex;align-items:center;justify-content:space-between;gap:10px;color:#e8eefb;font-size:.86rem;font-weight:700}
+    .detail-content{padding-top:12px;color:#bec9dc;font-size:.86rem;line-height:1.7}
+    .detail-content dl{margin:0;display:grid;grid-template-columns:82px 1fr;gap:7px 10px}
+    .detail-content dt{color:#8390a7}.detail-content dd{margin:0;color:#d3daea}
+    .lore-copy{margin:13px 0 0;padding-top:13px;border-top:1px dashed rgba(255,255,255,.1)}
 
-    .title-row{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
+    /* 주요 설정 페이지 */
+    .setting-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .setting-card{padding:26px;position:relative;overflow:hidden}
+    .setting-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 5%,rgba(215,184,106,.10),transparent 30%);pointer-events:none}
+    .setting-card>*{position:relative;z-index:1}
+    .setting-index{font-size:.72rem;color:#d6bb73;letter-spacing:.16em;margin-bottom:10px}
+    .setting-card h3{margin:0;font-size:clamp(1.4rem,3vw,2rem)}
+    .setting-card .setting-en{display:block;color:#8794aa;font-size:.78rem;margin-top:5px;letter-spacing:.08em}
+    .setting-card p{color:#c3cddd;line-height:1.8;margin:18px 0 0}
+    .setting-note{margin-top:18px;padding:13px 14px;border-radius:14px;border:1px dashed rgba(255,255,255,.12);color:#9ba8bd;background:rgba(0,0,0,.14);font-size:.82rem;line-height:1.65}
+    .setting-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+    .setting-points span{padding:6px 9px;border:1px solid rgba(255,255,255,.10);border-radius:999px;background:rgba(255,255,255,.035);font-size:.75rem;color:#d8e1f0}
+
+    /* 캐릭터 상세 모달 */
+    .character-modal{width:min(1040px,calc(100vw - 28px));max-height:min(88vh,900px);padding:0;border:none;border-radius:26px;overflow:hidden;color:var(--text);background:rgba(10,14,24,.97);box-shadow:0 30px 100px rgba(0,0,0,.6)}
+    .character-modal::backdrop{background:rgba(2,4,9,.76);backdrop-filter:blur(8px)}
+    .modal-shell{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);max-height:88vh}
+    .modal-image-wrap{position:relative;min-height:520px;background:radial-gradient(circle at 30% 20%,rgba(215,184,106,.13),transparent 35%),linear-gradient(145deg,#141b2a,#080b13);overflow:hidden}
+    .modal-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .modal-image-fallback{position:absolute;inset:0;display:none;place-items:center;padding:28px;text-align:center;color:#8f9bb1;line-height:1.7}
+    .modal-info{overflow:auto;padding:34px 30px 36px;border-left:1px solid var(--line)}
+    .modal-kicker{color:#d8bd74;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+    .modal-title{margin:0;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15}
+    .modal-roman{display:block;margin-top:7px;color:#9eacc3;font-size:.84rem}
+    .modal-epithet{margin:15px 0 0;color:#f0dfaa;font-size:.95rem}
+    .modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0}
+    .modal-tags span{padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);color:#dbe4f4;font-size:.74rem}
+    .modal-section{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+    .modal-section h4{margin:0 0 9px;font-size:.86rem}.modal-section p{margin:0;color:#bec9dc;line-height:1.78;font-size:.9rem}
+    .modal-meta{display:grid;grid-template-columns:82px 1fr;gap:8px 12px;margin:0;font-size:.88rem}.modal-meta dt{color:#7f8da6}.modal-meta dd{margin:0;color:#d6deed}
+    .modal-close{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(7,10,18,.76);color:white;cursor:pointer;font-size:1.15rem}
+
+    /* BGM */
+    .bgm-player{position:fixed;right:22px;bottom:22px;z-index:100;display:flex;align-items:center;gap:12px;min-width:300px;max-width:min(390px,calc(100vw - 28px));padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(9,14,25,.84);backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.38)}
+    .bgm-toggle{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(215,184,106,.45);background:rgba(215,184,106,.10);color:#f5d98d;cursor:pointer;font-weight:800}
+    .bgm-info{min-width:0;flex:1}.bgm-label{display:block;color:#8f9bb1;font-size:.62rem;letter-spacing:.16em;margin-bottom:3px}.bgm-title{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.8rem;color:#edf2ff}.bgm-volume-wrap{display:flex;align-items:center;gap:7px;color:#8f9bb1;font-size:.72rem}.bgm-volume{width:76px;cursor:pointer;accent-color:#d7b86a}
+
+    .footer{border-top:1px solid var(--line);color:#7f8ba0;text-align:center;padding:24px 18px 34px;font-size:.78rem}
+
+    @media(max-width:1000px){
+      .world-grid{grid-template-columns:1fr}.character-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.place-list{grid-template-columns:1fr}.setting-grid{grid-template-columns:1fr}
     }
-
-    .character-card h3{
-      margin:0;
-      font-size:1.12rem;
+    @media(min-width:721px) and (max-width:1180px){
+      .header-inner{align-items:flex-start;flex-direction:column}.top-nav{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.nav-btn{flex:none}
     }
-
-    .roman{
-      display:block;
-      color:#d5bd77;
-      font-size:.73rem;
-      margin-top:4px;
-      letter-spacing:.06em;
-    }
-
-    .role-badge{
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:#bdc8dc;
-      font-size:.72rem;
-      white-space:nowrap;
-    }
-
-    .summary{
-      color:#bac6da;
-      line-height:1.65;
-      font-size:.9rem;
-      margin:13px 0 0;
-    }
-
-    .meta-line{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:13px;
-    }
-
-    .meta-line span{
-      font-size:.72rem;
-      color:#d8e0ef;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.035);
-      border-radius:999px;
-      padding:5px 8px;
-    }
-
-    details.character-details{
-      margin-top:14px;
-      border-top:1px solid var(--line);
-    }
-
-    .detail-toggle{
-      padding:13px 0 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      color:#e8eefb;
-      font-size:.86rem;
-      font-weight:700;
-    }
-
-    .detail-content{
-      padding-top:12px;
-      color:#bec9dc;
-      font-size:.86rem;
-      line-height:1.7;
-    }
-
-    .detail-content dl{
-      margin:0;
-      display:grid;
-      grid-template-columns:82px 1fr;
-      gap:7px 10px;
-    }
-
-    .detail-content dt{color:#8390a7}
-    .detail-content dd{margin:0;color:#d3daea}
-
-    .lore-copy{
-      margin:13px 0 0;
-      padding-top:13px;
-      border-top:1px dashed rgba(255,255,255,.1);
-    }
-
-    .footer{
-      border-top:1px solid var(--line);
-      color:#7f8ba0;
-      text-align:center;
-      padding:24px 18px 34px;
-      font-size:.78rem;
-    }
-
-    .accent-dot{
-      display:inline-block;
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 18px rgba(215,184,106,.65);
-      margin-right:8px;
-      vertical-align:1px;
-    }
-
-    .notice{
-      margin-top:14px;
-      padding:13px 15px;
-      color:#aab6cb;
-      font-size:.82rem;
-      line-height:1.6;
-      border:1px dashed rgba(255,255,255,.12);
-      border-radius:14px;
-      background:rgba(0,0,0,.12);
-    }
-
-    @media (max-width:980px){
-      .world-grid{grid-template-columns:1fr}
-      .character-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .place-list{grid-template-columns:1fr}
-    }
-
-    @media (max-width:720px){
-      .header-inner{align-items:flex-start; flex-direction:column}
-      .top-nav{
-        width:100%;
-        margin-left:0;
-        justify-content:flex-start;
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        padding-bottom:2px;
-      }
-      .nav-btn{flex:none}
-      main{padding:22px 14px 52px}
-      .hero{padding:28px 22px; min-height:250px; border-radius:24px}
-      .region-grid{grid-template-columns:1fr}
-      .character-grid{grid-template-columns:1fr}
-      .mandala-map{min-height:360px}
-      .map-node{font-size:.67rem;padding:7px 8px}
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation:none!important; transition:none!important}
-    }
-  
-    /* =========================================================
-       BGM PLAYER
-       - 우측 하단 고정형
-       - 모바일에서는 재생/정지 버튼만 표시
-       ========================================================= */
-    .bgm-player{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      z-index:100;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:300px;
-      max-width:min(390px, calc(100vw - 28px));
-      padding:12px 14px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      background:rgba(9,14,25,.84);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      box-shadow:0 14px 40px rgba(0,0,0,.38);
-      transition:opacity .2s ease, transform .2s ease, border-color .2s ease;
-    }
-
-    .bgm-player:hover{
-      border-color:rgba(215,184,106,.26);
-    }
-
-    .bgm-player.is-playing{
-      box-shadow:
-        0 14px 40px rgba(0,0,0,.38),
-        0 0 28px rgba(215,184,106,.08);
-    }
-
-    .bgm-toggle{
-      width:42px;
-      height:42px;
-      flex:none;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      border:1px solid rgba(215,184,106,.45);
-      background:rgba(215,184,106,.10);
-      color:#f5d98d;
-      cursor:pointer;
-      font-weight:800;
-      transition:.18s ease;
-    }
-
-    .bgm-toggle:hover{
-      background:rgba(215,184,106,.18);
-      transform:translateY(-1px);
-    }
-
-    .bgm-toggle:focus-visible,
-    .bgm-volume:focus-visible{
-      outline:2px solid rgba(122,167,255,.7);
-      outline-offset:3px;
-    }
-
-    .bgm-info{
-      min-width:0;
-      flex:1;
-    }
-
-    .bgm-label{
-      display:block;
-      color:#8f9bb1;
-      font-size:.62rem;
-      letter-spacing:.16em;
-      margin-bottom:3px;
-    }
-
-    .bgm-title{
-      display:block;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-size:.8rem;
-      color:#edf2ff;
-    }
-
-    .bgm-volume-wrap{
-      display:flex;
-      align-items:center;
-      gap:7px;
-      color:#8f9bb1;
-      font-size:.72rem;
-    }
-
-    .bgm-volume{
-      width:76px;
-      cursor:pointer;
-      accent-color:#d7b86a;
-    }
-
     @media(max-width:720px){
-      .bgm-player{
-        right:12px;
-        bottom:12px;
-        min-width:0;
-        width:auto;
-        padding:8px;
-        border-radius:999px;
-      }
-
-      .bgm-info,
-      .bgm-volume-wrap{
-        display:none;
-      }
-
-      .bgm-toggle{
-        width:44px;
-        height:44px;
-      }
+      .header-inner{align-items:flex-start;flex-direction:column}.top-nav{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.nav-btn{flex:none}
+      main{padding:22px 14px 52px}.hero{padding:28px 22px;min-height:250px;border-radius:24px}.region-grid,.character-grid{grid-template-columns:1fr}.mandala-map{min-height:360px}
+      .bgm-player{right:12px;bottom:12px;min-width:0;width:auto;padding:8px;border-radius:999px}.bgm-info,.bgm-volume-wrap{display:none}.bgm-toggle{width:44px;height:44px}
+      .character-modal{width:min(96vw,680px);max-height:92vh}.modal-shell{display:block;overflow:auto;max-height:92vh}.modal-image-wrap{min-height:0;aspect-ratio:4/3}.modal-info{border-left:none;border-top:1px solid var(--line);overflow:visible;padding:24px 20px 30px}
     }
-
-  
-    /* =========================================================
-       CHARACTER IMAGE DETAIL MODAL
-       - 캐릭터 이미지를 클릭하면 확대 이미지 + 상세 설정 표시
-       ========================================================= */
-    .portrait{
-      cursor:zoom-in;
-    }
-
-    .portrait::after{
-      content:"상세 보기";
-      position:absolute;
-      right:12px;
-      bottom:12px;
-      z-index:2;
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(7,10,18,.72);
-      color:#eaf0ff;
-      font-size:.7rem;
-      letter-spacing:.04em;
-      opacity:0;
-      transform:translateY(4px);
-      transition:.18s ease;
-      pointer-events:none;
-      backdrop-filter:blur(10px);
-    }
-
-    .character-card:hover .portrait::after,
-    .portrait:focus-visible::after{
-      opacity:1;
-      transform:none;
-    }
-
-    .portrait:focus-visible{
-      outline:2px solid rgba(122,167,255,.8);
-      outline-offset:-2px;
-    }
-
-    .character-modal{
-      width:min(1040px, calc(100vw - 28px));
-      max-height:min(88vh, 900px);
-      padding:0;
-      border:none;
-      border-radius:26px;
-      overflow:hidden;
-      color:var(--text);
-      background:rgba(10,14,24,.97);
-      box-shadow:0 30px 100px rgba(0,0,0,.6);
-    }
-
-    .character-modal::backdrop{
-      background:rgba(2,4,9,.76);
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-    }
-
-    .modal-shell{
-      display:grid;
-      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
-      max-height:88vh;
-    }
-
-    .modal-image-wrap{
-      position:relative;
-      min-height:520px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(215,184,106,.13), transparent 35%),
-        linear-gradient(145deg,#141b2a,#080b13);
-      overflow:hidden;
-    }
-
-    .modal-image-wrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 20%;
-    }
-
-    .modal-image-fallback{
-      position:absolute;
-      inset:0;
-      display:none;
-      place-items:center;
-      padding:28px;
-      text-align:center;
-      color:#8f9bb1;
-      line-height:1.7;
-    }
-
-    .modal-info{
-      overflow:auto;
-      padding:34px 30px 36px;
-      border-left:1px solid var(--line);
-    }
-
-    .modal-kicker{
-      color:#d8bd74;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      margin-bottom:8px;
-    }
-
-    .modal-title{
-      margin:0;
-      font-size:clamp(1.7rem,4vw,2.5rem);
-      line-height:1.15;
-    }
-
-    .modal-roman{
-      display:block;
-      margin-top:7px;
-      color:#9eacc3;
-      font-size:.84rem;
-    }
-
-    .modal-epithet{
-      margin:15px 0 0;
-      color:#f0dfaa;
-      font-size:.95rem;
-    }
-
-    .modal-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
-      margin:18px 0 0;
-    }
-
-    .modal-tags span{
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.035);
-      color:#dbe4f4;
-      font-size:.74rem;
-    }
-
-    .modal-section{
-      margin-top:24px;
-      padding-top:20px;
-      border-top:1px solid var(--line);
-    }
-
-    .modal-section h4{
-      margin:0 0 9px;
-      font-size:.86rem;
-      color:#f4f7ff;
-      letter-spacing:.03em;
-    }
-
-    .modal-section p{
-      margin:0;
-      color:#bec9dc;
-      line-height:1.78;
-      font-size:.9rem;
-    }
-
-    .modal-meta{
-      display:grid;
-      grid-template-columns:82px 1fr;
-      gap:8px 12px;
-      margin:0;
-      font-size:.88rem;
-    }
-
-    .modal-meta dt{
-      color:#7f8da6;
-    }
-
-    .modal-meta dd{
-      margin:0;
-      color:#d6deed;
-    }
-
-    .modal-close{
-      position:absolute;
-      top:14px;
-      right:14px;
-      z-index:5;
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(7,10,18,.76);
-      color:white;
-      cursor:pointer;
-      font-size:1.15rem;
-      backdrop-filter:blur(10px);
-    }
-
-    .modal-close:hover{
-      background:rgba(255,255,255,.11);
-    }
-
-    @media(max-width:800px){
-      .character-modal{
-        width:min(96vw, 680px);
-        max-height:92vh;
-      }
-
-      .modal-shell{
-        display:block;
-        overflow:auto;
-        max-height:92vh;
-      }
-
-      .modal-image-wrap{
-        min-height:0;
-        aspect-ratio:4/3;
-      }
-
-      .modal-info{
-        border-left:none;
-        border-top:1px solid var(--line);
-        overflow:visible;
-        padding:24px 20px 30px;
-      }
-    }
-
-  
-    @media (min-width:721px) and (max-width:1120px){
-      .header-inner{
-        align-items:flex-start;
-        flex-direction:column;
-      }
-      .top-nav{
-        width:100%;
-        margin-left:0;
-        justify-content:flex-start;
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        padding-bottom:2px;
-      }
-      .nav-btn{flex:none}
-    }
-
   </style>
 </head>
 <body>
@@ -1013,10 +293,7 @@
   <div class="header-inner">
     <div class="brand" data-route="continent" role="button" tabindex="0" aria-label="대륙 소개로 이동">
       <div class="brand-mark"></div>
-      <div class="brand-text">
-        <strong>AVARTHARA ARCHIVE</strong>
-        <small>아바르타라 세계관 기록보관소</small>
-      </div>
+      <div class="brand-text"><strong>AVARTHARA ARCHIVE</strong><small>아바르타라 세계관 기록보관소</small></div>
     </div>
 
     <nav class="top-nav" aria-label="주요 페이지">
@@ -1024,7 +301,8 @@
       <button class="nav-btn" data-route="trimurti">삼주룡</button>
       <button class="nav-btn" data-route="guardians">십방위룡</button>
       <button class="nav-btn" data-route="retainers">용신의 권속</button>
-      <button class="nav-btn" data-route="companions">여정의 동료</button>
+      <button class="nav-btn" data-route="companions">동료 고행자</button>
+      <button class="nav-btn" data-route="settings">주요 설정</button>
     </nav>
   </div>
 </header>
@@ -1035,37 +313,25 @@
   <section id="page-guardians" class="page"></section>
   <section id="page-retainers" class="page"></section>
   <section id="page-companions" class="page"></section>
+  <section id="page-settings" class="page"></section>
 </main>
 
-<footer class="footer">
-  <span class="accent-dot"></span>
-  AVARTHARA ARCHIVE · GitHub Pages ready · Single-file HTML
-</footer>
+<footer class="footer">✦ AVARTHARA ARCHIVE · GitHub Pages ready · Single-file HTML</footer>
 
-
-
-<!-- =========================================================
-     CHARACTER IMAGE DETAIL MODAL
-     캐릭터 프로필 이미지를 클릭하면 열립니다.
-     ========================================================= -->
+<!-- 캐릭터 상세 모달 -->
 <dialog class="character-modal" id="characterModal" aria-labelledby="modalTitle">
   <div class="modal-shell">
-    <div class="modal-image-wrap" id="modalImageWrap">
-      <button class="modal-close" id="modalClose" type="button" aria-label="상세 창 닫기">×</button>
+    <div class="modal-image-wrap">
+      <button class="modal-close" id="modalClose" type="button" aria-label="닫기">×</button>
       <img id="modalImage" src="" alt="">
-      <div class="modal-image-fallback" id="modalImageFallback">
-        등록된 캐릭터 이미지가 없습니다.
-      </div>
+      <div class="modal-image-fallback" id="modalImageFallback">등록된 캐릭터 이미지가 없습니다.</div>
     </div>
-
     <div class="modal-info">
-      <div class="modal-kicker" id="modalKicker">DRAGON DEITY PROFILE</div>
+      <div class="modal-kicker" id="modalKicker"></div>
       <h2 class="modal-title" id="modalTitle"></h2>
       <span class="modal-roman" id="modalRoman"></span>
       <p class="modal-epithet" id="modalEpithet"></p>
-
       <div class="modal-tags" id="modalTags"></div>
-
       <section class="modal-section">
         <dl class="modal-meta">
           <dt id="modalGenderLabel" style="display:none">성별</dt><dd id="modalGender" style="display:none"></dd>
@@ -1074,1295 +340,169 @@
           <dt>성격</dt><dd id="modalPersonality"></dd>
         </dl>
       </section>
-
-      <section class="modal-section">
-        <h4>외형</h4>
-        <p id="modalAppearance"></p>
-      </section>
-
-      <section class="modal-section">
-        <h4>설정</h4>
-        <p id="modalLore"></p>
-      </section>
+      <section class="modal-section"><h4>외형</h4><p id="modalAppearance"></p></section>
+      <section class="modal-section"><h4>설정</h4><p id="modalLore"></p></section>
     </div>
   </div>
 </dialog>
 
-<!-- =========================================================
-     BGM PLAYER
-     assets/audio/main-theme.mp3 파일을 저장소에 넣으면 재생됩니다.
-     브라우저 자동재생 제한 때문에 최초 재생은 사용자가 ▶ 버튼을 눌러야 합니다.
-     ========================================================= -->
-<div class="bgm-player" id="bgmPlayer" aria-label="배경음악 플레이어">
-  <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="BGM 재생" aria-pressed="false">▶</button>
-
-  <div class="bgm-info">
-    <span class="bgm-label">NOW PLAYING</span>
-    <strong class="bgm-title" id="bgmTitle">Mandala of Avarthara</strong>
-  </div>
-
-  <label class="bgm-volume-wrap" for="bgmVolume">
-    <span>VOL</span>
-    <input
-      class="bgm-volume"
-      id="bgmVolume"
-      type="range"
-      min="0"
-      max="1"
-      step="0.05"
-      value="0.35"
-      aria-label="BGM 볼륨"
-    >
-  </label>
-
-  <audio id="bgmAudio" loop preload="metadata">
-    <source src="./assets/audio/main-theme.mp3" type="audio/mpeg">
-  </audio>
+<!-- BGM 플레이어: assets/audio/main-theme.mp3 -->
+<div class="bgm-player" id="bgmPlayer">
+  <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="BGM 재생">▶</button>
+  <div class="bgm-info"><span class="bgm-label">NOW PLAYING</span><strong class="bgm-title">Mandala of Avarthara</strong></div>
+  <label class="bgm-volume-wrap" for="bgmVolume"><span>VOL</span><input class="bgm-volume" id="bgmVolume" type="range" min="0" max="1" step="0.05" value="0.35"></label>
+  <audio id="bgmAudio" loop preload="metadata"><source src="./assets/audio/main-theme.mp3" type="audio/mpeg"></audio>
 </div>
 
 <script>
 /* =========================================================
-   1) 이미지 넣는 법
-   ---------------------------------------------------------
-   아래 파일명 그대로 GitHub 저장소에 이미지를 넣으면
-   HTML 수정 없이 자동으로 표시됩니다.
-
-   assets/
-   ├─ ui/
-   │  └─ background.webp
-   ├─ world/
-   │  └─ mandalavarsha.webp
-   └─ characters/
-      ├─ srishtira.webp
-      ├─ sthirania.webp
-      ├─ bhasmira.webp
-      ├─ vajria.webp
-      ├─ jvalika.webp
-      ├─ dandaria.webp
-      ├─ kshaira.webp
-      ├─ ritania.webp
-      ├─ pavania.webp
-      ├─ ratnia.webp
-      ├─ akashara.webp
-      ├─ jyotira.webp
-      ├─ talania.webp
-      │
-      │  # 용신의 권속 13명
-      ├─ vedanika.webp
-      ├─ niyara.webp
-      ├─ shantira.webp
-      ├─ taran.webp
-      ├─ dipara.webp
-      ├─ kartan.webp
-      ├─ vishani.webp
-      ├─ samer.webp
-      ├─ maruti.webp
-      ├─ manira.webp
-      ├─ divyani.webp
-      ├─ tejani.webp
-      ├─ garvan.webp
-      │
-      │  # 주인공 일행 4명
-      ├─ arvan.webp
-      ├─ hyeonri.webp
-      ├─ ramani.webp
-      └─ ryeonhwa.webp
-
-   JPG/PNG를 쓰고 싶으면 아래 DATA.characters의 image 경로만
-   해당 확장자로 바꾸면 됩니다.
+   이미지 폴더 예시
+   assets/ui/background.webp
+   assets/world/mandalavarsha.webp
+   assets/audio/main-theme.mp3
+   assets/characters/*.webp
    ========================================================= */
 
-
-/* =========================================================
-   2) 세계관 데이터
-   - 텍스트를 바꾸고 싶으면 이 블록만 수정하면 됩니다.
-   ========================================================= */
-
-const WORLD = {
-  worldName: "아바르타라",
-  continentName: "만다라바르샤",
-  worldRoman: "Avarthara",
-  continentRoman: "Mandalavarsha",
-  intro:
-    "창세·유지·종언의 순환 위에 존재하는 세계. 중앙의 삼주신성권과 이를 둘러싼 십방의 영역이 하나의 거대한 만다라를 이루며, 각 용신은 세계의 법칙과 자연현상을 나누어 관장한다.",
-  continentIntro:
-    "만다라바르샤는 아바르타라 세계의 신화적 중심 대륙이다. 중앙에는 삼주룡을 섬기는 세 신성국이 자리하고, 동·남동·남·남서·서·북서·북·북동의 여덟 방위국이 이를 둘러싼다. 천정의 수리야트라와 지저의 파탈가르까지 포함하면 대륙 전체가 십방의 신성 질서로 완성된다.",
-  heroImage: "./assets/world/mandalavarsha.webp"
+const WORLD={
+  worldName:"아바르타라",continentName:"만다라바르샤",worldRoman:"Avarthara",continentRoman:"Mandalavarsha",
+  intro:"창세·유지·종언의 순환 위에 존재하는 세계. 중앙의 삼주신성권과 이를 둘러싼 십방의 영역이 하나의 거대한 만다라를 이룬다.",
+  continentIntro:"만다라바르샤는 아바르타라의 신화적 중심 대륙이다. 중앙에는 삼주룡의 세 신성국이 있고, 여덟 방위국과 천정·지저의 두 영역이 이를 둘러싼다.",
+  heroImage:"./assets/world/mandalavarsha.webp"
 };
 
-const REGIONS = [
+const REGIONS=[
+  {id:"padmashara",group:"삼주신성권",name:"파드마샤라",subtitle:"창세신성국 · 첫 여명의 나라",ruler:"창세룡 스리슈티라",desc:"창조와 학문, 예술을 신성시하는 백금색 신정국.",places:[["연화궁","스리슈티라의 중심 성전."],["시원의 천문대","별의 탄생을 기록하는 천문기관."],["무명서고","미완성 지식과 개념을 보관하는 서고."]] },
+  {id:"dharmanir",group:"삼주신성권",name:"다르마니르",subtitle:"수세신성국 · 영겁의 왕국",ruler:"수세룡 스티라니아",desc:"법과 외교, 행정, 방어의 중심지.",places:[["천륜궁","조약과 국제회의가 열리는 왕궁."],["영겁대벽","재해와 침공을 막는 신성 방벽."],["푸른 대운하","수도를 연결하는 거대 수로."]] },
+  {id:"kalashma",group:"삼주신성권",name:"칼라슈마",subtitle:"종언신성국 · 검은 황혼의 나라",ruler:"종언룡 바스미라",desc:"죽음과 끝을 금기시하지 않는 기록과 장례의 국가.",places:[["회진성","검은 현무암의 수도."],["청염장묘원","푸른 성화가 타는 장례 정원."],["종언의 화산","바스미라의 권능이 짙은 성지."]] },
+  {id:"vajrakar",group:"동방",name:"바즈라카르",subtitle:"뇌정국 · 번개와 폭풍",ruler:"뇌천룡 바즈리아",desc:"뇌운이 끊이지 않는 고원 군사국가.",places:[["창뢰성채","낙뢰를 동력으로 쓰는 요새."],["금강뢰탑","번개를 증폭하는 탑."],["폭풍기병장","뇌수와 비룡 기병의 군영."]] },
+  {id:"jvalagni",group:"남동방",name:"즈발라그니",subtitle:"염양국 · 불과 용광로",ruler:"겁화룡 즈발리카",desc:"화산과 용광로가 도시의 일부인 공업국가.",places:[["홍련용광로","대륙 최대 신성 제련소."],["화천제단","불의 정령과 계약하는 제단."],["유황온천도시","지열로 발전한 상업도시."]] },
+  {id:"dandrava",group:"남방",name:"단드라바",subtitle:"명법국 · 죽음과 심판",ruler:"명계룡 단다리아",desc:"삶과 죽음의 경계를 관리하는 법치국가.",places:[["명법대정","최고 법정."],["망혼정원","망자의 이름을 기록하는 정원."],["적등회랑","영혼을 인도하는 등불길."]] },
+  {id:"visharat",group:"남서방",name:"비샤라트",subtitle:"독림국 · 독과 부패",ruler:"독식룡 크샤이라",desc:"독초와 균류, 연금술이 발달한 습지국가.",places:[["자독습원","보랏빛 독무의 늪지."],["천약원","치유약과 맹독을 연구하는 식물원."],["부식탑","분해·정제 연금술 연구탑."]] },
+  {id:"samudria",group:"서방",name:"사무드리아",subtitle:"해약국 · 바다와 계약",ruler:"해율룡 리타니아",desc:"대륙 최대의 해양무역국.",places:[["은조항","거대 무역항."],["해약대성당","국가 간 조약을 비준하는 성전."],["조수법정","수상 법정."]] },
+  {id:"maruvana",group:"북서방",name:"마루바나",subtitle:"풍유국 · 바람과 속도",ruler:"천풍룡 파바니아",desc:"국경과 수도가 고정되지 않은 유목·비공선 국가.",places:[["이동수도 바유라","비공선 군집 수도."],["부유초원","하늘의 목초지."],["천범정박장","비공선 정박시설."]] },
+  {id:"ratnagar",group:"북방",name:"라트나가르",subtitle:"보산국 · 대지와 보석",ruler:"보옥룡 라트니아",desc:"옥과 황금, 마정석이 풍부한 산악 상업국.",places:[["옥왕성","녹금색 왕도."],["만보광산","거대 지하광산."],["수정시장","희귀 광물 국제시장."]] },
+  {id:"akashavia",group:"북동방",name:"아카샤비아",subtitle:"영공국 · 영과 에테르",ruler:"영천룡 아카샤라",desc:"현세와 영계의 경계가 얇은 고산 신비국.",places:[["무공사원","공중 수행 사원."],["자운관측대","영계 관측소."],["영문회랑","영계로 이어지는 봉인 통로."]] },
+  {id:"suryatra",group:"천정",name:"수리야트라",subtitle:"천광국 · 태양과 광휘",ruler:"일천룡 조티라",desc:"대륙 상공을 공전하는 부유국가.",places:[["백금천궁","구름바다 위의 궁전."],["태양환","도시에 빛을 공급하는 구조물."],["영일광장","해가 지지 않는 광장."]] },
+  {id:"patalgar",group:"지저",name:"파탈가르",subtitle:"심악국 · 중력과 지층",ruler:"진악룡 탈라니아",desc:"대륙 아래에 펼쳐진 초거대 지하국가.",places:[["흑요성","지저 수도."],["중력정","중력을 안정시키는 고대 설비."],["세계기둥","대륙을 떠받치는 석주군."]] }
+];
+
+const CHARACTERS=[
+  {id:"srishtira",group:"trimurti",name:"스리슈티라",roman:"Srishtira",title:"창세룡",epithet:"첫 여명을 낳은 자",domain:["창조","탄생","우주","생명"],colors:"백색 · 황금 · 적색",country:"파드마샤라",personality:"온화하고 초월적인 지성.",appearance:"백금빛과 적금색, 연꽃과 별, 창조문자가 핵심 상징.",summary:"무에서 별과 대지, 생명의 가능성을 끌어내는 최초의 창조자.",lore:"세계를 처음 빚어내는 권능을 가진 삼주룡. 창조는 완성이 아니라 가능성을 여는 행위라고 믿는다.",image:"./assets/characters/srishtira.webp"},
+  {id:"sthirania",group:"trimurti",name:"스티라니아",roman:"Sthirania",title:"수세룡",epithet:"영겁을 떠받치는 자",domain:["유지","보호","복구","질서"],colors:"청색 · 황금",country:"다르마니르",personality:"자애롭고 침착하며 책임감이 강하다.",appearance:"청금색 왕권과 원환, 바다와 보호결계의 이미지.",summary:"무너진 세계를 봉합하고 문명과 자연의 균형을 유지하는 수호자.",lore:"창세와 종언 사이에서 세계가 너무 이르게 무너지지 않도록 붙드는 존재.",image:"./assets/characters/sthirania.webp"},
+  {id:"bhasmira",group:"trimurti",name:"바스미라",roman:"Bhasmira",title:"종언룡",epithet:"마지막 별을 재우는 자",domain:["파괴","종말","소멸","재생"],colors:"흑색 · 회색 · 남색",country:"칼라슈마",personality:"고요하고 냉정하다.",appearance:"재와 검은 우주불꽃, 제3의 눈, 초승달이 특징.",summary:"낡은 세계의 막을 내리고 모든 것을 재로 돌려보내는 종말의 신룡.",lore:"그녀의 파괴는 악의가 아니라 순환의 마지막 단계다.",image:"./assets/characters/bhasmira.webp"},
+
+  {id:"vajria",group:"guardian",direction:"동",name:"바즈리아",roman:"Vajria",title:"뇌천룡",epithet:"창뢰를 거느리는 동천의 패자",domain:["번개","폭풍","천공"],colors:"청색 · 황금",country:"바즈라카르",personality:"자신감 넘치는 선봉장.",appearance:"청금색 갑주와 번개창, 전류가 흐르는 뿔.",summary:"동방의 폭풍과 번개를 통솔하는 십방의 선봉장.",lore:"동쪽 하늘과 폭풍전선을 관리한다.",image:"./assets/characters/vajria.webp"},
+  {id:"jvalika",group:"guardian",direction:"남동",name:"즈발리카",roman:"Jvalika",title:"겁화룡",epithet:"천지를 달구는 성화",domain:["화염","열","용광로"],colors:"진홍 · 주황 · 황금",country:"즈발라그니",personality:"직선적이고 호쾌하다.",appearance:"불꽃 같은 적발과 용광로빛 균열.",summary:"순수한 열과 연소를 지배하는 남동방의 화염신룡.",lore:"바스미라의 소멸화와 달리 현실적인 화염과 제련을 관장한다.",image:"./assets/characters/jvalika.webp"},
+  {id:"dandaria",group:"guardian",direction:"남",name:"단다리아",roman:"Dandaria",title:"명계룡",epithet:"죽은 자의 죄를 재는 자",domain:["죽음","영혼","심판"],colors:"흑색 · 암적색 · 철색",country:"단드라바",personality:"냉엄하지만 공정하다.",appearance:"검은 법복과 철갑, 혼등, 심판 문양.",summary:"죽은 자를 거두고 판결하는 남방의 재판관.",lore:"세계가 아닌 개별 생명의 사후 질서를 담당한다.",image:"./assets/characters/dandaria.webp"},
+  {id:"kshaira",group:"guardian",direction:"남서",name:"크샤이라",roman:"Kshaira",title:"독식룡",epithet:"썩어가는 것들의 여왕",domain:["독","부패","침식"],colors:"자주 · 흑색 · 독녹",country:"비샤라트",personality:"냉소적이고 계산적이다.",appearance:"비대칭 뿔과 독화, 가시, 녹색 독무.",summary:"죽은 것과 오염된 것을 분해해 순환으로 되돌리는 신룡.",lore:"불길해 보이지만 생태계의 청소부이기도 하다.",image:"./assets/characters/kshaira.webp"},
+  {id:"ritania",group:"guardian",direction:"서",name:"리타니아",roman:"Ritania",title:"해율룡",epithet:"만해의 맹세를 지키는 자",domain:["바다","물","계약"],colors:"남청 · 청록 · 은색",country:"사무드리아",personality:"침착하고 엄격한 원칙주의자.",appearance:"진주와 은빛 비늘, 청록 발광문양, 수환.",summary:"서방의 바다와 신성한 맹세를 지키는 계약의 수호룡.",lore:"그녀 앞의 계약은 물의 사슬로 기록된다.",image:"./assets/characters/ritania.webp"},
+  {id:"pavania",group:"guardian",direction:"북서",name:"파바니아",roman:"Pavania",title:"천풍룡",epithet:"천경을 떠도는 자유의 숨결",domain:["바람","속도","대기"],colors:"백색 · 민트 · 하늘색",country:"마루바나",personality:"유쾌하고 자유분방하다.",appearance:"가벼운 의복과 깃털, 구름 같은 갈기.",summary:"이동의 자유와 바람을 관장하는 북서방의 유랑신룡.",lore:"움직임이 멈추면 세계도 죽는다고 믿는다.",image:"./assets/characters/pavania.webp"},
+  {id:"ratnia",group:"guardian",direction:"북",name:"라트니아",roman:"Ratnia",title:"보옥룡",epithet:"천산의 보화를 거느리는 자",domain:["대지","금속","보석","풍요"],colors:"에메랄드 · 황금 · 옥색",country:"라트나가르",personality:"호탕하고 사교적이다.",appearance:"옥과 황금 장식, 수정뿔, 녹금색 비늘.",summary:"대지 속 광물과 보화를 관장하는 북방의 신룡.",lore:"풍요와 자원의 흐름을 관리한다.",image:"./assets/characters/ratnia.webp"},
+  {id:"akashara",group:"guardian",direction:"북동",name:"아카샤라",roman:"Akashara",title:"영천룡",epithet:"형상 너머를 바라보는 자",domain:["영","에테르","신탁"],colors:"백색 · 연보라 · 은색",country:"아카샤비아",personality:"말수가 적고 초연하다.",appearance:"은백·연보라 비늘, 기하학 후광과 영불.",summary:"현세와 영계의 경계를 읽고 신탁을 전한다.",lore:"삼주룡과 가장 직접적으로 교류하는 방위룡이다.",image:"./assets/characters/akashara.webp"},
+  {id:"jyotira",group:"guardian",direction:"천정",name:"조티라",roman:"Jyotira",title:"일천룡",epithet:"천궁에서 만상을 비추는 눈",domain:["태양","광휘","천정"],colors:"백금 · 황금 · 옅은 하늘색",country:"수리야트라",personality:"고결하지만 융통성이 부족하다.",appearance:"백금 갑주와 태양왕관, 다중 태양환.",summary:"세계의 가장 높은 곳에서 모든 것을 비추는 천정의 태양신룡.",lore:"원칙과 투명함을 중시한다.",image:"./assets/characters/jyotira.webp"},
+  {id:"talania",group:"guardian",direction:"지저",name:"탈라니아",roman:"Talania",title:"진악룡",epithet:"세계의 밑바닥을 떠받치는 자",domain:["중력","지층","심연"],colors:"흑요석 · 남보라 · 암청",country:"파탈가르",personality:"과묵하고 인내심이 강하다.",appearance:"흑요석 갑주와 남보라 균열광, 암석 고리.",summary:"대륙의 물리적 기반과 중력을 떠받치는 지저의 수호신룡.",lore:"스티라니아와 가까운 관계로 세계의 토대를 지킨다.",image:"./assets/characters/talania.webp"},
+
+  {id:"vedanika",group:"retainer",name:"베다니카",roman:"Vedanika",title:"창세기록관",epithet:"태초의 이름을 적는 자",domain:["기록","명명","창조지식","천문"],colors:"백색 · 황금 · 적색",country:"파드마샤라 · 스리슈티라 직속",gender:"여성",personality:"호기심 많고 상냥한 학자.",appearance:"백적금 학자복, 연꽃 장식, 황금 필기구.",summary:"새로 태어난 별과 생명에 이름을 부여하는 창세의 서기관.",lore:"창세의 순간을 기록하고 지식이 세계에 정착하도록 돕는다.",image:"./assets/characters/vedanika.webp"},
+  {id:"niyara",group:"retainer",name:"니야라",roman:"Niyara",title:"천륜재상",epithet:"흔들리지 않는 질서의 손",domain:["행정","결계","법","조정"],colors:"청색 · 황금",country:"다르마니르 · 스티라니아 직속",gender:"여성",personality:"냉철하고 현실적인 행정가.",appearance:"청금 정복과 경갑, 원환 장식, 결계판.",summary:"결계망과 조약의 실무를 통솔하는 최고 보좌관.",lore:"스티라니아 대신 현실의 균형을 세밀하게 관리한다.",image:"./assets/characters/niyara.webp"},
+  {id:"shantira",group:"retainer",name:"샨티라",roman:"Shantira",title:"회진사제",epithet:"마지막 숨을 달래는 자",domain:["장례","위령","재","청염"],colors:"흑색 · 남색 · 은색",country:"칼라슈마 · 바스미라 직속",gender:"여성",personality:"고요하고 자애롭다.",appearance:"검은 장례복과 푸른 혼등, 초승달 장식.",summary:"종언 뒤에 남은 슬픔을 정리하고 망자를 배웅한다.",lore:"청염으로 원한과 집착을 재로 만든다.",image:"./assets/characters/shantira.webp"},
+  {id:"taran",group:"retainer",name:"타란",roman:"Taran",title:"뇌정군 부관",epithet:"폭풍 뒤를 정렬하는 창",domain:["번개","군략","전령","창술"],colors:"청색 · 황금",country:"바즈라카르 · 바즈리아 직속",gender:"남성",personality:"침착하고 규율을 중시한다.",appearance:"청금 군용갑주와 번개창.",summary:"바즈리아의 돌격을 전술로 완성하는 뇌정군 부관.",lore:"전선 재편과 명령 전달에 특화되어 있다.",image:"./assets/characters/taran.webp"},
+  {id:"dipara",group:"retainer",name:"디파라",roman:"Dipara",title:"성화대장장이",epithet:"신들의 쇠를 달구는 자",domain:["제련","화염","무구","용광로"],colors:"진홍 · 주황 · 황금",country:"즈발라그니 · 즈발리카 직속",gender:"여성",personality:"호쾌하고 직설적이다.",appearance:"적주황 묶은 머리와 용암빛 망치.",summary:"겁화룡의 성화로 신성 무구를 제작한다.",lore:"즈발리카의 화염을 견디는 극소수의 장인이다.",image:"./assets/characters/dipara.webp"},
+  {id:"kartan",group:"retainer",name:"카르탄",roman:"Kartan",title:"망혼기록관",epithet:"마지막 판결을 기록하는 붓",domain:["사후기록","심판","영혼","집행"],colors:"흑색 · 암적색 · 철색",country:"단드라바 · 단다리아 직속",gender:"남성",personality:"원칙주의자지만 은근히 인간적이다.",appearance:"흑철 법복과 혼령장부.",summary:"단다리아의 판결과 망자의 기록을 관리한다.",lore:"이름과 기억이 사후 질서에서 사라지지 않게 한다.",image:"./assets/characters/kartan.webp"},
+  {id:"vishani",group:"retainer",name:"비샤니",roman:"Vishani",title:"왕립 독약사",epithet:"독과 약 사이를 걷는 자",domain:["독","약학","연금술","식물"],colors:"보라 · 흑색 · 독녹",country:"비샤라트 · 크샤이라 직속",gender:"여성",personality:"늘 친절하고 부드럽게 웃는다.",appearance:"보라 장발과 녹색 눈, 독화와 약병.",summary:"독과 치료약을 함께 다루는 수석 연금술사.",lore:"오염 정화와 전염병 연구에도 큰 역할을 맡는다.",image:"./assets/characters/vishani.webp"},
+  {id:"samer",group:"retainer",name:"사메르",roman:"Samer",title:"해약재판관",epithet:"파도 위에 맹세를 새기는 자",domain:["계약","해군","협상","수계"],colors:"남청 · 청록 · 은색",country:"사무드리아 · 리타니아 직속",gender:"남성",personality:"말수가 적고 협상에 강하다.",appearance:"해군 정복과 은빛 사슬.",summary:"국가 간 계약과 해양분쟁을 다룬다.",lore:"한 장의 조약으로 함대를 멈추는 것을 선호한다.",image:"./assets/characters/samer.webp"},
+  {id:"maruti",group:"retainer",name:"마루티",roman:"Maruti",title:"천공전령",epithet:"어디에도 묶이지 않는 발걸음",domain:["바람","전령","여행","정찰"],colors:"백색 · 민트 · 하늘색",country:"마루바나 · 파바니아 직속",gender:"여성",personality:"밝고 자유분방하다.",appearance:"은백 단발과 긴 스카프, 깃털부적.",summary:"십방을 빠르게 오가며 소식과 물자를 전달한다.",lore:"길이 없는 곳에 바람길을 만들어 이동한다.",image:"./assets/characters/maruti.webp"},
+  {id:"manira",group:"retainer",name:"마니라",roman:"Manira",title:"보산재무관",epithet:"천 개의 장부를 세는 손",domain:["재정","보석","상업","감정"],colors:"에메랄드 · 황금 · 옥색",country:"라트나가르 · 라트니아 직속",gender:"여성",personality:"계산이 빠르고 부정을 싫어한다.",appearance:"녹금 상인귀족복과 옥주판.",summary:"십방국 재정과 광물가치를 읽는 수석 재무관.",lore:"숫자의 흐름에서 전쟁과 재난의 징후를 읽기도 한다.",image:"./assets/characters/manira.webp"},
+  {id:"divyani",group:"retainer",name:"디비아니",roman:"Divyani",title:"신탁해석관",epithet:"꿈의 언어를 읽는 자",domain:["신탁","영매","예지","해석"],colors:"백색 · 연보라 · 은색",country:"아카샤비아 · 아카샤라 직속",gender:"여성",personality:"몽롱하지만 신탁 해석 때는 날카롭다.",appearance:"은백 장발과 연보라 의복, 영등과 점괘패.",summary:"아카샤라의 파편적인 미래를 인간의 언어로 번역한다.",lore:"예언을 정답이 아닌 가능성의 지도로 본다.",image:"./assets/characters/divyani.webp"},
+  {id:"tejani",group:"retainer",name:"테자니",roman:"Tejani",title:"천광성기사",epithet:"한 점의 흐림도 허락하지 않는 창",domain:["태양","호위","정화","성광"],colors:"백금 · 황금 · 하늘색",country:"수리야트라 · 조티라 직속",gender:"여성",personality:"엄격하고 성실하다.",appearance:"백금 성갑과 황금창, 일륜방패.",summary:"천정국의 성역과 태양환을 지키는 성기사.",lore:"빛으로 은폐와 저주를 걷어낸다.",image:"./assets/characters/tejani.webp"},
+  {id:"garvan",group:"retainer",name:"가르반",roman:"Garvan",title:"지층감찰관",epithet:"세계기둥 앞의 문지기",domain:["지층","중력","감찰","수문"],colors:"흑요석 · 남보라 · 암청",country:"파탈가르 · 탈라니아 직속",gender:"남성",personality:"과묵하고 우직하다.",appearance:"흑요석 중갑과 거대한 석갑장갑.",summary:"세계기둥과 지층 안정시설을 순찰한다.",lore:"그의 걸음이 멈추는 곳에는 중력마저 무거워진다.",image:"./assets/characters/garvan.webp"},
+
+  {id:"arvan",group:"companion",name:"아르반",roman:"Arvan",title:"천궁의 신궁",epithet:"하늘 끝을 꿰뚫는 자",domain:["궁술","신궁","전술","천공"],colors:"청색 · 백색 · 황금",country:"주인공 일행 · 원거리 전투",gender:"남성",personality:"침착하고 책임감이 강하다.",appearance:"청백금 궁병갑주와 빛의 시위를 가진 장궁.",summary:"먼 거리에서 전장을 통제하는 천재 궁사.",lore:"신에게 받은 힘과 자신의 실력 사이에서 고민하며 여행에 합류한다.",image:"./assets/characters/arvan.webp"},
+  {id:"hyeonri",group:"companion",name:"현리",roman:"Hyeonri",title:"유행승",epithet:"천 리의 경전을 짊어진 자",domain:["치유","봉인","정화","경전"],colors:"백색 · 황토색 · 적색",country:"주인공 일행 · 치유와 봉인",gender:"여성",personality:"자비롭고 인내심이 많다.",appearance:"백황토 승복과 석장, 붉은 염주.",summary:"먼 동방에서 경전을 찾아온 여성 승려.",lore:"전투를 피하지만 동료를 지키기 위한 봉인술은 강력하다.",image:"./assets/characters/hyeonri.webp"},
+  {id:"ramani",group:"companion",name:"라마니",roman:"Ramani",title:"성검의 유랑공녀",epithet:"다르마를 베는 어린 칼날",domain:["검술","성검","태양","정의"],colors:"백색 · 적색 · 황금",country:"주인공 일행 · 근접 전투",gender:"여성",personality:"올곧고 정의감이 강하다.",appearance:"백적금 경갑과 연꽃 코등이의 성검.",summary:"자신의 정의가 무엇인지 찾는 소녀 검사.",lore:"여행 속에서 정의와 현실 사이의 차이를 배워간다.",image:"./assets/characters/ramani.webp"},
+  {id:"ryeonhwa",group:"companion",name:"련화",roman:"Ryeonhwa",title:"홍사의 도사",epithet:"끊을 수 없는 붉은 인연",domain:["부적","결계","주술","홍사"],colors:"백색 · 흑색 · 적색",country:"주인공 일행 · 주술과 결계",gender:"여성",personality:"평소에는 다정하지만 주인공과 관련되면 소유욕이 강해진다.",appearance:"백흑적 도포, 목검, 부적과 붉은 영적 실.",summary:"주인공의 소꿉친구인 도사이자 파티의 주술사.",lore:"보호와 소유의 경계가 흐릿하며 붉은 인연의 실로 적을 속박한다.",image:"./assets/characters/ryeonhwa.webp"}
+];
+
+/* 주요 설정 데이터: 여기 내용만 바꾸면 6페이지가 자동 갱신됨 */
+const MAJOR_SETTINGS=[
   {
-    id:"padmashara",
-    group:"삼주신성권",
-    name:"파드마샤라",
-    subtitle:"창세신성국 · 첫 여명의 나라",
-    ruler:"창세룡 스리슈티라",
-    desc:"창조와 학문, 예술을 신성시하는 백금색 신정국. 새로운 지식과 생명, 기술을 만들어내는 행위 자체가 가장 높은 예배로 여겨진다.",
-    places:[
-      ["연화궁","거대한 황금 연꽃을 형상화한 스리슈티라의 중심 성전."],
-      ["시원의 천문대","별의 탄생과 우주의 변화를 기록하는 대륙 최고 천문기관."],
-      ["무명서고","아직 이름 붙지 않은 개념과 미완성 지식을 보관하는 봉인서고."]
-    ]
+    id:"dragon-gods",index:"01",title:"용신",en:"DRAGON DEITIES",
+    summary:"아바르타라 세계의 자연법칙과 문명 질서를 직접 관장하는 신격 존재. 삼주룡과 십방위룡을 중심으로 신성 질서가 구성된다.",
+    points:["삼주룡","십방위룡","권능","신성 질서"],
+    note:"용신의 탄생 방식, 인간과의 관계, 신앙 체계, 권능의 한계 등을 이 칸에 추가하면 된다."
   },
   {
-    id:"dharmanir",
-    group:"삼주신성권",
-    name:"다르마니르",
-    subtitle:"수세신성국 · 영겁의 왕국",
-    ruler:"수세룡 스티라니아",
-    desc:"법과 외교, 행정, 방어의 중심지. 세계가 무너지지 않도록 질서와 사회를 보존하는 것을 국가의 최고 사명으로 삼는다.",
-    places:[
-      ["천륜궁","대륙의 조약과 국제회의가 열리는 청금색 왕궁."],
-      ["영겁대벽","대규모 재해와 침공을 막기 위해 구축된 신성 방벽."],
-      ["푸른 대운하","수도 전역을 연결하며 도시의 생명선을 이루는 거대 수로."]
-    ]
+    id:"astra",index:"02",title:"아스트라",en:"ASTRA",
+    summary:"신성한 힘과 권능이 무구·술식·현상으로 구현되는 체계를 설명하기 위한 설정 항목. 세계관에서 아스트라가 무엇이며 누가 사용할 수 있는지를 정리하는 공간이다.",
+    points:["신성 무구","권능 구현","발동 조건","사용자 적성"],
+    note:"아스트라의 등급, 획득 방식, 사용 대가, 용신과의 연관성을 추후 상세 설정으로 확장하기 좋다."
   },
   {
-    id:"kalashma",
-    group:"삼주신성권",
-    name:"칼라슈마",
-    subtitle:"종언신성국 · 검은 황혼의 나라",
-    ruler:"종언룡 바스미라",
-    desc:"죽음과 끝을 금기시하지 않는 국가. 모든 것은 사라지기에 기록할 가치가 있다는 철학 아래 장례, 기록, 종말 의식이 발달했다.",
-    places:[
-      ["회진성","검은 현무암과 잿빛 금속으로 세워진 수도."],
-      ["청염장묘원","푸른 성화가 영원히 타오르는 광대한 장례 정원."],
-      ["종언의 화산","바스미라의 권능이 가장 짙게 남아 있는 금단의 성지."]
-    ]
+    id:"asceticism",index:"03",title:"고행",en:"ASCETIC PRACTICE",
+    summary:"육체와 정신을 단련하고 세계의 신성한 힘에 접근하기 위한 수행 체계. 단순한 훈련이 아니라 자신의 욕망과 한계를 시험하는 과정으로 정리할 수 있다.",
+    points:["수행","정신 단련","육체 단련","대가와 시련"],
+    note:"고행의 단계, 지역별 수행법, 실패 시 부작용, 아스트라와의 연결 규칙 등을 여기에 추가할 수 있다."
   },
   {
-    id:"vajrakar",
-    group:"동방",
-    name:"바즈라카르",
-    subtitle:"뇌정국 · 번개와 폭풍",
-    ruler:"뇌천룡 바즈리아",
-    desc:"뇌운이 끊이지 않는 고원 군사국가. 기병, 공중전, 번개 마도기술이 발달했으며 명예와 승부를 중시한다.",
-    places:[
-      ["창뢰성채","낙뢰를 직접 동력으로 쓰는 산악 요새."],
-      ["금강뢰탑","바즈라 형태의 피뢰·마력 증폭탑."],
-      ["폭풍기병장","뇌수와 비룡 기병을 훈련하는 거대 군영."]
-    ]
-  },
-  {
-    id:"jvalagni",
-    group:"남동방",
-    name:"즈발라그니",
-    subtitle:"염양국 · 불과 용광로",
-    ruler:"겁화룡 즈발리카",
-    desc:"화산과 용광로가 도시의 일부인 열정적인 공업국가. 대륙 최고의 무기와 금속공예품을 생산하며 축제 문화가 화려하다.",
-    places:[
-      ["홍련용광로","대륙 최대 규모의 신성 제련소."],
-      ["화천제단","불의 정령과 계약을 맺는 제례 장소."],
-      ["유황온천도시","화산 지열을 이용해 발전한 휴양·상업 도시."]
-    ]
-  },
-  {
-    id:"dandrava",
-    group:"남방",
-    name:"단드라바",
-    subtitle:"명법국 · 죽음과 심판",
-    ruler:"명계룡 단다리아",
-    desc:"삶과 죽음의 경계를 관리하는 엄정한 법치국가. 사후 기록과 재판, 묘역 관리가 고도로 체계화되어 있다.",
-    places:[
-      ["명법대정","산 자와 죽은 자 모두의 분쟁을 심리하는 최고 법정."],
-      ["망혼정원","망자의 이름을 꽃과 등불로 기록하는 거대 정원."],
-      ["적등회랑","사후세계로 향하는 영혼을 인도하는 붉은 등불길."]
-    ]
-  },
-  {
-    id:"visharat",
-    group:"남서방",
-    name:"비샤라트",
-    subtitle:"독림국 · 독과 부패",
-    ruler:"독식룡 크샤이라",
-    desc:"독초와 균류, 연금술이 발달한 습지국가. 부패를 파괴가 아닌 순환의 한 단계로 바라보며 의학과 독물학이 함께 발전했다.",
-    places:[
-      ["자독습원","보랏빛 독무가 흐르는 광대한 늪지."],
-      ["천약원","치유약과 맹독을 동시에 연구하는 왕립 식물원."],
-      ["부식탑","금속과 마력을 분해·정제하는 연금술 연구탑."]
-    ]
-  },
-  {
-    id:"samudria",
-    group:"서방",
-    name:"사무드리아",
-    subtitle:"해약국 · 바다와 계약",
-    ruler:"해율룡 리타니아",
-    desc:"대륙 최대의 해양무역국. 항구와 법정이 국가의 중심이며, 용신 앞에서 맺은 맹세는 그 자체로 신성한 계약이 된다.",
-    places:[
-      ["은조항","은빛 방파제와 청록 등대가 늘어선 거대 무역항."],
-      ["해약대성당","국가 간 조약을 비준하는 바다의 성전."],
-      ["조수법정","조류의 주기에 맞춰 재판이 열리는 수상 법정."]
-    ]
-  },
-  {
-    id:"maruvana",
-    group:"북서방",
-    name:"마루바나",
-    subtitle:"풍유국 · 바람과 속도",
-    ruler:"천풍룡 파바니아",
-    desc:"국경과 수도가 고정되지 않은 유목·비공선 국가. 자유로운 이동과 여행을 최고의 권리로 여기며 상공 교역의 중심을 맡는다.",
-    places:[
-      ["이동수도 바유라","거대한 비공선 군집으로 이루어진 이동형 수도."],
-      ["부유초원","저중력 바람길을 따라 떠다니는 하늘의 목초지."],
-      ["천범정박장","대륙 최대 규모의 비공선 정박 시설."]
-    ]
-  },
-  {
-    id:"ratnagar",
-    group:"북방",
-    name:"라트나가르",
-    subtitle:"보산국 · 대지와 보석",
-    ruler:"보옥룡 라트니아",
-    desc:"옥과 황금, 마정석이 풍부한 산악 상업국. 광업뿐 아니라 금융과 보석세공의 중심으로 대륙 경제에 막대한 영향력을 지닌다.",
-    places:[
-      ["옥왕성","거대한 옥맥 위에 세워진 녹금색 왕도."],
-      ["만보광산","수천 종류의 광물과 마석이 채굴되는 지하광산."],
-      ["수정시장","희귀 광물과 마도구가 거래되는 국제시장."]
-    ]
-  },
-  {
-    id:"akashavia",
-    group:"북동방",
-    name:"아카샤비아",
-    subtitle:"영공국 · 영과 에테르",
-    ruler:"영천룡 아카샤라",
-    desc:"현세와 영계의 경계가 얇은 고산 신비국. 예언, 점성, 영혼 연구와 명상이 중심이며 사원 상당수가 공중에 떠 있다.",
-    places:[
-      ["무공사원","허공 위에 정지한 채 떠 있는 수행 사원."],
-      ["자운관측대","오로라와 영계의 변화를 읽는 천문·영시 관측소."],
-      ["영문회랑","일정한 조건에서 영계로 이어지는 봉인 통로."]
-    ]
-  },
-  {
-    id:"suryatra",
-    group:"천정",
-    name:"수리야트라",
-    subtitle:"천광국 · 태양과 광휘",
-    ruler:"일천룡 조티라",
-    desc:"만다라바르샤 상공을 천천히 공전하는 부유국가. 백금색 건축과 거대한 태양환이 상징이며 밤이 거의 존재하지 않는다.",
-    places:[
-      ["백금천궁","구름바다 위에 떠 있는 조티라의 궁전."],
-      ["태양환","도시 전체에 빛과 에너지를 공급하는 거대한 천공 구조물."],
-      ["영일광장","해가 지지 않는 중심 광장."]
-    ]
-  },
-  {
-    id:"patalgar",
-    group:"지저",
-    name:"파탈가르",
-    subtitle:"심악국 · 중력과 지층",
-    ruler:"진악룡 탈라니아",
-    desc:"대륙 아래에 펼쳐진 초거대 지하국가. 세계의 기반과 지층을 관리하며, 이곳의 붕괴는 곧 대륙 전체의 물리적 붕괴를 뜻한다.",
-    places:[
-      ["흑요성","거대한 흑요석 기둥 사이에 세워진 지저 수도."],
-      ["중력정","대륙의 중력 흐름을 안정시키는 고대 설비."],
-      ["세계기둥","만다라바르샤의 지각을 떠받치는 초거대 석주 군."]
-    ]
+    id:"ascetics",index:"04",title:"고행자",en:"ASCETICS",
+    summary:"고행을 통해 인간의 한계를 넘어선 수행자들을 가리키는 설정 항목. 용신과 계약하지 않고도 초월적 힘에 접근하는 인간 집단으로 확장할 수 있다.",
+    points:["수행자","초월","문파와 유파","용신과의 관계"],
+    note:"고행자의 사회적 위치, 등급, 대표 유파, 용신 신앙과의 갈등 또는 협력 관계를 상세 설정으로 추가하면 된다."
   }
 ];
 
-const CHARACTERS = [
-  {
-    id:"srishtira",
-    group:"trimurti",
-    name:"스리슈티라",
-    roman:"Srishtira",
-    title:"창세룡",
-    epithet:"첫 여명을 낳은 자",
-    domain:["창조","탄생","우주","생명"],
-    colors:"백색 · 황금 · 적색",
-    country:"파드마샤라",
-    personality:"온화하고 초월적인 지성. 새로운 가능성을 발견하는 일에 큰 기쁨을 느낀다.",
-    appearance:"백금빛과 적금색을 중심으로 한 성스러운 외형. 연꽃, 별, 창조문자와 후광이 핵심 상징.",
-    summary:"무에서 별과 대지, 생명의 가능성을 끌어내는 최초의 창조자.",
-    lore:"세계를 처음 빚어내는 권능을 가진 삼주룡. 창조는 완성이 아니라 가능성을 여는 행위라고 믿으며, 인간에게도 스스로 새로운 것을 만들 권리를 부여했다.",
-    image:"./assets/characters/srishtira.webp"
-  },
-  {
-    id:"sthirania",
-    group:"trimurti",
-    name:"스티라니아",
-    roman:"Sthirania",
-    title:"수세룡",
-    epithet:"영겁을 떠받치는 자",
-    domain:["유지","보호","복구","질서"],
-    colors:"청색 · 황금",
-    country:"다르마니르",
-    personality:"자애롭고 침착하며 책임감이 강하다. 감정보다 장기적인 균형을 우선한다.",
-    appearance:"청금색 왕권과 원환, 바다와 보호결계의 이미지. 인간형은 정상적인 두 팔을 지닌다.",
-    summary:"무너진 세계를 봉합하고 문명과 자연의 균형을 유지하는 수호자.",
-    lore:"창세와 종언 사이에서 세계가 너무 이르게 무너지지 않도록 붙드는 존재. 파괴된 대지와 깨진 현실의 균열을 복구할 수 있으나, 이미 정해진 자연스러운 종말까지 부정하지는 않는다.",
-    image:"./assets/characters/sthirania.webp"
-  },
-  {
-    id:"bhasmira",
-    group:"trimurti",
-    name:"바스미라",
-    roman:"Bhasmira",
-    title:"종언룡",
-    epithet:"마지막 별을 재우는 자",
-    domain:["파괴","종말","소멸","재생"],
-    colors:"흑색 · 회색 · 남색",
-    country:"칼라슈마",
-    personality:"고요하고 냉정하다. 파괴를 분노가 아니라 다음 시대를 위한 필연으로 본다.",
-    appearance:"재와 검은 우주불꽃, 제3의 눈, 초승달, 청색 목의 발광이 특징.",
-    summary:"낡은 세계의 막을 내리고 모든 것을 재로 돌려보내는 종말의 신룡.",
-    lore:"그녀의 파괴는 악의가 아니라 순환의 마지막 단계다. 존재를 재로 만드는 검은 불은 새로운 창조가 시작될 수 있도록 오래된 법칙까지 해체한다.",
-    image:"./assets/characters/bhasmira.webp"
-  },
+function esc(str=""){return String(str).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 
-  {
-    id:"vajria",
-    group:"guardian",
-    direction:"동",
-    name:"바즈리아",
-    roman:"Vajria",
-    title:"뇌천룡",
-    epithet:"창뢰를 거느리는 동천의 패자",
-    domain:["번개","폭풍","천공"],
-    colors:"코발트 블루 · 황금",
-    country:"바즈라카르",
-    personality:"자신감 넘치는 선봉장. 자존심과 승부욕이 강하지만 전장에서는 늘 가장 먼저 나선다.",
-    appearance:"청금색 갑주, 금강저와 번개창, 전류가 흐르는 뿔과 비늘.",
-    summary:"동방의 폭풍과 번개를 통솔하는 십방의 선봉장.",
-    lore:"대륙의 동쪽 하늘과 폭풍전선을 관리한다. 겁화룡 즈발리카와는 오랜 라이벌 관계로 알려져 있다.",
-    image:"./assets/characters/vajria.webp"
-  },
-  {
-    id:"jvalika",
-    group:"guardian",
-    direction:"남동",
-    name:"즈발리카",
-    roman:"Jvalika",
-    title:"겁화룡",
-    epithet:"천지를 달구는 성화",
-    domain:["화염","열","용광로"],
-    colors:"진홍 · 주황 · 황금",
-    country:"즈발라그니",
-    personality:"직선적이고 호쾌한 열혈 전사. 싸움과 축제를 모두 즐긴다.",
-    appearance:"불꽃 같은 적발, 용광로빛 균열, 화염형 뿔과 백열의 브레스.",
-    summary:"순수한 열과 연소를 지배하는 남동방의 화염신룡.",
-    lore:"바스미라의 소멸화와 달리 즈발리카의 불은 물질을 태우고 제련하는 현실적인 화염이다. 금속, 산업, 전쟁의 열기와 밀접하다.",
-    image:"./assets/characters/jvalika.webp"
-  },
-  {
-    id:"dandaria",
-    group:"guardian",
-    direction:"남",
-    name:"단다리아",
-    roman:"Dandaria",
-    title:"명계룡",
-    epithet:"죽은 자의 죄를 재는 자",
-    domain:["죽음","영혼","심판"],
-    colors:"흑색 · 암적색 · 철색",
-    country:"단드라바",
-    personality:"무표정하고 냉엄하지만 철저하게 공정하다. 망자에게 깊은 예의를 보인다.",
-    appearance:"검은 법복, 철갑, 혼등, 저울과 심판봉을 연상시키는 장식.",
-    summary:"죽음을 일으키는 존재가 아니라 죽은 자를 거두고 판결하는 남방의 재판관.",
-    lore:"산 자의 시간이 끝난 뒤 영혼을 인도하고 기록한다. 종언룡과 역할이 겹쳐 보이지만, 단다리아는 세계가 아닌 개별 생명의 사후 질서를 담당한다.",
-    image:"./assets/characters/dandaria.webp"
-  },
-  {
-    id:"kshaira",
-    group:"guardian",
-    direction:"남서",
-    name:"크샤이라",
-    roman:"Kshaira",
-    title:"독식룡",
-    epithet:"썩어가는 것들의 여왕",
-    domain:["독","부패","침식"],
-    colors:"짙은 보라 · 흑색 · 독녹",
-    country:"비샤라트",
-    personality:"냉소적이고 계산적이며 상대가 스스로 무너지게 만드는 것을 선호한다.",
-    appearance:"비대칭 뿔, 독화와 가시, 부식 문양, 녹색 독무.",
-    summary:"죽은 것과 오염된 것을 분해해 세계의 순환으로 되돌리는 남서방의 부패신룡.",
-    lore:"겉보기에는 가장 불길하지만 생태계의 청소부이기도 하다. 독과 약이 같은 뿌리에서 나온다는 철학을 지닌다.",
-    image:"./assets/characters/kshaira.webp"
-  },
-  {
-    id:"ritania",
-    group:"guardian",
-    direction:"서",
-    name:"리타니아",
-    roman:"Ritania",
-    title:"해율룡",
-    epithet:"만해의 맹세를 지키는 자",
-    domain:["바다","물","계약"],
-    colors:"남청 · 청록 · 은색",
-    country:"사무드리아",
-    personality:"침착하고 엄격한 원칙주의자. 거짓과 맹세의 파기를 가장 싫어한다.",
-    appearance:"진주와 은빛 비늘, 청록 발광문양, 수환과 계약의 물사슬.",
-    summary:"서방의 바다와 모든 신성한 맹세를 지키는 계약의 수호룡.",
-    lore:"해양 질서를 조절하며, 그녀 앞에서 맺어진 계약은 물의 사슬로 기록된다. 조약을 어긴 자에게는 바다 그 자체가 족쇄가 된다.",
-    image:"./assets/characters/ritania.webp"
-  },
-  {
-    id:"pavania",
-    group:"guardian",
-    direction:"북서",
-    name:"파바니아",
-    roman:"Pavania",
-    title:"천풍룡",
-    epithet:"천경을 떠도는 자유의 숨결",
-    domain:["바람","속도","대기"],
-    colors:"백색 · 민트 · 하늘색",
-    country:"마루바나",
-    personality:"유쾌하고 자유분방한 방랑자. 인간 세상에 가장 자주 모습을 드러낸다.",
-    appearance:"가벼운 의복과 스카프, 깃털, 유선형 뿔, 구름 같은 갈기.",
-    summary:"국경을 넘어 흐르는 바람과 이동의 자유를 관장하는 북서방의 유랑신룡.",
-    lore:"움직임이 멈추면 세계도 죽는다고 믿는다. 그녀가 지나갈 때는 본체보다 먼저 바람과 소닉붐이 도착한다고 전해진다.",
-    image:"./assets/characters/pavania.webp"
-  },
-  {
-    id:"ratnia",
-    group:"guardian",
-    direction:"북",
-    name:"라트니아",
-    roman:"Ratnia",
-    title:"보옥룡",
-    epithet:"천산의 보화를 거느리는 자",
-    domain:["대지","금속","보석","풍요"],
-    colors:"에메랄드 · 황금 · 옥색",
-    country:"라트나가르",
-    personality:"호탕하고 사교적인 부호. 재물을 쌓기보다 풍요를 순환시키는 것을 즐긴다.",
-    appearance:"옥과 황금 장식, 수정뿔, 산처럼 육중한 녹금색 용체.",
-    summary:"대지 속 광물과 보화, 물질적 풍요를 관장하는 북방의 신룡.",
-    lore:"십방룡의 재무담당으로 불릴 만큼 경제와 자원의 흐름에 밝다. 광맥의 생성과 붕괴까지 장기적으로 관리한다.",
-    image:"./assets/characters/ratnia.webp"
-  },
-  {
-    id:"akashara",
-    group:"guardian",
-    direction:"북동",
-    name:"아카샤라",
-    roman:"Akashara",
-    title:"영천룡",
-    epithet:"형상 너머를 바라보는 자",
-    domain:["영","에테르","신탁"],
-    colors:"백색 · 연보라 · 은색",
-    country:"아카샤비아",
-    personality:"말수가 적고 초연한 현자. 미래를 직접 말하기보다 상징과 수수께끼로 전한다.",
-    appearance:"반투명한 은백·연보라 비늘, 기하학 후광, 영불과 부유문자.",
-    summary:"현세와 영계의 경계를 읽고 신탁을 전하는 북동방의 영적 수호룡.",
-    lore:"십방룡 가운데 삼주룡과 가장 직접적으로 교류한다. 과거·현재·미래의 잔향을 겹쳐 보며 세계의 이상징후를 감지한다.",
-    image:"./assets/characters/akashara.webp"
-  },
-  {
-    id:"jyotira",
-    group:"guardian",
-    direction:"천정",
-    name:"조티라",
-    roman:"Jyotira",
-    title:"일천룡",
-    epithet:"천궁에서 만상을 비추는 눈",
-    domain:["태양","광휘","천정"],
-    colors:"백금 · 황금 · 옅은 하늘색",
-    country:"수리야트라",
-    personality:"고결하고 정의롭지만 융통성이 부족한 완벽주의자.",
-    appearance:"백금색 갑주와 태양왕관, 다중 태양환, 눈부신 백색광.",
-    summary:"세계의 가장 높은 곳에서 모든 것을 비추고 감시하는 천정의 태양신룡.",
-    lore:"어둠을 악으로 규정하지는 않지만 숨겨진 것을 그대로 방치하는 것도 좋아하지 않는다. 원칙을 중시해 아카샤라와 자주 논쟁한다.",
-    image:"./assets/characters/jyotira.webp"
-  },
-  {
-    id:"talania",
-    group:"guardian",
-    direction:"지저",
-    name:"탈라니아",
-    roman:"Talania",
-    title:"진악룡",
-    epithet:"세계의 밑바닥을 떠받치는 자",
-    domain:["중력","지층","심연"],
-    colors:"흑요석 · 남보라 · 암청",
-    country:"파탈가르",
-    personality:"과묵하고 인내심이 강한 문지기. 거의 움직이지 않지만 기반이 흔들리면 누구보다 먼저 행동한다.",
-    appearance:"흑요석 갑주와 남보라 균열광, 아래로 굽은 뿔, 중력에 떠오른 암석 고리.",
-    summary:"대륙의 물리적 기반과 중력을 떠받치는 지저의 수호신룡.",
-    lore:"다른 십방룡보다 수세룡 스티라니아와 가까운 관계. 존재하는 것만으로 주변의 중력과 지층을 안정시키며 세계의 토대를 지킨다.",
-    image:"./assets/characters/talania.webp"
-  },
-  /* =======================================================
-     용신의 권속 13명
-     ======================================================= */
-  {
-    id:"vedanika",
-    group:"retainer",
-    name:"베다니카",
-    roman:"Vedanika",
-    title:"창세기록관",
-    epithet:"태초의 이름을 적는 자",
-    domain:["기록","명명","창조지식","천문"],
-    colors:"백색 · 황금 · 적색",
-    country:"파드마샤라 · 스리슈티라 직속",
-    gender:"여성",
-    personality:"호기심 많고 상냥한 학자. 사소한 기록 오류만큼은 절대로 넘어가지 않는다.",
-    appearance:"백·적·금색의 학자풍 의복, 연꽃 장식, 황금 필기구, 별과 창조문자가 떠다니는 서기관.",
-    summary:"스리슈티라가 탄생시킨 별과 생명, 새로운 개념에 최초의 이름을 부여하고 기록하는 창세의 서기관.",
-    lore:"새롭게 태어난 것에 이름이 없으면 세계의 기록에 정착하지 못한다는 믿음 아래 창세의 순간을 기록한다. 전투보다는 지식과 관측에 능하지만, 그녀가 적어 내린 창조문자는 짧은 시간 현실의 법칙이 되기도 한다.",
-    image:"./assets/characters/vedanika.webp"
-  },
-  {
-    id:"niyara",
-    group:"retainer",
-    name:"니야라",
-    roman:"Niyara",
-    title:"천륜재상",
-    epithet:"흔들리지 않는 질서의 손",
-    domain:["행정","결계","법","조정"],
-    colors:"청색 · 황금",
-    country:"다르마니르 · 스티라니아 직속",
-    gender:"여성",
-    personality:"냉철하고 현실적인 행정가. 장기적인 균형을 위해서는 용신에게도 직언한다.",
-    appearance:"청금색 정복과 경갑, 대칭적인 원환 장식, 금빛 열쇠지팡이와 부유하는 결계판.",
-    summary:"스티라니아를 대신해 국가와 결계망, 조약의 실무를 통솔하는 다르마니르의 최고 보좌관.",
-    lore:"스티라니아가 세계 전체의 균형을 바라본다면 니야라는 오늘 무너지려는 성벽과 내일 파기될 조약을 살핀다. 각국의 재난 대응 체계를 연결하는 실무의 핵심이다.",
-    image:"./assets/characters/niyara.webp"
-  },
-  {
-    id:"shantira",
-    group:"retainer",
-    name:"샨티라",
-    roman:"Shantira",
-    title:"회진사제",
-    epithet:"마지막 숨을 달래는 자",
-    domain:["장례","위령","재","청염"],
-    colors:"흑색 · 남색 · 은색",
-    country:"칼라슈마 · 바스미라 직속",
-    gender:"여성",
-    personality:"고요하고 자애롭다. 죽음을 두려워하는 사람에게 마지막까지 곁을 지켜주는 성직자.",
-    appearance:"검은 장례복과 은장식, 푸른 혼등, 초승달 장식과 흩날리는 백색 재.",
-    summary:"바스미라의 종언 뒤에 남은 죽음과 슬픔을 정리하고 망자를 배웅하는 장례사제.",
-    lore:"종언이 공포만으로 기억되지 않도록 남겨진 자와 떠나는 자 사이의 마지막 의식을 집전한다. 그녀의 청염은 시신을 태우지 않고 집착과 원한만을 재로 만든다.",
-    image:"./assets/characters/shantira.webp"
-  },
-  {
-    id:"taran",
-    group:"retainer",
-    name:"타란",
-    roman:"Taran",
-    title:"뇌정군 부관",
-    epithet:"폭풍 뒤를 정렬하는 창",
-    domain:["번개","군략","전령","창술"],
-    colors:"코발트 블루 · 황금",
-    country:"바즈라카르 · 바즈리아 직속",
-    gender:"남성",
-    personality:"침착하고 규율을 중시하는 장교. 바즈리아가 돌진하면 뒤에서 전선을 수습한다.",
-    appearance:"청금색 군용 갑주, 번개창, 전기 건틀릿, 짧은 남청색 머리와 황금빛 눈.",
-    summary:"동방의 뇌정군을 실질적으로 지휘하며 바즈리아의 폭발적인 전투력을 전술로 완성시키는 부관.",
-    lore:"번개처럼 빠른 명령 전달과 전장 재편에 특화되어 있다. 바즈리아와 정반대처럼 보이지만 누구보다 그녀의 판단을 신뢰한다.",
-    image:"./assets/characters/taran.webp"
-  },
-  {
-    id:"dipara",
-    group:"retainer",
-    name:"디파라",
-    roman:"Dipara",
-    title:"성화대장장이",
-    epithet:"신들의 쇠를 달구는 자",
-    domain:["제련","화염","무구","용광로"],
-    colors:"진홍 · 주황 · 황금",
-    country:"즈발라그니 · 즈발리카 직속",
-    gender:"여성",
-    personality:"호쾌하고 직설적인 장인. 무기를 함부로 다루는 사람에게는 신분을 가리지 않고 화낸다.",
-    appearance:"적주황색 묶은 머리, 대장장이 앞치마와 동갑, 용암빛 망치와 불꽃 문신.",
-    summary:"겁화룡의 성화를 이용해 방위룡과 신관들의 무구를 제작하는 신성 대장장이.",
-    lore:"즈발리카의 화염을 견딜 수 있는 극소수의 인간 중 하나. 전투도 능숙하지만 자신은 무기를 휘두르는 일보다 제대로 만드는 일이 훨씬 어렵다고 주장한다.",
-    image:"./assets/characters/dipara.webp"
-  },
-  {
-    id:"kartan",
-    group:"retainer",
-    name:"카르탄",
-    roman:"Kartan",
-    title:"망혼기록관",
-    epithet:"마지막 판결을 기록하는 붓",
-    domain:["사후기록","심판","영혼","집행"],
-    colors:"흑색 · 암적색 · 철색",
-    country:"단드라바 · 단다리아 직속",
-    gender:"남성",
-    personality:"냉정한 원칙주의자처럼 보이지만 망자의 사소한 마지막 부탁을 몰래 들어주는 면이 있다.",
-    appearance:"흑철 법복과 붉은 끈, 혼령 장부와 검은 붓, 유령불이 떠다니는 정갈한 외형.",
-    summary:"단다리아의 판결을 기록하고 명계로 향할 영혼의 신원과 기억을 관리하는 집행관.",
-    lore:"그의 장부에 기록된 이름은 사후 질서에서 사라지지 않는다. 오기 하나가 영혼의 행선지를 바꿀 수도 있기 때문에 극단적으로 정확한 업무 태도를 유지한다.",
-    image:"./assets/characters/kartan.webp"
-  },
-  {
-    id:"vishani",
-    group:"retainer",
-    name:"비샤니",
-    roman:"Vishani",
-    title:"왕립 독약사",
-    epithet:"독과 약 사이를 걷는 자",
-    domain:["독","약학","연금술","식물"],
-    colors:"짙은 보라 · 흑색 · 독녹",
-    country:"비샤라트 · 크샤이라 직속",
-    gender:"여성",
-    personality:"늘 친절하고 부드럽게 웃는다. 그 때문에 크샤이라보다 오히려 더 위험하다는 평을 듣는다.",
-    appearance:"보라빛 장발, 녹색 눈, 독화와 가시 장식, 유리 약병과 연금술 서책.",
-    summary:"독과 치료약을 같은 지식의 두 얼굴로 다루는 크샤이라의 수석 연금술사.",
-    lore:"어떤 독이든 해독법을 찾으려 하고 어떤 약이든 독성이 될 수 있음을 경고한다. 오염된 토지의 정화와 전염병 연구에도 큰 역할을 맡는다.",
-    image:"./assets/characters/vishani.webp"
-  },
-  {
-    id:"samer",
-    group:"retainer",
-    name:"사메르",
-    roman:"Samer",
-    title:"해약재판관",
-    epithet:"파도 위에 맹세를 새기는 자",
-    domain:["계약","해군","협상","수계"],
-    colors:"남청 · 청록 · 은색",
-    country:"사무드리아 · 리타니아 직속",
-    gender:"남성",
-    personality:"말수가 적고 협상에 강하다. 거짓말을 감지하면 조용히 계약서를 덮는다.",
-    appearance:"남청색 해군 정복, 은비늘 갑주, 진주장식, 계약 두루마리와 은빛 사슬.",
-    summary:"리타니아를 대신해 국가 간 계약과 해양 분쟁을 다루는 함대참모 겸 재판관.",
-    lore:"전쟁을 벌이는 것보다 한 장의 조약으로 함대를 멈추는 일을 선호한다. 그러나 계약이 파기되면 누구보다 냉정하게 집행 절차를 시작한다.",
-    image:"./assets/characters/samer.webp"
-  },
-  {
-    id:"maruti",
-    group:"retainer",
-    name:"마루티",
-    roman:"Maruti",
-    title:"천공전령",
-    epithet:"어디에도 묶이지 않는 발걸음",
-    domain:["바람","전령","여행","정찰"],
-    colors:"백색 · 민트 · 하늘색",
-    country:"마루바나 · 파바니아 직속",
-    gender:"여성",
-    personality:"밝고 자유분방하다. 파바니아와 함께 사라져 예정된 업무를 통째로 미루는 일이 종종 있다.",
-    appearance:"짧은 은백색 머리, 긴 스카프와 여행복, 깃털 부적, 바람을 머금은 전령가방.",
-    summary:"십방의 영토를 가장 빠르게 오가며 소식과 물자를 전달하는 북서방의 천공전령.",
-    lore:"길이 없는 곳에 바람길을 만들어 이동한다. 국경에 얽매이지 않는 성격 덕분에 각국의 민간 정보에도 매우 밝다.",
-    image:"./assets/characters/maruti.webp"
-  },
-  {
-    id:"manira",
-    group:"retainer",
-    name:"마니라",
-    roman:"Manira",
-    title:"보산재무관",
-    epithet:"천 개의 장부를 세는 손",
-    domain:["재정","보석","상업","감정"],
-    colors:"에메랄드 · 황금 · 옥색",
-    country:"라트나가르 · 라트니아 직속",
-    gender:"여성",
-    personality:"돈을 좋아하고 계산이 빠르지만 부정과 횡령은 극도로 싫어한다.",
-    appearance:"녹금색 상인귀족복, 옥 주판과 황금 장부, 다층 보석장식과 부유하는 수정.",
-    summary:"십방국의 재정과 광물가치를 읽어내는 라트니아의 수석 재무관.",
-    lore:"라트니아가 풍요를 나누는 데 집중한다면 마니라는 그 풍요가 어디에서 와서 어디로 가는지를 추적한다. 작은 숫자 하나로 전쟁의 징후까지 알아차리곤 한다.",
-    image:"./assets/characters/manira.webp"
-  },
-  {
-    id:"divyani",
-    group:"retainer",
-    name:"디비아니",
-    roman:"Divyani",
-    title:"신탁해석관",
-    epithet:"꿈의 언어를 읽는 자",
-    domain:["신탁","영매","예지","해석"],
-    colors:"백색 · 연보라 · 은색",
-    country:"아카샤비아 · 아카샤라 직속",
-    gender:"여성",
-    personality:"평소에는 몽롱하고 느긋하지만 신탁을 해석할 때는 목소리와 분위기가 완전히 달라진다.",
-    appearance:"금색 장발, 반투명 연보라 의복, 영등과 점괘패, 기하학 문양과 영불.",
-    summary:"아카샤라가 보여주는 파편적인 미래와 영계의 상징을 인간의 언어로 번역하는 영매.",
-    lore:"신탁은 정답이 아니라 가능성의 지도라고 믿는다. 지나친 예언 의존을 경계하며 듣는 사람이 스스로 선택하도록 일부러 여지를 남긴다.",
-    image:"./assets/characters/divyani.webp"
-  },
-  {
-    id:"tejani",
-    group:"retainer",
-    name:"테자니",
-    roman:"Tejani",
-    title:"천광성기사",
-    epithet:"한 점의 흐림도 허락하지 않는 창",
-    domain:["태양","호위","정화","성광"],
-    colors:"백금 · 황금 · 옅은 하늘색",
-    country:"수리야트라 · 조티라 직속",
-    gender:"여성",
-    personality:"엄격하고 성실한 완벽주의자. 겉으로는 흔들리지 않지만 자신의 실수를 누구보다 두려워한다.",
-    appearance:"백금색 성갑, 태양관 장식, 황금창과 일륜방패, 백색광의 후광.",
-    summary:"조티라의 명령을 집행하며 천정국의 성역과 태양환을 지키는 최고위 성기사.",
-    lore:"빛의 힘으로 은폐와 저주를 걷어내는 데 특화되어 있다. 조티라를 존경하지만 완벽함이 사람을 상처 입힐 수도 있다는 사실을 조금씩 배우고 있다.",
-    image:"./assets/characters/tejani.webp"
-  },
-  {
-    id:"garvan",
-    group:"retainer",
-    name:"가르반",
-    roman:"Garvan",
-    title:"지층감찰관",
-    epithet:"세계기둥 앞의 문지기",
-    domain:["지층","중력","감찰","수문"],
-    colors:"흑요석 · 남보라 · 암청",
-    country:"파탈가르 · 탈라니아 직속",
-    gender:"남성",
-    personality:"과묵하고 우직하다. 탈라니아보다 말이 조금 더 많다는 이유로 파탈가르에서는 사교적인 인물 취급을 받는다.",
-    appearance:"흑요석 중갑, 거대한 석갑 장갑, 남보라 중력문자, 고대 열쇠와 사슬장식.",
-    summary:"세계기둥과 지층 안정시설을 순찰하며 대륙 기반의 이상을 가장 먼저 감지하는 수문장.",
-    lore:"지상 정치에는 거의 관심이 없지만 지층 균열 하나에는 즉시 움직인다. 그의 걸음이 멈추는 곳에는 중력마저 무거워진다고 전해진다.",
-    image:"./assets/characters/garvan.webp"
-  },
+const GROUP_LABELS={trimurti:"삼주룡",guardian:"십방위룡",retainer:"용신의 권속",companion:"여정의 동료"};
 
-  /* =======================================================
-     주인공의 여정에 합류하는 동료 4명
-     ======================================================= */
-  {
-    id:"arvan",
-    group:"companion",
-    name:"아르반",
-    roman:"Arvan",
-    title:"천궁의 신궁",
-    epithet:"하늘 끝을 꿰뚫는 자",
-    domain:["궁술","신궁","전술","천공"],
-    colors:"청색 · 백색 · 황금",
-    country:"주인공 일행 · 원거리 전투",
-    gender:"남성",
-    personality:"침착하고 책임감 강한 상식인. 평소에는 겸손하지만 궁술 승부가 걸리면 은근히 자존심이 강하다.",
-    appearance:"갈색 피부와 장발 포니테일, 청백금 궁병 갑주, 빛의 시위를 지닌 신성 장궁과 천광화살.",
-    summary:"신에게 선택받았다는 전승을 가진 천재 궁사. 먼 거리에서 전장을 통제하는 파티의 전술가.",
-    lore:"뇌천룡 바즈리아의 가호를 받았던 바즈라카르 출신의 영웅. 뇌정군 부관 타란의 라이벌, 바즈리아를 해쳐야 될지도 모르는 고행에 참가했으나 망설임은 없다.",
-    image:"./assets/characters/arvan.webp"
-  },
-  {
-    id:"hyeonri",
-    group:"companion",
-    name:"현리",
-    roman:"Hyeonri",
-    title:"유행승",
-    epithet:"천 리의 경전을 짊어진 자",
-    domain:["치유","봉인","정화","경전"],
-    colors:"백색 · 황토색 · 적색",
-    country:"주인공 일행 · 치유와 봉인",
-    gender:"여성",
-    personality:"자비롭고 인내심이 많다. 평소에는 부드럽지만 선을 넘는 악행 앞에서는 파티에서 가장 단호하다.",
-    appearance:"백·황토색 승복과 여행망토, 붉은 염주, 석장, 경전함과 금빛 진언환.",
-    summary:"먼 동방에서 경전을 찾아 여행해 온 여성 승려. 치유와 악령 정화, 봉인을 맡는다.",
-    lore:"부처의 가르침을 전하는 아카샤비아 출신의 승려. 싸움을 피하는 것을 우선하지만 동료를 지키기 위한 봉인술은 매우 강력하며, 여행의 목적을 위해 수많은 문화권을 지나왔다.",
-    image:"./assets/characters/hyeonri.webp"
-  },
-  {
-    id:"ramani",
-    group:"companion",
-    name:"라마니",
-    roman:"Ramani",
-    title:"성검의 유랑공녀",
-    epithet:"다르마를 베는 어린 칼날",
-    domain:["검술","성검","태양","정의"],
-    colors:"백색 · 적색 · 황금",
-    country:"주인공 일행 · 근접 전투",
-    gender:"여성",
-    personality:"올곧고 정의감이 강하다. 세상 물정에는 약하고 융통성이 부족해 종종 동료들에게 놀림받는다.",
-    appearance:"작고 단련된 체격, 백적금 경갑, 붉은 머리끈, 연꽃 코등이를 지닌 황금빛 성검.",
-    summary:"왕족의 의무에서 벗어나 자신의 정의가 무엇인지 찾기 위해 길을 떠난 소녀 검사.",
-    lore:"수세룡의 인간 측면 화신이라는 뛰어난 출신 성분을 가지고 있음에도 스스로의 길을 찾아나서는 성검의 공녀. 검 하나로 문제를 해결하려는 경향이 있지만 여행 속에서 정의와 현실 사이의 차이를 배워간다.",
-    image:"./assets/characters/ramani.webp"
-  },
-  {
-    id:"ryeonhwa",
-    group:"companion",
-    name:"련화",
-    roman:"Ryeonhwa",
-    title:"홍사의 도사",
-    epithet:"끊을 수 없는 붉은 인연",
-    domain:["부적","결계","주술","홍사"],
-    colors:"백색 · 흑색 · 적색",
-    country:"주인공 일행 · 주술과 결계",
-    gender:"여성",
-    personality:"평소에는 상냥하고 다정한 소꿉친구. 주인공의 안전과 인간관계가 얽히면 소유욕과 집착이 눈에 띄게 강해진다.",
-    appearance:"분홍발에 암적색 광택, 백흑적 도포, 목검과 부적, 영령과 붉은 실이 떠다니는 홍사의 도사.",
-    summary:"주인공과 어린 시절부터 함께 자란 도사. 부적술과 결계, 영체 속박으로 파티를 지원한다.",
-    lore:"단드라바의 산악 마을 홍사촌 출신의 여도사. 오랜 시간 주인공을 지켜왔다는 자부심 때문에 보호와 소유의 경계가 흐릿하다. 동료 앞에서는 친절하지만 주인공을 해치려 한 상대에게는 유난히 집요하며, 붉은 인연의 실로 적의 움직임과 영력을 속박한다.",
-    image:"./assets/characters/ryeonhwa.webp"
-  }
-];
-
-
-/* =========================================================
-   3) 렌더링
-   ========================================================= */
-
-function esc(str=""){
-  return String(str).replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[c]));
-}
-
-function portraitHTML(character){
-  return `
-    <div class="portrait" data-portrait data-character-id="${esc(character.id)}"
-         role="button" tabindex="0"
-         aria-label="${esc(character.name)} 상세 이미지 및 설정 보기">
-      <img src="${esc(character.image)}" alt="${esc(character.name)} 프로필 일러스트"
-           loading="lazy" decoding="async">
-      <div class="portrait-fallback">
-        <div>
-          <strong>${esc(character.name)}</strong><br>
-          이미지 파일을<br>
-          <code>${esc(character.image.replace("./",""))}</code><br>
-          경로에 넣으면 자동 표시됩니다.
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-const GROUP_LABELS = {
-  trimurti: "삼주룡",
-  guardian: "십방위룡",
-  retainer: "용신의 권속",
-  companion: "여정의 동료"
-};
+function portraitHTML(c){return `<div class="portrait" data-portrait data-character-id="${esc(c.id)}" role="button" tabindex="0" aria-label="${esc(c.name)} 상세 보기"><img src="${esc(c.image)}" alt="${esc(c.name)} 프로필 일러스트" loading="lazy"><div class="portrait-fallback"><div><strong>${esc(c.name)}</strong><br>이미지를 <code>${esc(c.image.replace("./",""))}</code><br>경로에 넣으면 자동 표시됩니다.</div></div></div>`}
 
 function characterCard(c){
-  const dir = c.direction ? `${c.direction} · ` : "";
-  const groupLabel = GROUP_LABELS[c.group] || "인물";
-  const affiliationLabel =
-    (c.group === "trimurti" || c.group === "guardian") ? "담당 국가" : "소속";
+  const dir=c.direction?`${c.direction} · `:"";
+  const affiliation=(c.group==="trimurti"||c.group==="guardian")?"담당 국가":"소속";
+  return `<article class="character-card">${portraitHTML(c)}<div class="card-body"><div class="title-row"><div><h3>${esc(c.title)} ${esc(c.name)}</h3><span class="roman">${esc(c.roman)} · ${esc(c.epithet)}</span></div><span class="role-badge">${esc(dir+(GROUP_LABELS[c.group]||"인물"))}</span></div><p class="summary">${esc(c.summary)}</p><div class="meta-line">${c.gender?`<span>${esc(c.gender)}</span>`:""}${c.domain.map(x=>`<span>${esc(x)}</span>`).join("")}</div><details class="character-details"><summary class="detail-toggle"><span>상세 설정 펼치기</span><span class="chev">+</span></summary><div class="detail-content"><dl><dt>이명</dt><dd>${esc(c.epithet)}</dd>${c.gender?`<dt>성별</dt><dd>${esc(c.gender)}</dd>`:""}<dt>${affiliation}</dt><dd>${esc(c.country)}</dd><dt>색상</dt><dd>${esc(c.colors)}</dd><dt>성격</dt><dd>${esc(c.personality)}</dd><dt>외형</dt><dd>${esc(c.appearance)}</dd></dl><p class="lore-copy">${esc(c.lore)}</p></div></details></div></article>`;
+}
 
-  return `
-    <article class="character-card" id="char-${esc(c.id)}">
-      ${portraitHTML(c)}
-      <div class="card-body">
-        <div class="title-row">
-          <div>
-            <h3>${esc(c.title)} ${esc(c.name)}</h3>
-            <span class="roman">${esc(c.roman)} · ${esc(c.epithet)}</span>
-          </div>
-          <span class="role-badge">${esc(dir + groupLabel)}</span>
-        </div>
-
-        <p class="summary">${esc(c.summary)}</p>
-
-        <div class="meta-line">
-          ${c.gender ? `<span>${esc(c.gender)}</span>` : ""}
-          ${c.domain.map(x => `<span>${esc(x)}</span>`).join("")}
-        </div>
-
-        <details class="character-details">
-          <summary class="detail-toggle">
-            <span>상세 설정 펼치기</span>
-            <span class="chev">+</span>
-          </summary>
-          <div class="detail-content">
-            <dl>
-              <dt>이명</dt><dd>${esc(c.epithet)}</dd>
-              ${c.gender ? `<dt>성별</dt><dd>${esc(c.gender)}</dd>` : ""}
-              <dt>${esc(affiliationLabel)}</dt><dd>${esc(c.country)}</dd>
-              <dt>색상</dt><dd>${esc(c.colors)}</dd>
-              <dt>성격</dt><dd>${esc(c.personality)}</dd>
-              <dt>외형</dt><dd>${esc(c.appearance)}</dd>
-            </dl>
-            <p class="lore-copy">${esc(c.lore)}</p>
-          </div>
-        </details>
-      </div>
-    </article>
-  `;
+function renderCharacterPage(targetId,group,title,subtitle,eyebrow){
+  const list=CHARACTERS.filter(c=>c.group===group),el=document.querySelector(targetId);
+  el.innerHTML=`<section class="hero"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${subtitle}</p></section><section class="section"><div class="section-head"><div><h2>${title} 기록</h2><p>카드에서는 핵심만 빠르게 보고, 이미지를 누르면 확대 프로필이 열린다. 상세 설정은 카드 하단에서 펼칠 수 있다.</p></div><span class="pill">${list.length} entries</span></div><div class="character-grid">${list.map(characterCard).join("")}</div></section>`;
 }
 
 function renderContinent(){
-  const el = document.querySelector("#page-continent");
-  el.innerHTML = `
-    <section class="hero" style="--hero-image:url('${WORLD.heroImage}')">
-      <div class="eyebrow">WORLD / CONTINENT</div>
-      <h1>${esc(WORLD.worldName)}<br>${esc(WORLD.continentName)}</h1>
-      <p>${esc(WORLD.intro)}</p>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>대륙 개요</h2>
-          <p>${esc(WORLD.continentIntro)}</p>
-        </div>
-        <span class="pill">${esc(WORLD.worldRoman)} · ${esc(WORLD.continentRoman)}</span>
-      </div>
-
-      <div class="world-grid">
-        <div class="glass lore-panel">
-          <h3>신성 질서</h3>
-          <p>
-            중앙의 <b>파드마샤라 · 다르마니르 · 칼라슈마</b>가 창세·유지·종언의
-            삼주신성권을 이루고, 그 바깥을 여덟 방위국이 감싼다.
-            하늘의 수리야트라와 지저의 파탈가르를 더해 완전한 십방의 구조가 된다.
-          </div>
-        </div>
-
-        <div class="mandala-map" aria-label="만다라바르샤 개략도">
-          <div class="map-zenith">ZENITH · 수리야트라</div>
-          <button class="map-node" data-region="maruvana" style="left:25%;top:24%">북서 · 마루바나</button>
-          <button class="map-node" data-region="ratnagar" style="left:50%;top:18%">북 · 라트나가르</button>
-          <button class="map-node" data-region="akashavia" style="left:75%;top:24%">북동 · 아카샤비아</button>
-
-          <button class="map-node" data-region="samudria" style="left:16%;top:50%">서 · 사무드리아</button>
-          <button class="map-node core" data-region="padmashara" style="left:50%;top:50%">삼주신성권</button>
-          <button class="map-node" data-region="vajrakar" style="left:84%;top:50%">동 · 바즈라카르</button>
-
-          <button class="map-node" data-region="visharat" style="left:25%;top:76%">남서 · 비샤라트</button>
-          <button class="map-node" data-region="dandrava" style="left:50%;top:82%">남 · 단드라바</button>
-          <button class="map-node" data-region="jvalagni" style="left:75%;top:76%">남동 · 즈발라그니</button>
-
-          <button class="map-node" data-region="suryatra" style="left:50%;top:7%">천정 · 수리야트라</button>
-          <button class="map-node" data-region="patalgar" style="left:50%;top:93%">지저 · 파탈가르</button>
-          <div class="map-nadir">NADIR · 파탈가르</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>구역과 주요 장소</h2>
-          <p>각 항목을 클릭하면 국가의 역할과 대표 장소가 펼쳐진다.</p>
-        </div>
-        <span class="pill">${REGIONS.length} regions</span>
-      </div>
-
-      <div class="region-grid">
-        ${REGIONS.map(r => `
-          <details class="region" id="region-${esc(r.id)}">
-            <summary class="region-summary">
-              <div>
-                <strong>${esc(r.name)}</strong>
-                <small>${esc(r.group)} · ${esc(r.subtitle)}</small>
-              </div>
-              <span class="chev">+</span>
-            </summary>
-            <div class="region-body">
-              <p>${esc(r.desc)}</p>
-              <p><b>관장 용신:</b> ${esc(r.ruler)}</p>
-              <div class="place-list">
-                ${r.places.map(p => `
-                  <div class="place">
-                    <strong>${esc(p[0])}</strong>
-                    <span>${esc(p[1])}</span>
-                  </div>
-                `).join("")}
-              </div>
-            </div>
-          </details>
-        `).join("")}
-      </div>
-    </section>
-  `;
+  const el=document.querySelector("#page-continent");
+  el.innerHTML=`<section class="hero" style="--hero-image:url('${WORLD.heroImage}')"><div class="eyebrow">WORLD / CONTINENT</div><h1>${WORLD.worldName}<br>${WORLD.continentName}</h1><p>${WORLD.intro}</p></section>
+  <section class="section"><div class="section-head"><div><h2>대륙 개요</h2><p>${WORLD.continentIntro}</p></div><span class="pill">${WORLD.worldRoman} · ${WORLD.continentRoman}</span></div><div class="world-grid"><div class="glass lore-panel"><h3>신성 질서</h3><p>중앙의 세 신성국을 여덟 방위국이 감싸고, 천정의 수리야트라와 지저의 파탈가르가 십방의 구조를 완성한다.</p><div class="notice"><b>assets/world/mandalavarsha.webp</b>를 넣으면 대륙 이미지가 상단 배경에 표시된다.</div></div><div class="mandala-map"><button class="map-node" data-region="maruvana" style="left:25%;top:24%">북서 · 마루바나</button><button class="map-node" data-region="ratnagar" style="left:50%;top:18%">북 · 라트나가르</button><button class="map-node" data-region="akashavia" style="left:75%;top:24%">북동 · 아카샤비아</button><button class="map-node" data-region="samudria" style="left:16%;top:50%">서 · 사무드리아</button><button class="map-node core" data-region="padmashara" style="left:50%;top:50%">삼주신성권</button><button class="map-node" data-region="vajrakar" style="left:84%;top:50%">동 · 바즈라카르</button><button class="map-node" data-region="visharat" style="left:25%;top:76%">남서 · 비샤라트</button><button class="map-node" data-region="dandrava" style="left:50%;top:82%">남 · 단드라바</button><button class="map-node" data-region="jvalagni" style="left:75%;top:76%">남동 · 즈발라그니</button><button class="map-node" data-region="suryatra" style="left:50%;top:7%">천정 · 수리야트라</button><button class="map-node" data-region="patalgar" style="left:50%;top:93%">지저 · 파탈가르</button></div></div></section>
+  <section class="section"><div class="section-head"><div><h2>구역과 주요 장소</h2><p>각 국가를 클릭하면 설명과 주요 장소가 펼쳐진다.</p></div><span class="pill">${REGIONS.length} regions</span></div><div class="region-grid">${REGIONS.map(r=>`<details class="region" id="region-${r.id}"><summary class="region-summary"><div><strong>${r.name}</strong><small>${r.group} · ${r.subtitle}</small></div><span class="chev">+</span></summary><div class="region-body"><p>${r.desc}</p><p><b>관장 용신:</b> ${r.ruler}</p><div class="place-list">${r.places.map(p=>`<div class="place"><strong>${p[0]}</strong><span>${p[1]}</span></div>`).join("")}</div></div></details>`).join("")}</div></section>`;
 }
 
-function renderCharacterPage(targetId, group, title, subtitle, eyebrow){
-  const list = CHARACTERS.filter(c => c.group === group);
-  const el = document.querySelector(targetId);
-  const helperText =
-    group === "retainer"
-      ? "각 용신의 직속 권속을 한눈에 확인할 수 있다. 이미지를 누르면 확대 프로필이 열리고, 카드의 상세 설정에서는 역할·성격·외형·소속을 확인할 수 있다."
-      : group === "companion"
-      ? "주인공과 함께 여정을 이어가는 동료들. 이미지를 누르면 확대 프로필이 열리고, 카드의 상세 설정에서는 전투 역할·성격·외형·배경을 확인할 수 있다."
-      : "카드에서는 핵심만 빠르게 확인하고, 이미지를 누르면 확대 프로필이 열린다. ‘상세 설정 펼치기’에서는 성격·외형·국가·설정을 확인할 수 있다.";
-
-  return el.innerHTML = `
-    <section class="hero">
-      <div class="eyebrow">${esc(eyebrow)}</div>
-      <h1>${esc(title)}</h1>
-      <p>${esc(subtitle)}</p>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>${esc(title)} 기록</h2>
-          <p>${esc(helperText)}</p>
-        </div>
-        <span class="pill">${list.length} entries</span>
-      </div>
-      <div class="character-grid">
-        ${list.map(characterCard).join("")}
-      </div>
-    </section>
-  `;
+function renderSettings(){
+  document.querySelector("#page-settings").innerHTML=`<section class="hero"><div class="eyebrow">CORE LORE / WORLD RULES</div><h1>주요 설정</h1><p>아바르타라 세계의 핵심 개념을 빠르게 찾아볼 수 있는 설정집. 용신·아스트라·고행·고행자를 네 개의 큰 항목으로 나누어 정리한다.</p></section><section class="section"><div class="section-head"><div><h2>세계관 핵심 개념</h2><p>아래 텍스트는 초안용이다. HTML의 <code>MAJOR_SETTINGS</code> 데이터만 수정하면 카드 내용이 자동으로 갱신된다.</p></div><span class="pill">4 concepts</span></div><div class="setting-grid">${MAJOR_SETTINGS.map(s=>`<article class="setting-card" id="setting-${s.id}"><div class="setting-index">${s.index}</div><h3>${s.title}<span class="setting-en">${s.en}</span></h3><p>${s.summary}</p><div class="setting-points">${s.points.map(x=>`<span>${x}</span>`).join("")}</div><div class="setting-note">${s.note}</div></article>`).join("")}</div></section>`;
 }
-
-function attachImageFallbacks(){
-  document.querySelectorAll("[data-portrait]").forEach(box => {
-    const img = box.querySelector("img");
-    if(!img) return;
-
-    const mark = () => box.classList.add("has-image");
-    const fail = () => {
-      box.classList.remove("has-image");
-      img.style.display = "none";
-    };
-
-    if(img.complete){
-      if(img.naturalWidth > 0) mark();
-      else fail();
-    }
-    img.addEventListener("load", mark, {once:true});
-    img.addEventListener("error", fail, {once:true});
-  });
-}
-
-function attachRegionMap(){
-  document.querySelectorAll("[data-region]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = document.querySelector("#region-" + btn.dataset.region);
-      if(!target) return;
-      target.open = true;
-      target.scrollIntoView({behavior:"smooth", block:"center"});
-    });
-  });
-}
-
-
-/* =========================================================
-   4) 페이지 라우팅
-   - 실제 파일은 index.html 하나지만
-     #continent / #trimurti / #guardians / #retainers / #companions
-     5페이지처럼 동작합니다.
-   ========================================================= */
-
-const ROUTES = ["continent","trimurti","guardians","retainers","companions"];
-
-function currentRoute(){
-  const raw = location.hash.replace("#","").split("/")[0];
-  return ROUTES.includes(raw) ? raw : "continent";
-}
-
-function showRoute(route, pushHash=true){
-  if(!ROUTES.includes(route)) route = "continent";
-
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("is-active"));
-  document.querySelector("#page-" + route).classList.add("is-active");
-
-  document.querySelectorAll(".nav-btn").forEach(btn => {
-    btn.setAttribute("aria-selected", String(btn.dataset.route === route));
-  });
-
-  if(pushHash && location.hash !== "#" + route){
-    history.pushState(null, "", "#" + route);
-  }
-
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function attachRouting(){
-  document.querySelectorAll("[data-route]").forEach(el => {
-    const go = () => showRoute(el.dataset.route);
-    el.addEventListener("click", go);
-    el.addEventListener("keydown", e => {
-      if(e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        go();
-      }
-    });
-  });
-
-  window.addEventListener("hashchange", () => showRoute(currentRoute(), false));
-}
-
-
-/* =========================================================
-   5) 초기화
-   ========================================================= */
 
 renderContinent();
+renderCharacterPage("#page-trimurti","trimurti","세계를 유지하는 삼주룡","창세·유지·종언이라는 세계의 가장 근본적인 세 법칙을 담당하는 최고위 용신들.","THE THREE PRIMORDIAL DRAGONS");
+renderCharacterPage("#page-guardians","guardian","십방위의 용","삼주룡 아래에서 십방의 자연현상과 경계를 관리하는 신격.","THE TEN DIRECTIONAL DRAGONS");
+renderCharacterPage("#page-retainers","retainer","용신의 권속들","각 용신 곁에서 기록·행정·군사·장례·연금·계약·신탁 등 실무를 맡는 13명의 보좌관들.","THE DIVINE RETAINERS");
+renderCharacterPage("#page-companions","companion","여정을 함께할 동료들","주인공과 함께 만다라바르샤를 횡단하는 네 명의 여행 동료.","THE JOURNEY COMPANIONS");
+renderSettings();
 
-renderCharacterPage(
-  "#page-trimurti",
-  "trimurti",
-  "세계를 유지하는 삼주룡",
-  "창세룡 스리슈티라, 수세룡 스티라니아, 종언룡 바스미라. 세계의 시작·지속·끝이라는 가장 근본적인 세 법칙을 담당하는 최고위 용신들.",
-  "THE THREE PRIMORDIAL DRAGONS"
-);
+function attachImageFallbacks(){document.querySelectorAll("[data-portrait]").forEach(box=>{const img=box.querySelector("img");const ok=()=>box.classList.add("has-image"),fail=()=>{box.classList.remove("has-image");img.style.display="none"};if(img.complete){img.naturalWidth?ok():fail()}img.addEventListener("load",ok,{once:true});img.addEventListener("error",fail,{once:true})})}
 
-renderCharacterPage(
-  "#page-guardians",
-  "guardian",
-  "십방위의 용",
-  "삼주룡 아래에서 십방의 자연현상과 경계를 관리하는 하위 신격. 각 용은 자신의 방위와 원소, 국가, 문화권을 함께 관장한다.",
-  "THE TEN DIRECTIONAL DRAGONS"
-);
+function attachRegionMap(){document.querySelectorAll("[data-region]").forEach(btn=>btn.addEventListener("click",()=>{const target=document.querySelector("#region-"+btn.dataset.region);if(target){target.open=true;target.scrollIntoView({behavior:"smooth",block:"center"})}}))}
 
-renderCharacterPage(
-  "#page-retainers",
-  "retainer",
-  "용신의 권속들",
-  "삼주룡과 십방위룡 곁에서 기록·행정·군사·장례·연금·계약·신탁 등 신성 질서의 실무를 맡는 13명의 직속 보좌관들.",
-  "THE DIVINE RETAINERS"
-);
+const ROUTES=["continent","trimurti","guardians","retainers","companions","settings"];
+function currentRoute(){const raw=location.hash.replace("#","").split("/")[0];return ROUTES.includes(raw)?raw:"continent"}
+function showRoute(route,pushHash=true){if(!ROUTES.includes(route))route="continent";document.querySelectorAll(".page").forEach(p=>p.classList.remove("is-active"));document.querySelector("#page-"+route).classList.add("is-active");document.querySelectorAll(".nav-btn").forEach(btn=>btn.setAttribute("aria-selected",String(btn.dataset.route===route)));if(pushHash&&location.hash!=="#"+route)history.pushState(null,"","#"+route);window.scrollTo({top:0,behavior:"smooth"})}
+function attachRouting(){document.querySelectorAll("[data-route]").forEach(el=>{const go=()=>showRoute(el.dataset.route);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})});window.addEventListener("hashchange",()=>showRoute(currentRoute(),false))}
 
-renderCharacterPage(
-  "#page-companions",
-  "companion",
-  "여정을 함께할 동료들",
-  "신들의 질서가 펼쳐진 만다라바르샤를 주인공과 함께 횡단하는 네 명의 여행자. 서로 다른 문화와 신념, 전투 방식을 지닌 파티의 핵심 인물들.",
-  "THE JOURNEY COMPANIONS"
-);
+const characterModal=document.querySelector("#characterModal"),modalClose=document.querySelector("#modalClose"),modalImage=document.querySelector("#modalImage"),modalImageFallback=document.querySelector("#modalImageFallback");
+function openCharacterModal(id){const c=CHARACTERS.find(x=>x.id===id);if(!c)return;const kicker={trimurti:"PRIMORDIAL DRAGON DEITY",guardian:`${c.direction||""} DIRECTIONAL DRAGON`,retainer:"DIVINE RETAINER",companion:"JOURNEY COMPANION"};document.querySelector("#modalKicker").textContent=kicker[c.group]||"CHARACTER PROFILE";document.querySelector("#modalTitle").textContent=`${c.title} ${c.name}`;document.querySelector("#modalRoman").textContent=c.roman;document.querySelector("#modalEpithet").textContent=`「${c.epithet}」`;document.querySelector("#modalTags").innerHTML=c.domain.map(x=>`<span>${x}</span>`).join("");const gl=document.querySelector("#modalGenderLabel"),gv=document.querySelector("#modalGender");if(c.gender){gl.style.display="";gv.style.display="";gv.textContent=c.gender}else{gl.style.display="none";gv.style.display="none"}document.querySelector("#modalAffiliationLabel").textContent=(c.group==="trimurti"||c.group==="guardian")?"담당 국가":"소속";document.querySelector("#modalCountry").textContent=c.country;document.querySelector("#modalColors").textContent=c.colors;document.querySelector("#modalPersonality").textContent=c.personality;document.querySelector("#modalAppearance").textContent=c.appearance;document.querySelector("#modalLore").textContent=c.lore;modalImage.style.display="block";modalImageFallback.style.display="none";modalImage.src=c.image;modalImage.alt=`${c.name} 프로필 확대`;modalImage.onerror=()=>{modalImage.style.display="none";modalImageFallback.style.display="grid"};characterModal.showModal()}
+function attachPortraitModals(){document.querySelectorAll("[data-portrait]").forEach(box=>{box.addEventListener("click",()=>openCharacterModal(box.dataset.characterId));box.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openCharacterModal(box.dataset.characterId)}})})}
+modalClose.addEventListener("click",()=>characterModal.close());characterModal.addEventListener("click",e=>{if(e.target===characterModal)characterModal.close()});
 
-attachImageFallbacks();
-attachRegionMap();
-attachRouting();
-showRoute(currentRoute(), false);
+const bgmAudio=document.querySelector("#bgmAudio"),bgmToggle=document.querySelector("#bgmToggle"),bgmVolume=document.querySelector("#bgmVolume");
+const savedVolume=localStorage.getItem("avarthara-bgm-volume");if(savedVolume!==null)bgmVolume.value=savedVolume;bgmAudio.volume=Number(bgmVolume.value);function syncBgm(){const playing=!bgmAudio.paused;bgmToggle.textContent=playing?"Ⅱ":"▶";bgmToggle.setAttribute("aria-label",playing?"BGM 일시정지":"BGM 재생")}bgmToggle.addEventListener("click",async()=>{if(bgmAudio.paused){try{await bgmAudio.play()}catch(e){console.warn(e)}}else bgmAudio.pause();syncBgm()});bgmVolume.addEventListener("input",()=>{bgmAudio.volume=Number(bgmVolume.value);localStorage.setItem("avarthara-bgm-volume",bgmVolume.value)});bgmAudio.addEventListener("play",syncBgm);bgmAudio.addEventListener("pause",syncBgm);
 
-
-/* =========================================================
-   6) 캐릭터 이미지 상세 모달
-   - 프로필 이미지를 클릭하면 확대 이미지 + 상세 설정을 표시
-   ========================================================= */
-
-const characterModal = document.querySelector("#characterModal");
-const modalClose = document.querySelector("#modalClose");
-const modalImage = document.querySelector("#modalImage");
-const modalImageWrap = document.querySelector("#modalImageWrap");
-const modalImageFallback = document.querySelector("#modalImageFallback");
-
-function openCharacterModal(characterId){
-  const c = CHARACTERS.find(x => x.id === characterId);
-  if(!c || !characterModal) return;
-
-  const kickerMap = {
-    trimurti: "PRIMORDIAL DRAGON DEITY",
-    guardian: `${c.direction || ""} DIRECTIONAL DRAGON`,
-    retainer: "DIVINE RETAINER",
-    companion: "JOURNEY COMPANION"
-  };
-
-  document.querySelector("#modalKicker").textContent = kickerMap[c.group] || "CHARACTER PROFILE";
-  document.querySelector("#modalTitle").textContent = `${c.title} ${c.name}`;
-  document.querySelector("#modalRoman").textContent = c.roman;
-  document.querySelector("#modalEpithet").textContent = `「${c.epithet}」`;
-
-  const modalAffiliationLabel = document.querySelector("#modalAffiliationLabel");
-  modalAffiliationLabel.textContent =
-    (c.group === "trimurti" || c.group === "guardian") ? "담당 국가" : "소속";
-
-  const modalGenderLabel = document.querySelector("#modalGenderLabel");
-  const modalGender = document.querySelector("#modalGender");
-  if(c.gender){
-    modalGenderLabel.style.display = "";
-    modalGender.style.display = "";
-    modalGender.textContent = c.gender;
-  }else{
-    modalGenderLabel.style.display = "none";
-    modalGender.style.display = "none";
-    modalGender.textContent = "";
-  }
-
-  document.querySelector("#modalCountry").textContent = c.country;
-  document.querySelector("#modalColors").textContent = c.colors;
-  document.querySelector("#modalPersonality").textContent = c.personality;
-  document.querySelector("#modalAppearance").textContent = c.appearance;
-  document.querySelector("#modalLore").textContent = c.lore;
-
-  const tags = document.querySelector("#modalTags");
-  tags.innerHTML = c.domain.map(x => `<span>${esc(x)}</span>`).join("");
-
-  modalImage.style.display = "block";
-  modalImageFallback.style.display = "none";
-  modalImage.src = c.image;
-  modalImage.alt = `${c.name} 프로필 일러스트 확대`;
-
-  modalImage.onload = () => {
-    modalImage.style.display = "block";
-    modalImageFallback.style.display = "none";
-  };
-
-  modalImage.onerror = () => {
-    modalImage.style.display = "none";
-    modalImageFallback.style.display = "grid";
-  };
-
-  characterModal.showModal();
-}
-
-function attachPortraitModals(){
-  document.querySelectorAll("[data-portrait][data-character-id]").forEach(box => {
-    box.addEventListener("click", () => openCharacterModal(box.dataset.characterId));
-    box.addEventListener("keydown", e => {
-      if(e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        openCharacterModal(box.dataset.characterId);
-      }
-    });
-  });
-}
-
-if(characterModal){
-  modalClose?.addEventListener("click", () => characterModal.close());
-
-  characterModal.addEventListener("click", e => {
-    if(e.target === characterModal){
-      characterModal.close();
-    }
-  });
-}
-
-attachPortraitModals();
-
-/* =========================================================
-   7) BGM 플레이어
-   - 페이지는 해시 라우팅이라 5개 아카이브 페이지 이동 중 음악이 끊기지 않습니다.
-   - 자동재생은 브라우저 정책상 사용하지 않습니다.
-   ========================================================= */
-
-const bgmPlayer = document.querySelector("#bgmPlayer");
-const bgmAudio = document.querySelector("#bgmAudio");
-const bgmToggle = document.querySelector("#bgmToggle");
-const bgmVolume = document.querySelector("#bgmVolume");
-
-if (bgmAudio && bgmToggle && bgmVolume) {
-  // 초기 볼륨
-  bgmAudio.volume = Number(bgmVolume.value);
-
-  // 사용자가 마지막으로 설정한 볼륨을 같은 브라우저에서 기억
-  const savedVolume = localStorage.getItem("avarthara-bgm-volume");
-  if (savedVolume !== null) {
-    const parsed = Math.min(1, Math.max(0, Number(savedVolume)));
-    if (!Number.isNaN(parsed)) {
-      bgmAudio.volume = parsed;
-      bgmVolume.value = String(parsed);
-    }
-  }
-
-  function syncBgmButton() {
-    const playing = !bgmAudio.paused;
-    bgmToggle.textContent = playing ? "Ⅱ" : "▶";
-    bgmToggle.setAttribute("aria-label", playing ? "BGM 일시정지" : "BGM 재생");
-    bgmToggle.setAttribute("aria-pressed", String(playing));
-    bgmPlayer?.classList.toggle("is-playing", playing);
-  }
-
-  bgmToggle.addEventListener("click", async () => {
-    if (bgmAudio.paused) {
-      try {
-        await bgmAudio.play();
-      } catch (err) {
-        console.warn("BGM 재생 실패:", err);
-      }
-    } else {
-      bgmAudio.pause();
-    }
-    syncBgmButton();
-  });
-
-  bgmVolume.addEventListener("input", () => {
-    const value = Number(bgmVolume.value);
-    bgmAudio.volume = value;
-    localStorage.setItem("avarthara-bgm-volume", String(value));
-  });
-
-  bgmAudio.addEventListener("play", syncBgmButton);
-  bgmAudio.addEventListener("pause", syncBgmButton);
-  bgmAudio.addEventListener("ended", syncBgmButton);
-  bgmAudio.addEventListener("error", () => {
-    console.warn("BGM 파일을 불러오지 못했습니다. assets/audio/main-theme.mp3 경로를 확인하세요.");
-    bgmToggle.title = "BGM 파일을 찾을 수 없습니다.";
-  });
-
-  syncBgmButton();
-}
-
+attachImageFallbacks();attachRegionMap();attachRouting();attachPortraitModals();showRoute(currentRoute(),false);syncBgm();
 </script>
 </body>
 </html>
