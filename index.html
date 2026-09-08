@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090e15">
-  <meta name="description" content="아바르타라 세계관 아카이브. 만다라바르샤의 국가, 삼주룡과 십방위룡, 용신의 권속과 동료 고행자, 13개국 생물 39종의 기록.">
+  <meta name="description" content="아바르타라 세계관 아카이브. 만다라바르샤의 국가, 삼주룡과 십방위룡, 용신의 권속과 동료 고행자, 13개국 생물 39종, 나찰과 천계의 기록.">
   <title>아바르타라 세계관 아카이브</title>
   <style>
 :root {
@@ -260,6 +260,21 @@ details[open]>summary .chev { transform: rotate(45deg); }
   #page-bestiary .chapter-numeral { display: none; }
 }
 
+/* 08 나찰 — 기존 카드 양식을 사용하는 2열 기록 */
+.rakshasa-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rakshasa-grid .portrait { aspect-ratio: 4/3; }
+.rakshasa-grid .portrait img, .rakshasa-modal .modal-image-wrap img { object-fit: contain; object-position: center; }
+.rakshasa-realm { padding: 30px; border: 1px solid var(--line-gold); border-radius: 6px; background: var(--panel); }
+.rakshasa-realm h3 { margin: 12px 0 16px; color: #f0dfbd; font: 2rem/1.5 var(--serif); }
+.rakshasa-realm > p { margin: 0; color: var(--muted); line-height: 1.95; word-break: keep-all; }
+.rakshasa-facts { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 12px 20px; margin: 26px 0 0; padding-top: 24px; border-top: 1px solid var(--line); }
+.rakshasa-facts dt { color: var(--quiet); }
+.rakshasa-facts dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .rakshasa-grid { grid-template-columns: minmax(0, 1fr); }
+  .rakshasa-realm { padding: 24px 20px; }
+  .rakshasa-facts { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+}
   </style>
 </head>
 <body>
@@ -285,6 +300,7 @@ details[open]>summary .chev { transform: rotate(45deg); }
     <section id="page-companions" class="page" aria-label="동료 고행자" hidden></section>
     <section id="page-settings" class="page" aria-label="주요 설정" hidden></section>
     <section id="page-bestiary" class="page" aria-label="생물지" hidden></section>
+    <section id="page-rakshasa" class="page" aria-label="나찰" hidden></section>
     <noscript><p>아바르타라 세계관 기록을 읽으려면 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>
   </main>
   <footer class="footer"><div class="footer-inner"><span class="footer-wordmark">AVARTHARA ARCHIVE</span><span>아바르타라 세계관 기록보관소</span></div></footer>
@@ -1194,7 +1210,107 @@ const CREATURES = [
   }
 ];
 
-const GROUP_LABELS = { trimurti: "삼주룡", guardian: "십방위룡", retainer: "용신의 권속", companion: "여정의 동료", creature: "생물지" };
+/*
+  나찰 이미지 안내: 기존 인물과 동일하게 index.html 옆 assets/characters/에 저장합니다.
+  assets/characters/rakshasa-soldier.webp — 나찰 병사
+  assets/characters/rakshasa-general.webp — 나찰 장군
+  assets/characters/rakshasa-shaman.webp  — 나찰 주술사
+  assets/characters/ravana.webp          — 나찰왕 라바나
+  이미지 파일은 별도로 넣습니다. 미등록 시 기존 대체 화면을 표시합니다.
+  경로·소개·외형은 RAKSHASAS에서, 기본 소개와 천계 설정은 RAKSHASA_LORE에서 수정합니다.
+  병종별 세부 설명과 외형·색상은 편집 가능한 소개 초안입니다.
+*/
+const RAKSHASA_LORE = {
+  intro: "나찰은 나찰왕 라바나를 중심으로 천계에 머무는 존재들이다. 병사와 장군, 주술사는 각자의 방식으로 무력과 주술을 다루며 왕이 세운 세계를 지킨다. 이들의 터전인 천계는 라바나가 고행을 거쳐 만들어낸 고유 세계로, 나찰은 그 안에서 독자적인 질서를 이루고 있다.",
+  realm: "천계",
+  description: "고행을 거친 나찰왕 라바나가 만들어낸, 13세계의 법칙 그 어느 곳에도 속하지 않는 고유 세계.",
+  creator: "나찰왕 라바나",
+  inhabitants: "나찰"
+};
+const RAKSHASAS = [
+  {
+    "id": "rakshasa-soldier",
+    "name": "나찰 병사",
+    "roman": "Rakshasa Soldier",
+    "title": "천계의 전사",
+    "epithet": "왕의 깃발 아래 선 전열",
+    "domain": [
+      "전투",
+      "경계",
+      "수비"
+    ],
+    "colors": "암적색 · 흑철색",
+    "personality": "명령과 대형을 중시하며 동료와 함께 전선을 지킨다.",
+    "appearance": "흑철 갑주와 암적색 천 장식. 창과 방패를 갖춘 견고한 전사의 모습.",
+    "summary": "천계의 경계를 지키고 전장의 선봉에 서는 나찰의 병사.",
+    "lore": "나찰 군세의 기본 전력을 이루는 전사들. 경계와 수비, 집단 전투를 맡으며 장군의 지휘 아래 움직인다.",
+    "image": "./assets/characters/rakshasa-soldier.webp",
+    "group": "rakshasa",
+    "country": "천계 · 나찰왕 라바나의 세력"
+  },
+  {
+    "id": "rakshasa-general",
+    "name": "나찰 장군",
+    "roman": "Rakshasa General",
+    "title": "군세의 지휘관",
+    "epithet": "전열을 이끄는 왕의 무장",
+    "domain": [
+      "지휘",
+      "무력",
+      "전술"
+    ],
+    "colors": "암적색 · 흑색 · 금색",
+    "personality": "전황을 냉정하게 읽고 자신의 판단과 부하들의 생존에 책임을 진다.",
+    "appearance": "금색 장식의 중갑과 짙은 붉은 망토. 병사와 구별되는 투구와 거대한 무장.",
+    "summary": "병사들을 통솔하고 전투의 흐름을 결정하는 나찰의 장군.",
+    "lore": "무력과 지휘력을 바탕으로 군세를 이끈다. 라바나의 뜻을 전장에 전달하고, 병사와 주술사의 힘을 조율해 하나의 전력으로 묶는다.",
+    "image": "./assets/characters/rakshasa-general.webp",
+    "group": "rakshasa",
+    "country": "천계 · 나찰왕 라바나의 세력"
+  },
+  {
+    "id": "rakshasa-shaman",
+    "name": "나찰 주술사",
+    "roman": "Rakshasa Shaman",
+    "title": "주술과 의식의 수행자",
+    "epithet": "보이지 않는 힘을 엮는 자",
+    "domain": [
+      "주술",
+      "결계",
+      "의식"
+    ],
+    "colors": "보라색 · 흑색 · 은색",
+    "personality": "주문과 의식의 절차에 집중하며 힘을 다루는 데 신중하다.",
+    "appearance": "짙은 보라색 의복과 은색 의식 장신구. 주문이 새겨진 지팡이와 부적.",
+    "summary": "주문과 의식으로 군세를 돕고 천계의 수호를 맡는 나찰의 주술사.",
+    "lore": "무기 대신 주술을 연마하는 이들. 결계를 세워 거점을 보호하고 전투 중 동료를 지원한다. 천계에서 치러지는 의식 역시 이들의 손을 거친다.",
+    "image": "./assets/characters/rakshasa-shaman.webp",
+    "group": "rakshasa",
+    "country": "천계 · 나찰왕 라바나의 세력"
+  },
+  {
+    "id": "ravana",
+    "name": "나찰왕 라바나",
+    "roman": "Ravana",
+    "title": "천계의 창조자",
+    "epithet": "고행 끝에 자신의 세계를 세운 왕",
+    "domain": [
+      "고행",
+      "고유 세계",
+      "나찰왕"
+    ],
+    "colors": "흑색 · 금색 · 암적색",
+    "personality": "고행으로 벼린 의지와 왕으로서의 위엄을 지닌다.",
+    "appearance": "검은 왕의 의장과 금색 왕관, 암적색 장식. 수행자의 엄숙함과 군주의 위엄이 공존하는 모습.",
+    "summary": "고행을 거쳐 천계를 만들어낸 나찰의 왕. 나찰이 머무는 고유 세계의 창조자이자 통치자.",
+    "lore": "라바나는 고행을 거쳐, 13세계의 법칙 그 어느 곳에도 속하지 않는 고유 세계인 천계를 만들어냈다. 나찰은 그가 세운 세계에 머물며 왕의 아래에서 자신들의 질서를 이룬다.",
+    "image": "./assets/characters/ravana.webp",
+    "group": "rakshasa",
+    "country": "천계 · 나찰왕 라바나의 세력"
+  }
+];
+
+const GROUP_LABELS = { trimurti: "삼주룡", guardian: "십방위룡", retainer: "용신의 권속", companion: "여정의 동료", creature: "생물지", rakshasa: "나찰" };
 const PAGE_META = {
   continent: { label: "대륙 소개", index: "01" },
   trimurti: { label: "삼주룡", index: "02", group: "trimurti", title: "세계를 유지하는 삼주룡", sub: "창세·유지·종언이라는 세계의 가장 근본적인 세 법칙을 담당하는 최고위 용신들.", en: "THE THREE PRIMORDIAL DRAGONS", numeral: "III" },
@@ -1202,7 +1318,8 @@ const PAGE_META = {
   retainers: { label: "용신의 권속", index: "04", group: "retainer", title: "용신의 권속들", sub: "각 용신 곁에서 기록·행정·군사·장례·연금·계약·신탁 등 실무를 맡는 13명의 보좌관들.", en: "THE DIVINE RETAINERS", numeral: "XIII" },
   companions: { label: "동료 고행자", index: "05", group: "companion", title: "동료 고행자들", sub: "주인공과 함께 만다라바르샤를 횡단하는 네 명의 여행 동료.", en: "THE JOURNEY COMPANIONS", numeral: "IV" },
   settings: { label: "주요 설정", index: "06" },
-  bestiary: { label: "생물지", index: "07" }
+  bestiary: { label: "생물지", index: "07" },
+  rakshasa: { label: "나찰", index: "08", group: "rakshasa" }
 };
 const ROUTES = Object.keys(PAGE_META);
 const ICONS = {
@@ -1227,13 +1344,13 @@ function sectionHeading(number, title, count, unit, sub = "") {
 function renderNavigation() {
   document.querySelector("#primaryNav").innerHTML = ROUTES.map(route => {
     const meta = PAGE_META[route];
-    const count = route === "continent" ? REGIONS.length : route === "settings" ? MAJOR_SETTINGS.length : route === "bestiary" ? CREATURES.length : CHARACTERS.filter(c => c.group === meta.group).length;
+    const count = route === "continent" ? REGIONS.length : route === "settings" ? MAJOR_SETTINGS.length : route === "bestiary" ? CREATURES.length : route === "rakshasa" ? RAKSHASAS.length : CHARACTERS.filter(c => c.group === meta.group).length;
     return `<a class="nav-btn" href="#${route}" data-route="${route}"><span class="nav-number" aria-hidden="true">${meta.index}</span><span>${meta.label}</span><span class="nav-count" aria-label="${count}개 항목">${pad(count)}</span></a>`;
   }).join("");
 }
 function portraitHTML(c) {
   const isCreature = c.group === "creature";
-  const index = pad((isCreature ? CREATURES : CHARACTERS).indexOf(c) + 1);
+  const index = pad((isCreature ? CREATURES : c.group === "rakshasa" ? RAKSHASAS : CHARACTERS).indexOf(c) + 1);
   return `<button type="button" class="portrait" data-portrait data-character-id="${esc(c.id)}" aria-label="${esc(c.name)} 상세 보기" aria-haspopup="dialog" style="--hue:${hueFor(c)}">
     <span class="portrait-fallback" aria-hidden="true"><span class="portrait-code">${index} / ${esc(c.roman.toUpperCase())}</span><span class="portrait-initial">${esc(c.roman[0])}</span><span class="portrait-name">${esc(c.title)}</span></span>
     <img src="${esc(c.image)}" alt="${esc(c.name)} ${isCreature ? "생물 도감" : "프로필"} 일러스트" loading="lazy" decoding="async">
@@ -1285,6 +1402,18 @@ function renderBestiary() {
       const list = CREATURES.filter(c => c.region === r.id);
       return `<details class="region bestiary-region" id="bestiary-${esc(r.id)}"${i === 0 ? " open" : ""}><summary class="region-summary"><span class="region-index" aria-hidden="true">${pad(i + 1)}</span><span class="bestiary-country"><strong>${esc(r.name)} <span class="bestiary-species-count">${list.length}종</span></strong><small>${esc(r.group)} · ${esc(r.subtitle)}</small><span class="bestiary-names">${list.map(c => esc(c.name)).join(" · ")}</span></span><span class="chev" aria-hidden="true">+</span></summary><div class="bestiary-body"><p class="region-ruler"><b>관장 용신</b>${esc(r.ruler)}</p><div class="character-grid creature-grid">${list.map(creatureCard).join("")}</div></div></details>`;
     }).join("")}</div></section>`;
+}
+
+function renderRakshasa() {
+  const lore = RAKSHASA_LORE;
+  document.querySelector("#page-rakshasa").innerHTML = `<header class="hero chapter-hero"><div><div class="eyebrow">RAKSHASA / THE REALM OF RAVANA</div><h1 tabindex="-1">나찰</h1><p>${esc(lore.intro)}</p></div><span class="chapter-numeral" aria-hidden="true">VIII</span></header>
+    <section class="section" aria-labelledby="rakshasa-realm-heading">
+      <div class="section-head"><div class="section-heading"><span class="section-number" aria-hidden="true">01</span><h2 id="rakshasa-realm-heading">나찰이 머무는 곳</h2></div></div>
+      <article class="rakshasa-realm"><div class="small-kicker">THE SOVEREIGN REALM</div><h3>${esc(lore.realm)}</h3><p>${esc(lore.description)}</p>
+        <dl class="rakshasa-facts"><dt>창조자</dt><dd>${esc(lore.creator)}</dd><dt>기원</dt><dd>라바나가 고행을 거쳐 만들어낸 세계</dd><dt>위상</dt><dd>13세계의 법칙 그 어느 곳에도 속하지 않는 고유 세계</dd><dt>거주자</dt><dd>${esc(lore.inhabitants)}</dd></dl>
+      </article>
+    </section>
+    <section class="section" aria-label="나찰의 군세와 왕">${sectionHeading("02", "나찰의 군세와 왕", RAKSHASAS.length, "기록")}<div class="character-grid rakshasa-grid">${RAKSHASAS.map(characterCard).join("")}</div></section>`;
 }
 
 function renderSettings() {
@@ -1352,15 +1481,16 @@ const modalImage = document.querySelector("#modalImage");
 const modalImageFallback = document.querySelector("#modalImageFallback");
 let previousModalFocus = null;
 function openCharacterModal(id) {
-  const c = CHARACTERS.find(x => x.id === id) || CREATURES.find(x => x.id === id);
+  const c = CHARACTERS.find(x => x.id === id) || CREATURES.find(x => x.id === id) || RAKSHASAS.find(x => x.id === id);
   if (!c) return;
   const isCreature = c.group === "creature";
   const region = isCreature ? REGIONS.find(r => r.id === c.region) : null;
   characterModal.classList.toggle("creature-modal", isCreature);
+  characterModal.classList.toggle("rakshasa-modal", c.group === "rakshasa");
   previousModalFocus = document.activeElement;
   const text = (id, value) => { document.getElementById(id).textContent = value; };
   text("modalKicker", GROUP_LABELS[c.group] + (isCreature ? " / " + region.name : c.direction ? " / " + c.direction : ""));
-  text("modalTitle", isCreature ? c.name : c.title + " " + c.name);
+  text("modalTitle", isCreature || c.group === "rakshasa" ? c.name : c.title + " " + c.name);
   text("modalRoman", c.roman);
   text("modalEpithet", isCreature ? c.summary : "「" + c.epithet + "」");
   document.querySelector("#modalTags").innerHTML = c.domain.map(x => `<span>${esc(x)}</span>`).join("");
@@ -1443,6 +1573,7 @@ renderContinent();
 ["trimurti", "guardians", "retainers", "companions"].forEach(renderCharacterPage);
 renderSettings();
 renderBestiary();
+renderRakshasa();
 attachImageFallbacks();
 attachRegionMap();
 attachRouting();
